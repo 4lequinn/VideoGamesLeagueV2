@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+/* 
+    Created on : 04-10-2021, 19:53:28
+    Author     : jorge
+*/
+
+:root {
+    /*
+        Creamos una paleta de colores para la APP
+    */
+    /* https://www.canva.com/es_mx/aprende/100-combinaciones-colores-como-aplicarlas-disenos */
+    /* Paleta de colores Vida Nocturna */
+    --color-primario: #00CFFA;
+    --color-primario-claro: #00faf2;
+    --color-secundario: #FF0038;
+    --color-secundario-claro: #ff0051;
+    --color-terciario: #FFCE38;
+    --color-terciario-claro: #ffde38;
+    --color-cuaternario: #020509;
+    --color-blanco: #fff;
+    --color-negro: #000000;
+    --color-negro-op50: #00000080;
+    --color-negro-op80: #000000CC;
+    /* Nav bar */
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --color-icon-primario: #ff7eee;
+    --color-icon-secundario: #df49a6;
+    --transition-speed: 600ms;
+}

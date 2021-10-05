@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+/* 
+    Created on : 04-10-2021, 19:55:05
+    Author     : jorge
+*/
+
+
+/* Normalize Resetea los estilos del navegador */
+
+@import "normalize.css";
+@import "global-variables.css";
+
+/*
+    Aquí definiremos los estilos globales para la página
+    Ejem
+    Tamaño de fuente - tipo de fuente etc
+    
+*/
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: var(--color-negro);
+}
