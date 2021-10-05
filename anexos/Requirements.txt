@@ -1,0 +1,27 @@
+----------------------
+-- Dependecias
+----------------------
+
+-------------------------------
+-- Usuario para la conexión
+-------------------------------
+
+user : muca
+pass : admin
+
+---------------------------
+GlashFish versión 4.0
+La vesión 4.1 tiene un bug
+---------------------------
+
+Puerto Servidor de glashfish : Localhost 9010
+
+---------------------------
+-- Nombre de la Pool 
+---------------------------
+MucaPool
+
+---------------------------
+-- Nombre del recurso
+---------------------------
+jdbc/RecursoMuca
