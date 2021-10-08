@@ -23,16 +23,9 @@ and open the template in the editor.
     --color-terciario: #FFCE38;
     --color-terciario-claro: #ffde38;
     --color-cuaternario: #020509;
+    --color-rojo: #E30C0C;
     --color-blanco: #fff;
     --color-negro: #000000;
     --color-negro-op50: #00000080;
     --color-negro-op80: #000000CC;
-    /* Nav bar */
-    --text-primary: #b6b6b6;
-    --text-secondary: #ececec;
-    --bg-primary: #23232e;
-    --bg-secondary: #141418;
-    --color-icon-primario: #ff7eee;
-    --color-icon-secundario: #df49a6;
-    --transition-speed: 600ms;
 }

@@ -1,3 +1,5 @@
+//No se está usando pero lo voy a dejar pq se ve bkn 😎
+
 const themeMap = {
     dark: "light",
     light: "solar",
