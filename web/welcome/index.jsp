@@ -51,7 +51,7 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.pkgd.min.js"></script>
     <script type="text/javascript" src="functions/js/inicio/carrusel.js"></script>
-    <script src="functions/js/navbar/menu.js"></script>
+
     <%@include file="../includes/scripts/navbar-script.jsp" %>
 </body>
 

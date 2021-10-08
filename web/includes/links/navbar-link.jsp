@@ -5,4 +5,4 @@
 --%>
 <!-- TEST -->
 <link rel="stylesheet" href="../theme/css/template/navbar.css">
-<link rel="stylesheet" href="theme/css/template/navbar.css">
+<link rel="stylesheet" href="./theme/css/template/navbar.css">

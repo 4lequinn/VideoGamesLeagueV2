@@ -4,3 +4,5 @@
     Author     : jorge
 --%>
 
+<link rel="stylesheet" href="../theme/css/template/footer.css">
+<link rel="stylesheet" href="./theme/css/template/footer.css">

@@ -5,4 +5,4 @@
 --%>
 
 <script src="../functions/js/navbar/menu.js"></script>
-<script src="functions/js/navbar/menu.js"></script>
+<script src="./functions/js/navbar/menu.js"></script>
