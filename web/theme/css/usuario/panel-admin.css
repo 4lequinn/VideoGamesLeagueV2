@@ -1,0 +1,24 @@
+@import '../../global-theme/main-style.css';
+header {
+    background: var(--color-cuaternario);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 400px;
+    transition: 1s;
+}
+
+.carousel-item img:hover {
+    filter: blur(3px);
+    filter: grayscale(80%);
+    transform: scale(0.98);
+    border-radius: 20px 0 20px 0;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.carousel-caption {
+    background: var(--color-negro-op50);
+    border-radius: 10px;
+}

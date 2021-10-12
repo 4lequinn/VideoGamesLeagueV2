@@ -65,7 +65,7 @@ main {
     border: none;
     border-radius: 3px;
     padding: 0 10px 0 20px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 
@@ -197,22 +197,20 @@ main {
     border: 3px solid var(--color-rojo);
 }
 
+.formulario {
+    grid-template-columns: 1fr;
+}
 
-/* ----- -----  Mediaqueries ----- ----- */
+.formulario__grupo-terminos,
+.formulario__mensaje,
+.formulario__grupo-btn-enviar {
+    grid-column: 1;
+}
 
-@media screen and (max-width: 800px) {
-    .formulario {
-        grid-template-columns: 1fr;
-    }
-    .formulario__grupo-terminos,
-    .formulario__mensaje,
-    .formulario__grupo-btn-enviar {
-        grid-column: 1;
-    }
-    .formulario__btn {
-        width: 100%;
-    }
-    .formulario__input {
-        height: 35px;
-    }
+.formulario__btn {
+    width: 100%;
+}
+
+.formulario__input {
+    height: 35px;
 }

@@ -40,7 +40,7 @@
                         <a href="#"><i class="icon ion-social-twitter"></i></a>
                         <a href="#"><i class="icon ion-social-whatsapp"></i></a>
                         <a href="#"><i class="icon ion-social-instagram"></i></a>
-                        <p class="copyright">VirgoLand Mucas © 2021</p>
+                        <p class="copyright">Team de los Mucas © 2021</p>
                     </div>
                 </div>
             </div>

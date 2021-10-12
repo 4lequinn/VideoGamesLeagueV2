@@ -29,7 +29,7 @@
             </div>
             <ul class="nav_list">
                 <li>
-                    <a href="./index.jsp">
+                    <a href="../index.jsp">
                         <i class='bx bx-grid-alt'></i>
                         <span class="links_name">Inicio</span>
                     </a>
@@ -37,7 +37,7 @@
                 </li>
 
                 <li>
-                    <a href="usuario/login.jsp">
+                    <a href="../usuario/login.jsp">
                         <i class='bx bx-log-in'></i>
                         <span class="links_name">Iniciar sesión</span>
                     </a>
@@ -45,21 +45,21 @@
                 </li>
 
                 <li>
-                    <a href="usuario/modificar-perfil-usuario.jsp">
+                    <a href="../usuario/modificar-perfil-usuario.jsp">
                         <i class='bx bxs-id-card'></i>
                         <span class="links_name">Perfil Jugador</span>
                     </a>
                     <span class="tooltip">Perfil Jugador</span>
                 </li>
                 <li>
-                    <a href="equipo/panel-equipos.jsp">
+                    <a href="../equipo/panel-equipos.jsp">
                         <i class='bx bxs-group'></i>
                         <span class="links_name">Equipo</span>
                     </a>
                     <span class="tooltip">Equipo</span>
                 </li>
                 <li>
-                    <a href="liga/panel-ligas.jsp">
+                    <a href="../liga/panel-ligas.jsp">
                         <i class='bx bx-mouse'></i>
                         <span class="links_name">Liga</span>
                     </a>
@@ -67,7 +67,7 @@
                 </li>
                 
                 <li>
-                    <a href="equipo/consultar-solicitud.jsp">
+                    <a href="../equipo/consultar-solicitud.jsp">
                         <i class='bx bx-search-alt-2'></i>
                         <span class="links_name">Ver Solicitudes</span>
                     </a>
@@ -76,7 +76,7 @@
 
 
                 <li>
-                    <a href="admin/panel-usuarios.jsp">
+                    <a href="../admin/panel-usuarios.jsp">
                         <i class='bx bx-lock'></i>
                         <span class="links_name">Panel Admin</span>
                     </a>
