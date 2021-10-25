@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-09-2021 a las 10:01:41
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 7.3.29
+-- Tiempo de generación: 25-10-2021 a las 23:37:28
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,6 +75,19 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalle_partido`
+--
+
+CREATE TABLE `detalle_partido` (
+  `id` int(11) NOT NULL,
+  `id_equipo` int(11) NOT NULL,
+  `id_resultado` int(11) NOT NULL,
+  `id_partido` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `equipo`
 --
 
@@ -123,7 +136,6 @@ END
 $$
 DELIMITER ;
 
-
 -- --------------------------------------------------------
 
 --
@@ -147,6 +159,27 @@ INSERT INTO `estado_solicitud` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `fase`
+--
+
+CREATE TABLE `fase` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `fase`
+--
+
+INSERT INTO `fase` (`id`, `descripcion`) VALUES
+(1, '8vos de Final'),
+(2, '4tos de Final'),
+(3, 'Semifinal'),
+(4, 'Final');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `incripcion`
 --
 
@@ -158,21 +191,21 @@ CREATE TABLE `incripcion` (
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
--- Ingresa a un jugador a un equipo al ser aceptado
+--
+-- Disparadores `incripcion`
+--
 DELIMITER $$
-CREATE OR REPLACE TRIGGER TRG_DETALLE_EQUIPO
-AFTER UPDATE on incripcion 
-FOR EACH ROW
-BEGIN
+CREATE TRIGGER `TRG_DETALLE_EQUIPO` AFTER UPDATE ON `incripcion` FOR EACH ROW BEGIN
 	IF new.id_estado = 2 THEN
     -- Solicitud Aceptada
     insert into detalle_equipo (id_equipo, id_inscripcion) VALUES (new.id_equipo, new.id);
 
    	END IF;
-END $$
+END
+$$
 DELIMITER ;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `liga`
@@ -199,6 +232,21 @@ INSERT INTO `liga` (`id`, `descripcion`, `cantidad_equipo`, `id_juego`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `partido`
+--
+
+CREATE TABLE `partido` (
+  `id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_inicio` varchar(5) NOT NULL,
+  `hora_termino` varchar(5) NOT NULL,
+  `id_fase` int(11) NOT NULL,
+  `id_liga` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `perfil_jugador`
 --
 
@@ -216,7 +264,27 @@ CREATE TABLE `perfil_jugador` (
 --
 
 INSERT INTO `perfil_jugador` (`id`, `nombre`, `correo`, `habilidad`, `id_tipo_jugador`, `id_usuario`) VALUES
-(1,'Admin','Admin@admin.cl','Banear',2,'admin');
+(1, 'Admin', 'Admin@admin.cl', 'Banear', 2, 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `resultado`
+--
+
+CREATE TABLE `resultado` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `resultado`
+--
+
+INSERT INTO `resultado` (`id`, `descripcion`) VALUES
+(1, 'PENDIENTE'),
+(2, 'GANADO'),
+(3, 'PERDIDO');
 
 -- --------------------------------------------------------
 
@@ -274,7 +342,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usuario`, `contrasenia`, `id_tipo`) VALUES
-('admin', 'admin', 1);
+('admin', 'admin', 1),
+('Holi', '12344', 1),
+('prueba', '3232ds', 1);
 
 -- --------------------------------------------------------
 
@@ -311,6 +381,15 @@ ALTER TABLE `detalle_equipo`
   ADD KEY `id_inscripcion` (`id_inscripcion`);
 
 --
+-- Indices de la tabla `detalle_partido`
+--
+ALTER TABLE `detalle_partido`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_equipo` (`id_equipo`),
+  ADD KEY `id_resultado` (`id_resultado`),
+  ADD KEY `id_partido` (`id_partido`);
+
+--
 -- Indices de la tabla `equipo`
 --
 ALTER TABLE `equipo`
@@ -322,6 +401,12 @@ ALTER TABLE `equipo`
 -- Indices de la tabla `estado_solicitud`
 --
 ALTER TABLE `estado_solicitud`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `fase`
+--
+ALTER TABLE `fase`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -341,12 +426,26 @@ ALTER TABLE `liga`
   ADD KEY `id_juego` (`id_juego`);
 
 --
+-- Indices de la tabla `partido`
+--
+ALTER TABLE `partido`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_fase` (`id_fase`),
+  ADD KEY `id_liga` (`id_liga`);
+
+--
 -- Indices de la tabla `perfil_jugador`
 --
 ALTER TABLE `perfil_jugador`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_tipo_jugador` (`id_tipo_jugador`),
   ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `resultado`
+--
+ALTER TABLE `resultado`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `tipo_jugador`
@@ -384,6 +483,12 @@ ALTER TABLE `detalle_equipo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `detalle_partido`
+--
+ALTER TABLE `detalle_partido`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
@@ -396,6 +501,12 @@ ALTER TABLE `estado_solicitud`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `fase`
+--
+ALTER TABLE `fase`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `incripcion`
 --
 ALTER TABLE `incripcion`
@@ -405,7 +516,13 @@ ALTER TABLE `incripcion`
 -- AUTO_INCREMENT de la tabla `liga`
 --
 ALTER TABLE `liga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `partido`
+--
+ALTER TABLE `partido`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil_jugador`
@@ -414,10 +531,16 @@ ALTER TABLE `perfil_jugador`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `resultado`
+--
+ALTER TABLE `resultado`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `tipo_jugador`
 --
 ALTER TABLE `tipo_jugador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -443,6 +566,14 @@ ALTER TABLE `detalle_equipo`
   ADD CONSTRAINT `detalle_equipo_ibfk_2` FOREIGN KEY (`id_inscripcion`) REFERENCES `incripcion` (`id`);
 
 --
+-- Filtros para la tabla `detalle_partido`
+--
+ALTER TABLE `detalle_partido`
+  ADD CONSTRAINT `detalle_partido_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id`),
+  ADD CONSTRAINT `detalle_partido_ibfk_2` FOREIGN KEY (`id_resultado`) REFERENCES `resultado` (`id`),
+  ADD CONSTRAINT `detalle_partido_ibfk_3` FOREIGN KEY (`id_partido`) REFERENCES `partido` (`id`);
+
+--
 -- Filtros para la tabla `equipo`
 --
 ALTER TABLE `equipo`
@@ -462,6 +593,13 @@ ALTER TABLE `incripcion`
 --
 ALTER TABLE `liga`
   ADD CONSTRAINT `liga_ibfk_1` FOREIGN KEY (`id_juego`) REFERENCES `video_juego` (`id`);
+
+--
+-- Filtros para la tabla `partido`
+--
+ALTER TABLE `partido`
+  ADD CONSTRAINT `partido_ibfk_2` FOREIGN KEY (`id_fase`) REFERENCES `fase` (`id`),
+  ADD CONSTRAINT `partido_ibfk_3` FOREIGN KEY (`id_liga`) REFERENCES `liga` (`id`);
 
 --
 -- Filtros para la tabla `perfil_jugador`
