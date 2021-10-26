@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,17 +28,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author jorge
  */
 @Entity
-@Table(name = "liga")
+@Table(name = "fase")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Liga.findAll", query = "SELECT l FROM Liga l")
-    , @NamedQuery(name = "Liga.findById", query = "SELECT l FROM Liga l WHERE l.id = :id")
-    , @NamedQuery(name = "Liga.findByDescripcion", query = "SELECT l FROM Liga l WHERE l.descripcion = :descripcion")
-    , @NamedQuery(name = "Liga.findByCantidadEquipo", query = "SELECT l FROM Liga l WHERE l.cantidadEquipo = :cantidadEquipo")})
-public class Liga implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLiga")
-    private List<Partido> partidoList;
+    @NamedQuery(name = "Fase.findAll", query = "SELECT f FROM Fase f")
+    , @NamedQuery(name = "Fase.findById", query = "SELECT f FROM Fase f WHERE f.id = :id")
+    , @NamedQuery(name = "Fase.findByDescripcion", query = "SELECT f FROM Fase f WHERE f.descripcion = :descripcion")})
+public class Fase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,27 +47,19 @@ public class Liga implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "cantidad_equipo")
-    private int cantidadEquipo;
-    @JoinColumn(name = "id_juego", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private VideoJuego idJuego;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLiga")
-    private List<Equipo> equipoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
+    private List<Partido> partidoList;
 
-    public Liga() {
+    public Fase() {
     }
 
-    public Liga(Integer id) {
+    public Fase(Integer id) {
         this.id = id;
     }
 
-    public Liga(Integer id, String descripcion, int cantidadEquipo) {
+    public Fase(Integer id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
-        this.cantidadEquipo = cantidadEquipo;
     }
 
     public Integer getId() {
@@ -92,29 +78,13 @@ public class Liga implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public int getCantidadEquipo() {
-        return cantidadEquipo;
-    }
-
-    public void setCantidadEquipo(int cantidadEquipo) {
-        this.cantidadEquipo = cantidadEquipo;
-    }
-
-    public VideoJuego getIdJuego() {
-        return idJuego;
-    }
-
-    public void setIdJuego(VideoJuego idJuego) {
-        this.idJuego = idJuego;
-    }
-
     @XmlTransient
-    public List<Equipo> getEquipoList() {
-        return equipoList;
+    public List<Partido> getPartidoList() {
+        return partidoList;
     }
 
-    public void setEquipoList(List<Equipo> equipoList) {
-        this.equipoList = equipoList;
+    public void setPartidoList(List<Partido> partidoList) {
+        this.partidoList = partidoList;
     }
 
     @Override
@@ -127,10 +97,10 @@ public class Liga implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Liga)) {
+        if (!(object instanceof Fase)) {
             return false;
         }
-        Liga other = (Liga) object;
+        Fase other = (Fase) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -139,16 +109,7 @@ public class Liga implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.dto.Liga[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<Partido> getPartidoList() {
-        return partidoList;
-    }
-
-    public void setPartidoList(List<Partido> partidoList) {
-        this.partidoList = partidoList;
+        return "modelo.dto.Fase[ id=" + id + " ]";
     }
     
 }
