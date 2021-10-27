@@ -23,7 +23,7 @@
             <img class="background-img" src="../theme/img/equipo/team-fifa.png" alt="Imagen de fondo">
             <div class="background-transparencia"></div>
             <main>
-                <form action="" class="formulario" id="formulario">
+                <form action="../ControladorUsuario" method="POST class="formulario" id="formulario">
 
                     <!-- Grupo: Nombre -->
                     <div class="formulario__grupo" id="grupo__nombre">
@@ -133,14 +133,14 @@
 
 
                     <div class="formulario__grupo formulario__grupo-btn-enviar">
-                        <button type="submit" class="formulario__btn">Registrarse</button>
+                        <button type="submit" class="formulario__btn" name="btnAccion" value="RegistrarUsuario">Registrarse</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                     </div>
                 </form>
 
             </main>
             <!--Incluir el CDN de Sweet alert -->
-            <script src="../functions/js/forms/formulario-registro.js"></script>
+            <!--<script src="../functions/js/forms/formulario-registro.js"></script> -->    
             <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
             <jsp:include page="../includes/cdn/cdn-sweet-alert.jsp"></jsp:include>
             <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>

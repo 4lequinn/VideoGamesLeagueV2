@@ -35,13 +35,18 @@ public class ControladorUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user = request.getParameter("txtUser");
-        String pass = request.getParameter("txtPass");
-        int tipo = Integer.parseInt(request.getParameter("cboTipo"));
-        TipoUsuario tipoUsuario = new TipoUsuario(tipo);
-        Usuario usuario = new Usuario(user, pass, tipoUsuario);
-        // Agregar 
-        usuarioFacade.agregar(usuario);
+        String opcion=request.getParameter("btnAccion");
+         if( opcion.equals("RegistrarUsuario")){
+             RegistrarUsuario(request,response);
+         }
+         
+//        String user = request.getParameter("txtUser");
+//        String pass = request.getParameter("txtPass");
+//        int tipo = Integer.parseInt(request.getParameter("cboTipo"));
+//        TipoUsuario tipoUsuario = new TipoUsuario(tipo);
+//        Usuario usuario = new Usuario(user, pass, tipoUsuario);
+//        // Agregar 
+//        usuarioFacade.agregar(usuario);
         // Eliminar
         //usuarioFacade.eliminar(usuario);
         // Buscar y Modificar
@@ -50,6 +55,24 @@ public class ControladorUsuario extends HttpServlet {
 //        usuario.setContrasenia(pass);
 //        usuario.setIdTipo(tipoUsuario);
 //        usuarioFacade.modificar(usuario);
+    }
+    
+    
+    protected void RegistrarUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       try{
+            String user = request.getParameter("usuario");
+            String pass = request.getParameter("password");
+            TipoUsuario tipoUsuario = new TipoUsuario(2);
+            Usuario usuario = new Usuario(user, pass, tipoUsuario);
+            usuarioFacade.agregar(usuario);
+            request.getSession().setAttribute("msOK","Usuario agregado correctamente");
+
+       }catch(Exception e){
+            request.getSession().setAttribute("msNO","Error:"+e.getMessage());
+            }finally{
+            response.sendRedirect("usuario/registro.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
