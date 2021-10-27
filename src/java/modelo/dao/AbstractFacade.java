@@ -24,26 +24,47 @@ public abstract class AbstractFacade<T> {
 
     // Método para agregar una entidad
     // Replace create - agregar
-    public void agregar(T entity) {
-        getEntityManager().persist(entity);
+    public int agregar(T entity) {
+        try{
+            getEntityManager().persist(entity);
+            return 1;
+        }catch(Exception ex){
+            return 0;
+        }
     }
     
     // Método para modificar una entidad
     // Replace edit - modificar
-    public void modificar(T entity) {
-        getEntityManager().merge(entity);
+    public int modificar(T entity) {
+        try{
+            getEntityManager().merge(entity);    
+            return 1;
+        }catch(Exception ex){
+            return 0;
+        }
     }
 
     // Método para eliminar una entidad
     // Replace remove - eliminar
-    public void eliminar(T entity) {
-        getEntityManager().remove(getEntityManager().merge(entity));
+    public int eliminar(T entity) {
+        try {
+            getEntityManager().remove(getEntityManager().merge(entity));
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    
     }
     
     // Método para buscar una entidad por ID
     // Replace find - buscar
-    public T find(Object id) {
-        return getEntityManager().find(entityClass, id);
+    public T buscar(Object id) {
+        try{
+            return getEntityManager().find(entityClass, id);
+        }catch(Exception ex){
+            return null;
+        }
+ 
     }
 
     // Método para listar las entidades

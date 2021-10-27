@@ -123,8 +123,7 @@
                         <option value="Shooter"></option> 
                     </datalist>
                 </label>
-            </div>
-            
+            </div>  
             -->
 
                     <div class="formulario__mensaje" id="formulario__mensaje">
