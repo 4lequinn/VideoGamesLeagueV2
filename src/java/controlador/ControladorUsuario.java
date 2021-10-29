@@ -24,87 +24,63 @@ import modelo.dto.Usuario;
  * @author jorge
  */
 public class ControladorUsuario extends HttpServlet {
-    
+
     @EJB
     private UsuarioFacade usuarioFacade;
+    @EJB
     private PerfilJugadorFacade perfilJugadorFacade;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String opcion=request.getParameter("btnAccion");
-         if(opcion.equals("RegistrarUsuario")){
-             RegistrarUsuario(request,response);
-         }
-         if(opcion.equals("Loguear")){
-             Loguear(request,response);
-         }
-         
-//        String user = request.getParameter("txtUser");
-//        String pass = request.getParameter("txtPass");
-//        int tipo = Integer.parseInt(request.getParameter("cboTipo"));
-//        TipoUsuario tipoUsuario = new TipoUsuario(tipo);
-//        Usuario usuario = new Usuario(user, pass, tipoUsuario);
-//        // Agregar 
-//        usuarioFacade.agregar(usuario);
-        // Eliminar
-        //usuarioFacade.eliminar(usuario);
-        // Buscar y Modificar
-//        usuario = usuarioFacade.find(user);
-//        usuario.setUsuario(user);
-//        usuario.setContrasenia(pass);
-//        usuario.setIdTipo(tipoUsuario);
-//        usuarioFacade.modificar(usuario);
+        String opcion = request.getParameter("btnAccion");
+        if (opcion.equals("RegistrarUsuario")) {
+            RegistrarUsuario(request, response);
+        }
+        if (opcion.equals("Loguear")) {
+            Loguear(request, response);
+        }
+
     }
-    
-    
+
     protected void RegistrarUsuario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try{
+        try {
             String user = request.getParameter("usuario");
             String pass = request.getParameter("password");
             TipoUsuario tipoUsuario = new TipoUsuario(2);
             Usuario usuario = new Usuario(user, pass, tipoUsuario);
-            String nombre=request.getParameter("nombre");
-            String correo=request.getParameter("correo");
-            String habilidad=request.getParameter("habilidad");
-            TipoJugador tipoJugador=new TipoJugador(1);
+            String nombre = request.getParameter("nombre");
+            String correo = request.getParameter("correo");
+            String habilidad = request.getParameter("habilidad");
+            TipoJugador tipoJugador = new TipoJugador(1);
             PerfilJugador perfilJugador = new PerfilJugador(nombre, correo, habilidad, tipoJugador, usuario);
-            if(usuarioFacade.agregar(usuario)==1 && perfilJugadorFacade.agregar(perfilJugador)==1){
-                request.getSession().setAttribute("msOKRegistrarU","Usuario agregado correctamente");
-            }
-            else{
-                request.getSession().setAttribute("msNORegistrarU","El usuario no se ha podido agregar");
+            if (usuarioFacade.agregar(usuario) == 1 && perfilJugadorFacade.agregar(perfilJugador) == 1) {
+                request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
+            } else {
+                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
             }
 
-       }catch(Exception e){
-            request.getSession().setAttribute("msErrorRegistrarU","Error:"+e.getMessage());
-            }finally{
+        } catch (Exception e) {
+            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+        } finally {
             response.sendRedirect("usuario/registro.jsp");
         }
-     }
-       protected void Loguear(HttpServletRequest request, HttpServletResponse response)
+    }
+
+    protected void Loguear(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try{
-           String user = request.getParameter("usuario");
-           String pass = request.getParameter("password");
-           if(usuarioFacade.Loguear(user, pass)==true){
+        try {
+            String user = request.getParameter("usuario");
+            String pass = request.getParameter("password");
+            if (usuarioFacade.Loguear(user, pass)) {
                 response.sendRedirect("index.jsp");
-           }
-           else{
+            } else {
                 response.sendRedirect("prueba.jsp");
-           }
-           
-       }catch(Exception e){
-           
-       }
+            }
+
+        } catch (Exception e) {
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

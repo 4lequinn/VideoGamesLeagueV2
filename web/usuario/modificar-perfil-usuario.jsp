@@ -4,7 +4,17 @@
     Author     : jorge
 --%>
 
+<!-- Prefijos -->
+<!-- JSTL -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!-- Establecemos la conexión a la BD -->
+<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
+<sql:query dataSource="${dataSource}" var="tipoJugador">
+    Select id, descripcion FROM tipo_jugador
+</sql:query>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,8 +95,9 @@
                     <!-- Primer op -->
                     <option disabled selected value="0">Seleccione</option>
                     <!--Quitar Options y poner la lista de la BDD -->
-                    <option value="Estratega">Estratega</option>
-                    <option value="Shooter">Shooter</option> 
+                        <c:forEach var="x" items="${tipoJugador.rows}">
+                             <option value="${x.id}">${x.descripcion}</option>
+                        </c:forEach>
                 </select>
             </div>
 

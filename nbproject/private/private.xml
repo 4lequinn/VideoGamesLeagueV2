@@ -4,26 +4,27 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/FaseFacade.java</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/IncripcionFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Fase.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/DetalleEquipoFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Partido.java</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/prueba.jsp</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/VideoJuegoFacade.java</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/AbstractFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/TipoJugadorFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/EstadoSolicitudFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Equipo.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/PerfilJugadorFacade.java</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/EquipoFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorUsuario.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/UsuarioFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Liga.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/IncripcionFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/prueba.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/VideoJuegoFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/AbstractFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/EquipoFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/PartidoFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/ResultadoFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/LigaFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/TipoUsuarioFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/TipoUsuario.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Resultado.java</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Liga.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/PerfilJugador.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorEquipo.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/DetallePartidoFacade.java</file>
