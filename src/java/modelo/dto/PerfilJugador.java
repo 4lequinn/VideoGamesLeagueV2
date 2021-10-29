@@ -79,6 +79,15 @@ public class PerfilJugador implements Serializable {
         this.id = id;
     }
 
+    public PerfilJugador(String nombre, String correo, String habilidad, TipoJugador idTipoJugador, Usuario idUsuario) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.habilidad = habilidad;
+        this.idTipoJugador = idTipoJugador;
+        this.idUsuario = idUsuario;
+    }
+
+
     public PerfilJugador(Integer id, String nombre, String correo, String habilidad) {
         this.id = id;
         this.nombre = nombre;

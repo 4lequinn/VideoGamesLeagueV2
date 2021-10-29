@@ -3,7 +3,7 @@
     Created on : 07-10-2021, 14:32:53
     Author     : jorge
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <!DOCTYPE html>
         <html lang="en">
@@ -23,7 +23,7 @@
             <img class="background-img" src="../theme/img/equipo/team-fifa.png" alt="Imagen de fondo">
             <div class="background-transparencia"></div>
             <main>
-                <form action="../ControladorUsuario" method="POST class="formulario" id="formulario">
+                <form action="../ControladorUsuario" method="POST" class="formulario" id="formulario">
 
                     <!-- Grupo: Nombre -->
                     <div class="formulario__grupo" id="grupo__nombre">
@@ -85,8 +85,8 @@
                     <!-- Primer op -->
                     <option disabled selected value="0">Seleccione</option>
                     <!--Quitar Options y poner la lista de la BDD -->
-                    <option value="Estratega">Estratega</option>
-                    <option value="Shooter">Shooter</option> 
+                    <option value="1">Estratega</option>
+                    <option value="2">Futbolero</option> 
                 </select>
     
                     </div>
@@ -135,6 +135,8 @@
                         <button type="submit" class="formulario__btn" name="btnAccion" value="RegistrarUsuario">Registrarse</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                     </div>
+                <div>${msOKRegistrarU}${msNORegistrarU}${msErrorRegistrarU}</div>       
+                    
                 </form>
 
             </main>

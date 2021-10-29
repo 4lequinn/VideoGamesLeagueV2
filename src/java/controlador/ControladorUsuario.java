@@ -12,7 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.dao.PerfilJugadorFacade;
 import modelo.dao.UsuarioFacade;
+import modelo.dto.PerfilJugador;
+import modelo.dto.TipoJugador;
 import modelo.dto.TipoUsuario;
 import modelo.dto.Usuario;
 
@@ -24,6 +27,7 @@ public class ControladorUsuario extends HttpServlet {
     
     @EJB
     private UsuarioFacade usuarioFacade;
+    private PerfilJugadorFacade perfilJugadorFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,8 +40,11 @@ public class ControladorUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String opcion=request.getParameter("btnAccion");
-         if( opcion.equals("RegistrarUsuario")){
+         if(opcion.equals("RegistrarUsuario")){
              RegistrarUsuario(request,response);
+         }
+         if(opcion.equals("Loguear")){
+             Loguear(request,response);
          }
          
 //        String user = request.getParameter("txtUser");
@@ -65,14 +72,39 @@ public class ControladorUsuario extends HttpServlet {
             String pass = request.getParameter("password");
             TipoUsuario tipoUsuario = new TipoUsuario(2);
             Usuario usuario = new Usuario(user, pass, tipoUsuario);
-            usuarioFacade.agregar(usuario);
-            request.getSession().setAttribute("msOK","Usuario agregado correctamente");
+            String nombre=request.getParameter("nombre");
+            String correo=request.getParameter("correo");
+            String habilidad=request.getParameter("habilidad");
+            TipoJugador tipoJugador=new TipoJugador(1);
+            PerfilJugador perfilJugador = new PerfilJugador(nombre, correo, habilidad, tipoJugador, usuario);
+            if(usuarioFacade.agregar(usuario)==1 && perfilJugadorFacade.agregar(perfilJugador)==1){
+                request.getSession().setAttribute("msOKRegistrarU","Usuario agregado correctamente");
+            }
+            else{
+                request.getSession().setAttribute("msNORegistrarU","El usuario no se ha podido agregar");
+            }
 
        }catch(Exception e){
-            request.getSession().setAttribute("msNO","Error:"+e.getMessage());
+            request.getSession().setAttribute("msErrorRegistrarU","Error:"+e.getMessage());
             }finally{
             response.sendRedirect("usuario/registro.jsp");
         }
+     }
+       protected void Loguear(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       try{
+           String user = request.getParameter("usuario");
+           String pass = request.getParameter("password");
+           if(usuarioFacade.Loguear(user, pass)==true){
+                response.sendRedirect("index.jsp");
+           }
+           else{
+                response.sendRedirect("prueba.jsp");
+           }
+           
+       }catch(Exception e){
+           
+       }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

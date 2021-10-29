@@ -8,6 +8,7 @@ package modelo.dao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.dto.Usuario;
 
 /**
@@ -28,5 +29,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
+    public boolean Loguear(String usuario, String contrasenia){
+     try{   
+        Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.contrasenia = :contrasenia");
+        query.setParameter("usuario", usuario);
+        query.setParameter("contrasenia", contrasenia);
+        if(query.getResultList().get(0)!=null){
+            return true;
+        }
+     }catch(Exception ex){
+         return false;
+     }
+        return false;
+    }
 }
