@@ -4,7 +4,19 @@
     Author     : jorge
 --%>
 
+<!-- Prefijos -->
+<!-- JSTL -->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!-- Establecemos la conexión a la BD -->
+<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
+<sql:query dataSource="${dataSource}" var="listaLigas">
+    Select l.id, l.descripcion, l.cantidad_equipo, v.nombre
+    FROM liga l
+    INNER JOIN video_juego v on l.id_juego = v.id
+</sql:query>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,24 +58,25 @@
                     <th>Acción</th>
                 </tr>
             </thead>
-
+            
+        <c:forEach var="x" items="${listaLigas.rows}">
             <tbody>
 
                 <tr>
-                    <td>1</td>
-                    <td>Liga de los mukitas</td>
-                    <td>League of legens</td>
-                    <td>10</td>
-                    <td>6</td>
+                    <td>${x.id}</td>
+                    <td>${x.descripcion}</td>
+                    <td>${x.nombre}</td>
+                    <td>${x.cantidad_equipo}</td>
+                    <td>${16 - x.cantidad_equipo}</td>
                     <td>
                         <span class="action_btn ">
                             <a href="# " class="btn btn-primary material-icons ">edit</a>
                             <a href="# " class="btn btn-danger material-icons ">delete</a>
                         </span>
                     </td>
-
-
-            </tbody>
+            </tbody>  
+        </c:forEach>
+            
         </table>
     </div>
         <jsp:include page="../template/footer.jsp"></jsp:include>
