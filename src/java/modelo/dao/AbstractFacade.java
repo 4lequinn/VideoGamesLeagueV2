@@ -24,34 +24,34 @@ public abstract class AbstractFacade<T> {
 
     // Método para agregar una entidad
     // Replace create - agregar
-    public int agregar(T entity) {
+    public boolean agregar(T entity) {
         try{
             getEntityManager().persist(entity);
-            return 1;
+            return true;
         }catch(Exception ex){
-            return 0;
+            return false;
         }
     }
     
     // Método para modificar una entidad
     // Replace edit - modificar
-    public int modificar(T entity) {
+    public boolean modificar(T entity) {
         try{
             getEntityManager().merge(entity);    
-            return 1;
+            return true;
         }catch(Exception ex){
-            return 0;
+            return false;
         }
     }
 
     // Método para eliminar una entidad
     // Replace remove - eliminar
-    public int eliminar(T entity) {
+    public boolean eliminar(T entity) {
         try {
             getEntityManager().remove(getEntityManager().merge(entity));
-            return 1;
+            return true;
         } catch (Exception e) {
-            return 0;
+            return false;
         }
     
     }

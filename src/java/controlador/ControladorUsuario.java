@@ -54,7 +54,7 @@ public class ControladorUsuario extends HttpServlet {
             String habilidad = request.getParameter("habilidad");
             TipoJugador tipoJugador = new TipoJugador(1);
             PerfilJugador perfilJugador = new PerfilJugador(nombre, correo, habilidad, tipoJugador, usuario);
-            if (usuarioFacade.agregar(usuario) == 1 && perfilJugadorFacade.agregar(perfilJugador) == 1) {
+            if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
             } else {
                 request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
