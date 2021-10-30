@@ -47,7 +47,7 @@
                     <div class="formulario__grupo" id="grupo__apellido">
                         <label for="nombre" class="formulario__label">Apellido</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Ej. Juilliet" required minlength="3" maxlength="40">
+                            <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Ej. Juillet" required minlength="3" maxlength="40">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">El apellido sÃ³lo puede contener letras y espacios.</p>

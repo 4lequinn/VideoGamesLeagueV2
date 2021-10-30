@@ -79,8 +79,9 @@ public class Liga implements Serializable {
         this.descripcion = descripcion;
         this.idJuego = idJuego;
     }
-
     
+    
+
     public Integer getId() {
         return id;
     }

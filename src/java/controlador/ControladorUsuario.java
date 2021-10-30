@@ -26,6 +26,7 @@ public class ControladorUsuario extends HttpServlet {
 
     @EJB
     private UsuarioFacade usuarioFacade;
+    
     @EJB
     private PerfilJugadorFacade perfilJugadorFacade;
 
@@ -55,13 +56,15 @@ public class ControladorUsuario extends HttpServlet {
             TipoUsuario tipoUsuario = new TipoUsuario(2);
             Usuario usuario = new Usuario(user, pass, tipoUsuario);
             String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
             String correo = request.getParameter("correo");
             String habilidad = request.getParameter("habilidad");
             TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
-            PerfilJugador perfilJugador = new PerfilJugador(nombre, correo, habilidad, tipoJugador, usuario);
+            PerfilJugador perfilJugador = new PerfilJugador(nombre, apellido, correo, habilidad, tipoJugador, usuario);
             if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
             } else {
+                
                 request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
             }
 
@@ -80,10 +83,11 @@ public class ControladorUsuario extends HttpServlet {
             TipoUsuario tipoUsuario = new TipoUsuario(Integer.parseInt(request.getParameter("cboTipoUsuario")));
             Usuario usuario = new Usuario(user, pass, tipoUsuario);
             String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
             String correo = request.getParameter("correo");
             String habilidad = request.getParameter("habilidad");
             TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
-            PerfilJugador perfilJugador = new PerfilJugador(nombre, correo, habilidad, tipoJugador, usuario);
+            PerfilJugador perfilJugador = new PerfilJugador(nombre, apellido, correo,habilidad, tipoJugador, usuario);
             if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
             } else {
@@ -112,6 +116,7 @@ public class ControladorUsuario extends HttpServlet {
             perfil.setHabilidad(request.getParameter("habilidad"));
             perfil.setCorreo(request.getParameter("correo"));
             perfil.setNombre(request.getParameter("nombre"));
+            perfil.setApellido(request.getParameter("apellido"));
             // Perfil modificado
             if (usuarioFacade.modificar(usuario) && perfilJugadorFacade.modificar(perfil)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Usuario modificado correctamente");
@@ -162,15 +167,13 @@ public class ControladorUsuario extends HttpServlet {
     protected void eliminarUsuario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            System.out.println("oli");
             String usuarioID = request.getParameter("eliminarUsuario");
             Usuario usuario = usuarioFacade.buscar(usuarioID);
-            PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuarioID);
+            // Al eliminar con JPA la entidad se elimina en cascada
             //Buscamos por ID y eliminamos
-            if (usuarioFacade.eliminar(usuario) && perfilJugadorFacade.eliminar(perfil)) {
+            if (usuarioFacade.eliminar(usuario) ) {
                 //Mensaje SUCCESS
                 request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
-                System.out.println("SUCCES");
             } else {
                 //Mensaje de error
                 request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
@@ -197,25 +200,12 @@ public class ControladorUsuario extends HttpServlet {
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

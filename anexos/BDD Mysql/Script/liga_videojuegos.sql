@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2021 a las 23:37:28
+-- Tiempo de generación: 30-10-2021 a las 23:49:39
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -94,7 +94,7 @@ CREATE TABLE `detalle_partido` (
 CREATE TABLE `equipo` (
   `id` int(11) NOT NULL,
   `nombre` varchar(80) NOT NULL,
-  `cantidad_jugador` int(11) NOT NULL,
+  `cantidad_jugador` int(11) NOT NULL DEFAULT 1,
   `id_liga` int(11) NOT NULL,
   `id_perfil` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -214,7 +214,7 @@ DELIMITER ;
 CREATE TABLE `liga` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
-  `cantidad_equipo` int(11) NOT NULL,
+  `cantidad_equipo` int(11) NOT NULL DEFAULT 0,
   `id_juego` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -253,6 +253,7 @@ CREATE TABLE `partido` (
 CREATE TABLE `perfil_jugador` (
   `id` int(11) NOT NULL,
   `nombre` varchar(80) NOT NULL,
+  `apellido` varchar(80) NOT NULL,
   `correo` varchar(80) NOT NULL,
   `habilidad` varchar(80) NOT NULL,
   `id_tipo_jugador` int(11) NOT NULL,
@@ -263,8 +264,9 @@ CREATE TABLE `perfil_jugador` (
 -- Volcado de datos para la tabla `perfil_jugador`
 --
 
-INSERT INTO `perfil_jugador` (`id`, `nombre`, `correo`, `habilidad`, `id_tipo_jugador`, `id_usuario`) VALUES
-(1, 'Admin', 'Admin@admin.cl', 'Banear', 2, 'admin');
+INSERT INTO `perfil_jugador` (`id`, `nombre`, `apellido`, `correo`, `habilidad`, `id_tipo_jugador`, `id_usuario`) VALUES
+(1, 'Admin', '', 'Admin@admin.cl', 'Banear', 2, 'admin'),
+(5, 'Francisco', 'Juillet', 'panshoots11@gmail.com', 'Jugador bueno para banear a la gente', 3, 'panshoots');
 
 -- --------------------------------------------------------
 
@@ -343,8 +345,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`usuario`, `contrasenia`, `id_tipo`) VALUES
 ('admin', 'admin', 1),
-('Holi', '12344', 1),
-('prueba', '3232ds', 1);
+('panshoots', 'HOLAAAAAA', 2);
 
 -- --------------------------------------------------------
 
@@ -528,7 +529,7 @@ ALTER TABLE `partido`
 -- AUTO_INCREMENT de la tabla `perfil_jugador`
 --
 ALTER TABLE `perfil_jugador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `resultado`

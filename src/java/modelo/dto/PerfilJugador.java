@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PerfilJugador.findAll", query = "SELECT p FROM PerfilJugador p")
     , @NamedQuery(name = "PerfilJugador.findById", query = "SELECT p FROM PerfilJugador p WHERE p.id = :id")
     , @NamedQuery(name = "PerfilJugador.findByNombre", query = "SELECT p FROM PerfilJugador p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "PerfilJugador.findByApellido", query = "SELECT p FROM PerfilJugador p WHERE p.apellido = :apellido")
     , @NamedQuery(name = "PerfilJugador.findByCorreo", query = "SELECT p FROM PerfilJugador p WHERE p.correo = :correo")
     , @NamedQuery(name = "PerfilJugador.findByHabilidad", query = "SELECT p FROM PerfilJugador p WHERE p.habilidad = :habilidad")
     , @NamedQuery(name = "PerfilJugador.findByUser", query = "SELECT p FROM PerfilJugador p WHERE p.idUsuario.usuario = :usuario")}) 
@@ -53,6 +54,11 @@ public class PerfilJugador implements Serializable {
     @Size(min = 1, max = 80)
     @Column(name = "nombre")
     private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "apellido")
+    private String apellido;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 80)
@@ -81,20 +87,24 @@ public class PerfilJugador implements Serializable {
         this.id = id;
     }
 
-    public PerfilJugador(Integer id, String nombre, String correo, String habilidad) {
+    public PerfilJugador(Integer id, String nombre, String apellido, String correo, String habilidad) {
         this.id = id;
         this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
         this.habilidad = habilidad;
     }
 
-    public PerfilJugador(String nombre, String correo, String habilidad, TipoJugador idTipoJugador, Usuario idUsuario) {
+    public PerfilJugador(String nombre, String apellido, String correo, String habilidad, TipoJugador idTipoJugador, Usuario idUsuario) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
         this.habilidad = habilidad;
         this.idTipoJugador = idTipoJugador;
         this.idUsuario = idUsuario;
     }
+    
+    
 
     public Integer getId() {
         return id;
@@ -110,6 +120,14 @@ public class PerfilJugador implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -187,5 +205,4 @@ public class PerfilJugador implements Serializable {
         return "modelo.dto.PerfilJugador[ id=" + id + " ]";
     }
     
-
 }

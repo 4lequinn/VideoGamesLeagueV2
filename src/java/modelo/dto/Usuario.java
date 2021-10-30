@@ -72,7 +72,6 @@ public class Usuario implements Serializable {
         this.idTipo = idTipo;
     }
     
-    
 
     public String getUsuario() {
         return usuario;

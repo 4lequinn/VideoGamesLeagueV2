@@ -27,6 +27,7 @@ public abstract class AbstractFacade<T> {
             getEntityManager().persist(entity);
             return true;
         } catch (Exception e) {
+            System.out.println("Error al agregar " + e.getMessage());
             return false;
         }
     }
