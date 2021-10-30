@@ -45,6 +45,7 @@ public abstract class AbstractFacade<T> {
             getEntityManager().remove(getEntityManager().merge(entity));
             return true;
         } catch (Exception e) {
+            System.out.println("Error al eliminar " + e.getMessage());
             return false;
         }
     }

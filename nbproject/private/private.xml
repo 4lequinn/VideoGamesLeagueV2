@@ -27,9 +27,11 @@
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/IncripcionFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/usuario/agregar-usuario.jsp</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/functions/js/forms/formulario-login.js</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Incripcion.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Usuario.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/VideoJuegoFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/AbstractFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/functions/js/forms/alertas.js</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/admin/panel-ligas.jsp</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/EquipoFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/PartidoFacade.java</file>
@@ -37,6 +39,7 @@
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/TipoUsuarioFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/LigaFacade.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/liga/modificar-liga.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorAdmin.java</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/equipo/panel-equipos.jsp</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/equipo/modificar-equipo.jsp</file>
             <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/functions/js/forms/formulario-agregar-liga.js</file>
