@@ -80,6 +80,13 @@ public class Equipo implements Serializable {
         this.nombre = nombre;
         this.cantidadJugador = cantidadJugador;
     }
+    
+     public Equipo( String nombre, int cantidadJugador, PerfilJugador idPerfil, Liga idLiga) {
+        this.nombre = nombre;
+        this.cantidadJugador = cantidadJugador;
+        this.idLiga = idLiga;
+        this.idPerfil = idPerfil;
+    }
 
     public Integer getId() {
         return id;
