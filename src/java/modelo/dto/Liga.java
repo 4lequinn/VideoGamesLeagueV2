@@ -39,9 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Liga.findByCantidadEquipo", query = "SELECT l FROM Liga l WHERE l.cantidadEquipo = :cantidadEquipo")})
 public class Liga implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLiga")
-    private List<Partido> partidoList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +59,8 @@ public class Liga implements Serializable {
     private VideoJuego idJuego;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLiga")
     private List<Equipo> equipoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLiga")
+    private List<Partido> partidoList;
 
     public Liga() {
     }
@@ -76,6 +75,12 @@ public class Liga implements Serializable {
         this.cantidadEquipo = cantidadEquipo;
     }
 
+    public Liga(String descripcion, VideoJuego idJuego) {
+        this.descripcion = descripcion;
+        this.idJuego = idJuego;
+    }
+
+    
     public Integer getId() {
         return id;
     }
@@ -117,6 +122,15 @@ public class Liga implements Serializable {
         this.equipoList = equipoList;
     }
 
+    @XmlTransient
+    public List<Partido> getPartidoList() {
+        return partidoList;
+    }
+
+    public void setPartidoList(List<Partido> partidoList) {
+        this.partidoList = partidoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -140,15 +154,6 @@ public class Liga implements Serializable {
     @Override
     public String toString() {
         return "modelo.dto.Liga[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<Partido> getPartidoList() {
-        return partidoList;
-    }
-
-    public void setPartidoList(List<Partido> partidoList) {
-        this.partidoList = partidoList;
     }
     
 }

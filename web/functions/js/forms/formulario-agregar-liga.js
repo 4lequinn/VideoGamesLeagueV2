@@ -57,20 +57,13 @@ inputs.forEach((input) => {
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
+    console.log("hola");
     //Validar que se seleccione algo en el CBO
     var cbo = document.getElementById('cboVideoJuego');
-    if (campos.nombre && cbo.value != 0 && cbo.value != "") {
+    if (campos.nombre && cbo.value != 0) {
         //formulario.reset();
-        /*
-        document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
-        setTimeout(() => {
-            document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
-        }, 5000);
-
-        document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
-            icono.classList.remove('formulario__grupo-correcto');
-        });
-        */
+        console.log('UWU');
+        
     } else {
         cbo.focus();
         mensajeSweetAlert('error', '¡Lo sentimos! =(', 'No se ha podido procesar la solicitud.');

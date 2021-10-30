@@ -22,18 +22,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="ControladorUsuario">
-            User
-            <input type="text" id="txtUser" name="txtUser">
-            Pass
-            <input type="text" id="txtPass" name="txtPass">
-            Tipo
-            <select id="cboTipo" name="cboTipo">
-            <c:forEach var="aux" items="${tipoUsuario.rows}">
-                <option value="${aux.id}">${aux.descripcion}</option>
-            </c:forEach>
-            </select>
-            <input type="submit" id="btnAccion" name="btnAccion" value="OK">
+        <form action="../ControladorLiga" method="POST">
+            nombre
+            <input type="text" id="txtUser" name="nombre">
+            cboVideoJuego
+            <input type="text" id="txtPass" name="cboVideoJuego">
+
+            <input type="submit" id="btnAccion" name="btnAccion" value="AgregarLiga">
+            ${msjErrorEliminar}
         </form>
     </body>
 </html>

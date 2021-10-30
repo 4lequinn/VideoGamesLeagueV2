@@ -5,10 +5,14 @@
  */
 package modelo.dao;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.dto.PerfilJugador;
+import modelo.dto.Usuario;
 
 /**
  *
@@ -16,7 +20,7 @@ import modelo.dto.PerfilJugador;
  */
 @Stateless
 public class PerfilJugadorFacade extends AbstractFacade<PerfilJugador> {
-
+    
     @PersistenceContext(unitName = "VideoJuegosWebPU")
     private EntityManager em;
 
@@ -29,4 +33,21 @@ public class PerfilJugadorFacade extends AbstractFacade<PerfilJugador> {
         super(PerfilJugador.class);
     }
     
+    // Método Customer que me busca el perfil jugador por nombre de Usuario
+    // Primer customer BUENO AAA
+    public PerfilJugador buscarUsuario(String username){
+        try {
+            /*
+            System.out.println(em.createNamedQuery("PerfilJugador.findByUser",PerfilJugador.class)
+                    .setParameter("usuario", username).
+                    getSingleResult().getIdUsuario().getUsuario());
+*/
+            return em.createNamedQuery("PerfilJugador.findByUser",PerfilJugador.class)
+                    .setParameter("usuario", username).
+                    getSingleResult();
+        } catch (Exception e) {
+            System.out.println("ERROR " + e.getMessage());
+            return null;
+        }
+    }
 }

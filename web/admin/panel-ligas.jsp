@@ -70,7 +70,7 @@
                             <td>${16 - x.cantidad_equipo}</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="# " class="btn btn-primary material-icons ">edit</a>
+                                    <a href="../ControladorLiga?id=${x.id}" class="btn btn-primary material-icons ">edit</a>
                                     <a onclick="eliminarLiga('${x.id}')" class="btn btn-danger material-icons ">delete</a>
                                 </span>
                             </td>

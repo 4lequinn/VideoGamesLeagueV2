@@ -65,12 +65,14 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
     }
-    
-    public Usuario(String usuario, String contrasenia, TipoUsuario tipo) {
+
+    public Usuario(String usuario, String contrasenia, TipoUsuario idTipo) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
-        this.idTipo = tipo;
+        this.idTipo = idTipo;
     }
+    
+    
 
     public String getUsuario() {
         return usuario;

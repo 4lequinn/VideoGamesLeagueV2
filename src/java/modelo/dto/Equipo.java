@@ -39,9 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Equipo.findByCantidadJugador", query = "SELECT e FROM Equipo e WHERE e.cantidadJugador = :cantidadJugador")})
 public class Equipo implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipo")
-    private List<DetallePartido> detallePartidoList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,14 +56,16 @@ public class Equipo implements Serializable {
     private int cantidadJugador;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipo")
     private List<DetalleEquipo> detalleEquipoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipo")
+    private List<Incripcion> incripcionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipo")
+    private List<DetallePartido> detallePartidoList;
     @JoinColumn(name = "id_liga", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Liga idLiga;
     @JoinColumn(name = "id_perfil", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private PerfilJugador idPerfil;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipo")
-    private List<Incripcion> incripcionList;
 
     public Equipo() {
     }
@@ -114,6 +113,24 @@ public class Equipo implements Serializable {
         this.detalleEquipoList = detalleEquipoList;
     }
 
+    @XmlTransient
+    public List<Incripcion> getIncripcionList() {
+        return incripcionList;
+    }
+
+    public void setIncripcionList(List<Incripcion> incripcionList) {
+        this.incripcionList = incripcionList;
+    }
+
+    @XmlTransient
+    public List<DetallePartido> getDetallePartidoList() {
+        return detallePartidoList;
+    }
+
+    public void setDetallePartidoList(List<DetallePartido> detallePartidoList) {
+        this.detallePartidoList = detallePartidoList;
+    }
+
     public Liga getIdLiga() {
         return idLiga;
     }
@@ -128,15 +145,6 @@ public class Equipo implements Serializable {
 
     public void setIdPerfil(PerfilJugador idPerfil) {
         this.idPerfil = idPerfil;
-    }
-
-    @XmlTransient
-    public List<Incripcion> getIncripcionList() {
-        return incripcionList;
-    }
-
-    public void setIncripcionList(List<Incripcion> incripcionList) {
-        this.incripcionList = incripcionList;
     }
 
     @Override
@@ -162,15 +170,6 @@ public class Equipo implements Serializable {
     @Override
     public String toString() {
         return "modelo.dto.Equipo[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<DetallePartido> getDetallePartidoList() {
-        return detallePartidoList;
-    }
-
-    public void setDetallePartidoList(List<DetallePartido> detallePartidoList) {
-        this.detallePartidoList = detallePartidoList;
     }
     
 }

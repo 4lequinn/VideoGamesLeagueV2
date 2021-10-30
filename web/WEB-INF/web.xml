@@ -5,10 +5,6 @@
         <servlet-class>controlador.ControladorUsuario</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ControladorLiga</servlet-name>
-        <servlet-class>controlador.ControladorLiga</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ControladorEquipo</servlet-name>
         <servlet-class>controlador.ControladorEquipo</servlet-class>
     </servlet>
@@ -16,13 +12,13 @@
         <servlet-name>ControladorAdmin</servlet-name>
         <servlet-class>controlador.ControladorAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorLiga</servlet-name>
+        <servlet-class>controlador.ControladorLiga</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorUsuario</servlet-name>
         <url-pattern>/ControladorUsuario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControladorLiga</servlet-name>
-        <url-pattern>/ControladorLiga</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControladorEquipo</servlet-name>
@@ -31,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ControladorAdmin</servlet-name>
         <url-pattern>/ControladorAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorLiga</servlet-name>
+        <url-pattern>/ControladorLiga</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

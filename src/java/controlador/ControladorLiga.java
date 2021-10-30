@@ -6,13 +6,14 @@
 package controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.dao.LigaFacade;
+import modelo.dto.Liga;
+import modelo.dto.VideoJuego;
 
 /**
  *
@@ -22,7 +23,7 @@ public class ControladorLiga extends HttpServlet {
 
     @EJB
     private LigaFacade ligaFacade;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
@@ -48,34 +49,98 @@ public class ControladorLiga extends HttpServlet {
         }
     }
 
+    protected void agregarLiga(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            //int ligaID = Integer.parseInt(request.getParameter("eliminarLiga"));
+            String nombre = request.getParameter("nombre");
+            int videoJuegoID = Integer.parseInt(request.getParameter("cboVideoJuego"));
+            VideoJuego videoJuego = new VideoJuego(videoJuegoID);
+            Liga liga = new Liga(nombre, videoJuego);
+            //Agregamos una liga
+            if (ligaFacade.agregar(liga)) {
+                //Mensaje SUCCESS
+                request.getSession().setAttribute("msjErrorEliminar", "agregó");
+            } else {
+                //Mensaje de error
+                request.getSession().setAttribute("msjErrorEliminar", "else");
+            }
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("admin/panel-ligas.jsp");
+        }
+    }
+
+    protected void cargarDatosModificar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int ligaID = Integer.parseInt(request.getParameter("id"));
+            //Buscamos por ID
+            Liga liga = ligaFacade.buscar(ligaID);
+            request.getSession().setAttribute("dataLiga", liga);
+            request.getSession().setAttribute("dataVideoJuego", liga.getIdJuego().getId());
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("liga/modificar-liga.jsp");
+        }
+    }
+
+    protected void modificarLiga(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            // Recuperamos la entidad enviada
+            Liga liga = ligaFacade.buscar(Integer.parseInt(request.getParameter("txtID")));
+            // Sobreescribimos la entidad
+            liga.setDescripcion(request.getParameter("nombre"));
+            VideoJuego videoJuego = new VideoJuego(Integer.parseInt(request.getParameter("cboVideoJuego")));
+            liga.setIdJuego(videoJuego);
+            if (ligaFacade.modificar(liga)) {
+                request.getSession().setAttribute("msjErrorEliminar", "modificó");
+                
+            } else {
+                //Mensaje de error
+                request.getSession().setAttribute("msjErrorEliminar", "else");
+            }
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", e.getMessage());
+            System.out.println("ERRRRORRRR " + e.getMessage());
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("admin/panel-ligas.jsp");
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String ligaID = request.getParameter("eliminarLiga");
+        String id = request.getParameter("id"); // Modificar
         if (ligaID != null) {
             eliminarLiga(request, response);
+        } else if (id != null) {
+            cargarDatosModificar(request, response);
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opcion = request.getParameter("btnAccion");
+        System.out.println(opcion);
+        if (opcion.equalsIgnoreCase("AgregarLiga")) {
+            agregarLiga(request, response);
+        } else if (opcion.equalsIgnoreCase("ModificarLiga")) {
+            modificarLiga(request, response);
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

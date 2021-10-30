@@ -29,18 +29,19 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    public boolean Loguear(String usuario, String contrasenia){
+
+    public boolean Loguear(String usuario, String contrasenia) {
         // Te recomiendo que el loguear retorne un int, para saber el tipo de usuario o algo así
-     try{   
-        Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.contrasenia = :contrasenia");
-        query.setParameter("usuario", usuario);
-        query.setParameter("contrasenia", contrasenia);
-        if(query.getResultList().get(0)!=null){
-            return true;
+        try {
+            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.contrasenia = contrasenia");
+            query.setParameter("usuario", usuario);
+            query.setParameter("contrasenia", contrasenia);
+            if (query.getResultList().get(0) != null) {
+                return true;
+            }
+        } catch (Exception ex) {
+            return false;
         }
-     }catch(Exception ex){
-         return false;
-     }
         return false;
     }
 }

@@ -6,7 +6,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +28,7 @@ public class ControladorUsuario extends HttpServlet {
     private UsuarioFacade usuarioFacade;
     @EJB
     private PerfilJugadorFacade perfilJugadorFacade;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String opcion = request.getParameter("btnAccion");
@@ -38,6 +37,9 @@ public class ControladorUsuario extends HttpServlet {
         }
         if (opcion.equals("Loguear")) {
             Loguear(request, response);
+        }
+        if (opcion.equals("AgregarUsuario")) {
+            agregarUsuario(request, response);
         }
 
     }
@@ -67,6 +69,72 @@ public class ControladorUsuario extends HttpServlet {
         }
     }
 
+    protected void agregarUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String user = request.getParameter("usuario");
+            String pass = request.getParameter("password");
+            TipoUsuario tipoUsuario = new TipoUsuario(Integer.parseInt(request.getParameter("cboTipoUsuario")));
+            Usuario usuario = new Usuario(user, pass, tipoUsuario);
+            String nombre = request.getParameter("nombre");
+            String correo = request.getParameter("correo");
+            String habilidad = request.getParameter("habilidad");
+            TipoJugador tipoJugador = new TipoJugador(1);
+            PerfilJugador perfilJugador = new PerfilJugador(nombre, correo, habilidad, tipoJugador, usuario);
+            if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
+                request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
+            } else {
+                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
+            }
+
+        } catch (Exception e) {
+            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+        } finally {
+            response.sendRedirect("usuario/registro.jsp");
+        }
+    }
+
+    protected void modificarUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String user = request.getParameter("usuario");
+            String pass = request.getParameter("password");
+            TipoUsuario tipoUsuario = new TipoUsuario(Integer.parseInt(request.getParameter("cboTipoUsuario")));
+            Usuario usuario = new Usuario(user, pass, tipoUsuario);
+            String nombre = request.getParameter("nombre");
+            String correo = request.getParameter("correo");
+            String habilidad = request.getParameter("habilidad");
+            TipoJugador tipoJugador = new TipoJugador(1);
+            PerfilJugador perfilJugador = new PerfilJugador(nombre, correo, habilidad, tipoJugador, usuario);
+            if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
+                request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
+            } else {
+                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
+            }
+
+        } catch (Exception e) {
+            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+        } finally {
+            response.sendRedirect("usuario/registro.jsp");
+        }
+    }
+
+    protected void cargarDatosUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String user = request.getParameter("id");
+            Usuario usuario = usuarioFacade.buscar(user);
+            PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
+            request.getSession().setAttribute("usuario", usuario);
+            request.getSession().setAttribute("perfil", perfil);
+        } catch (Exception e) {
+            System.out.println("FFFFFFFFFFFFFFFFF" + e.getMessage());
+            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+        } finally {
+            response.sendRedirect("usuario/modificar-usuario.jsp");
+        }
+    }
+
     protected void Loguear(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -87,8 +155,10 @@ public class ControladorUsuario extends HttpServlet {
             throws ServletException, IOException {
         try {
             String usuarioID = request.getParameter("eliminarUsuario");
+            Usuario usuario = usuarioFacade.buscar(usuarioID);
+            PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuarioID);
             //Buscamos por ID y eliminamos
-            if (usuarioFacade.eliminar(usuarioFacade.buscar(usuarioID))) {
+            if (usuarioFacade.eliminar(usuario) && perfilJugadorFacade.eliminar(perfil)) {
                 //Mensaje SUCCESS
                 request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
             } else {
@@ -98,7 +168,7 @@ public class ControladorUsuario extends HttpServlet {
         } catch (Exception e) {
             //Error
             request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
-        }finally{
+        } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-usuarios.jsp");
         }
@@ -108,8 +178,11 @@ public class ControladorUsuario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String usuarioID = request.getParameter("eliminarUsuario");
-        if(usuarioID != null){
+        String username = request.getParameter("id");
+        if (usuarioID != null) {
             eliminarUsuario(request, response);
+        } else if (username != null) {
+            cargarDatosUsuario(request, response);
         }
     }
 

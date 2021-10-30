@@ -63,7 +63,7 @@
                             <td>${x.descripcion}</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="../usuario/modificar-usuario.jsp" class="btn btn-primary material-icons ">edit</a>
+                                    <a href="../ControladorUsuario?id=${x.usuario}" class="btn btn-primary material-icons ">edit</a>
                                     <a onclick="eliminarUsuario('${x.usuario}')" class="btn btn-danger material-icons ">delete</a>
                                 </span>
                             </td>

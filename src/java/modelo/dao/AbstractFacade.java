@@ -22,30 +22,24 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    // Método para agregar una entidad
-    // Replace create - agregar
     public boolean agregar(T entity) {
-        try{
+        try {
             getEntityManager().persist(entity);
             return true;
-        }catch(Exception ex){
-            return false;
-        }
-    }
-    
-    // Método para modificar una entidad
-    // Replace edit - modificar
-    public boolean modificar(T entity) {
-        try{
-            getEntityManager().merge(entity);    
-            return true;
-        }catch(Exception ex){
+        } catch (Exception e) {
             return false;
         }
     }
 
-    // Método para eliminar una entidad
-    // Replace remove - eliminar
+    public boolean modificar(T entity) {
+        try {
+            getEntityManager().merge(entity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public boolean eliminar(T entity) {
         try {
             getEntityManager().remove(getEntityManager().merge(entity));
@@ -53,30 +47,22 @@ public abstract class AbstractFacade<T> {
         } catch (Exception e) {
             return false;
         }
-    
-    }
-    
-    // Método para buscar una entidad por ID
-    // Replace find - buscar
-    public T buscar(Object id) {
-        try{
-            return getEntityManager().find(entityClass, id);
-        }catch(Exception ex){
-            return null;
-        }
- 
     }
 
-    // Método para listar las entidades
-    // Replace findAll - listar
+    public T buscar(Object id) {
+        try {
+            return getEntityManager().find(entityClass, id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public List<T> listar() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
-    
-    // Método para filtar por un rango una entidad
-    // Replace findRange - filtarRango
+
     public List<T> filtrarRango(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
@@ -85,9 +71,7 @@ public abstract class AbstractFacade<T> {
         q.setFirstResult(range[0]);
         return q.getResultList();
     }
-    
-    // Método para contar las entidades
-    // Replace count - cantidad
+
     public int cantidad() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
@@ -95,5 +79,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
 }
