@@ -29,7 +29,7 @@ public class ControladorUsuario extends HttpServlet {
     private UsuarioFacade usuarioFacade;
     @EJB
     private PerfilJugadorFacade perfilJugadorFacade;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String opcion = request.getParameter("btnAccion");
@@ -83,19 +83,34 @@ public class ControladorUsuario extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    protected void eliminarUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String usuarioID = request.getParameter("eliminarUsuario");
+            //Buscamos por ID y eliminamos
+            if (usuarioFacade.eliminar(usuarioFacade.buscar(usuarioID))) {
+                //Mensaje SUCCESS
+                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            } else {
+                //Mensaje de error
+                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            }
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+        }finally{
+            // Recargamos la página
+            response.sendRedirect("admin/panel-usuarios.jsp");
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String usuarioID = request.getParameter("eliminarUsuario");
+        if(usuarioID != null){
+            eliminarUsuario(request, response);
+        }
     }
 
     /**

@@ -64,13 +64,15 @@
                             <td>
                                 <span class="action_btn ">
                                     <a href="../usuario/modificar-usuario.jsp" class="btn btn-primary material-icons ">edit</a>
-                                    <a href="# " class="btn btn-danger material-icons ">delete</a>
+                                    <a onclick="eliminarUsuario('${x.usuario}')" class="btn btn-danger material-icons ">delete</a>
                                 </span>
                             </td>
                     </tbody>
                 </c:forEach>
             </table>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../functions/js/forms/alertas.js"></script>
         <jsp:include page="../template/footer.jsp"></jsp:include>
     </body>
 

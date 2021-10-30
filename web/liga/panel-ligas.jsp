@@ -47,7 +47,7 @@
                         <c:choose>
                             <c:when test="${x.cantidad_equipo == 0}">
                                 <p class="card__cupos">
-                                    ¡No hay equipos participando, sé el primero!
+                                    No hay equipos participando, ¡sé el primero!
                                 </p>
                             </c:when> 
                             <c:when test="${x.cantidad_equipo == 1}">
