@@ -79,7 +79,7 @@
     <!--Incluir el CDN de Sweet alert -->
     <!-- Sweet Alert -->
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
-    <script src="../functions/js/forms/formulario-login.js"></script>
+    <!-- <script src="../functions/js/forms/formulario-login.js"></script> -->
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <jsp:include page="../includes/cdn/cdn-sweet-alert.jsp"></jsp:include>
     <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>

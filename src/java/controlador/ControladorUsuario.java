@@ -153,7 +153,9 @@ public class ControladorUsuario extends HttpServlet {
         try {
             String user = request.getParameter("usuario");
             String pass = request.getParameter("password");
-            if (usuarioFacade.Loguear(user, pass)) {
+            if (usuarioFacade.Loguear(user, pass) != 0) {
+                Usuario usuario = usuarioFacade.buscar(user);
+                request.getSession().setAttribute("usuario", usuario);
                 response.sendRedirect("index.jsp");
             } else {
                 response.sendRedirect("prueba.jsp");

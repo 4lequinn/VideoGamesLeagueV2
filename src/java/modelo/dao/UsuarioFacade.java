@@ -30,18 +30,18 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
 
-    public boolean Loguear(String usuario, String contrasenia) {
-        // Te recomiendo que el loguear retorne un int, para saber el tipo de usuario o algo así
+    // Método que valida el tipo de usuario en la sesión
+    public int Loguear(String usuario, String contrasenia) {
+        int valida = 0;
         try {
-            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.contrasenia = contrasenia");
-            query.setParameter("usuario", usuario);
-            query.setParameter("contrasenia", contrasenia);
-            if (query.getResultList().get(0) != null) {
-                return true;
-            }
+            Usuario user = (Usuario) em.createNamedQuery("Usuario.findByUsuarioAndContrasenia")
+                    .setParameter("usuario", usuario).
+                    setParameter("contrasenia", contrasenia).getSingleResult();
+            valida = user.getIdTipo().getId();
         } catch (Exception ex) {
-            return false;
+            System.out.println("ERROR " + ex.getMessage());
+        } finally {
+            return valida;
         }
-        return false;
     }
 }

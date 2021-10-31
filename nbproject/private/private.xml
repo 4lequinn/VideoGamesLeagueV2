@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/usuario/agregar-usuario.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Usuario.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/DetallePartido.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/AbstractFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/usuario/modificar-usuario.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/PerfilJugadorFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorUsuario.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dao/PartidoFacade.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorLiga.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/usuario/registro.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/TipoUsuario.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/Liga.java</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/PerfilJugador.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -4,7 +4,7 @@
     Created on : 13-sep-2021, 19:07:19
     Author     : sebas
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,6 @@
                     </a>
                     <span class="tooltip">Inicio</span>
                 </li>
-
                 <li>
                     <a href="usuario/login.jsp">
                         <i class='bx bx-log-in'></i>
@@ -65,7 +64,7 @@
                     </a>
                     <span class="tooltip">Liga</span>
                 </li>
-                
+
                 <li>
                     <a href="equipo/consultar-solicitud.jsp">
                         <i class='bx bx-search-alt-2'></i>
