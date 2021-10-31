@@ -10,7 +10,7 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:if test="${ usuario.idTipo.id != 1 }">
+<c:if test="${ sesionUsuario.idTipo.id != 1 }">
     <c:redirect url="../usuario/login.jsp" >
         <c:param name="errMsg" value="Please Enter UserName and Password" />
     </c:redirect>
