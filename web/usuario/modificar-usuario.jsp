@@ -58,7 +58,7 @@
 
                 <!-- Grupo: Correo Electronico -->
                 <div class="formulario__grupo" id="grupo__correo">
-                    <label for="correo" class="formulario__label">Correo ElectrÃ³nico</label>
+                    <label for="correo" class="formulario__label">Correo Electrónico</label>
                     <div class="formulario__grupo-input">
                         <input type="email" class="formulario__input" name="correo" id="correo" placeholder="Ej. correo@correo.com" required minlength="10" maxlength="60" value="${perfil.correo}">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -131,7 +131,7 @@
 
                 <!-- Grupo: ContraseÃ±a -->
                 <div class="formulario__grupo" id="grupo__password">
-                    <label for="password" class="formulario__label">ContraseÃ±a</label>
+                    <label for="password" class="formulario__label">Contraseña</label>
                     <div class="formulario__grupo-input">
                         <input type="password" class="formulario__input" name="password" id="password" required minlength="8" maxlength="20" value="${usuario.contrasenia}">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>

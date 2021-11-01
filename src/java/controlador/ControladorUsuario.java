@@ -26,7 +26,7 @@ public class ControladorUsuario extends HttpServlet {
 
     @EJB
     private UsuarioFacade usuarioFacade;
-    
+
     @EJB
     private PerfilJugadorFacade perfilJugadorFacade;
 
@@ -42,7 +42,7 @@ public class ControladorUsuario extends HttpServlet {
         if (opcion.equalsIgnoreCase("AgregarUsuario")) {
             agregarUsuario(request, response);
         }
-        if(opcion.equalsIgnoreCase("ModificarUsuario")){
+        if (opcion.equalsIgnoreCase("ModificarUsuario")) {
             modificarUsuario(request, response);
         }
 
@@ -64,7 +64,7 @@ public class ControladorUsuario extends HttpServlet {
             if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
             } else {
-                
+
                 request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
             }
 
@@ -87,7 +87,7 @@ public class ControladorUsuario extends HttpServlet {
             String correo = request.getParameter("correo");
             String habilidad = request.getParameter("habilidad");
             TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
-            PerfilJugador perfilJugador = new PerfilJugador(nombre, apellido, correo,habilidad, tipoJugador, usuario);
+            PerfilJugador perfilJugador = new PerfilJugador(nombre, apellido, correo, habilidad, tipoJugador, usuario);
             if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
             } else {
@@ -109,7 +109,6 @@ public class ControladorUsuario extends HttpServlet {
             usuario.setContrasenia(request.getParameter("password"));
             TipoUsuario tipoUsuario = new TipoUsuario(Integer.parseInt(request.getParameter("cboTipoUsuario")));
             // Usuario Listo
-            System.out.println("USER xd" + usuario.getIdTipo().getDescripcion());
             PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
             TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
             perfil.setIdTipoJugador(tipoJugador);
@@ -155,7 +154,7 @@ public class ControladorUsuario extends HttpServlet {
             String pass = request.getParameter("password");
             if (usuarioFacade.Loguear(user, pass) != 0) {
                 Usuario usuario = usuarioFacade.buscar(user);
-                request.getSession().setAttribute("usuario", usuario);
+                request.getSession().setAttribute("sesionUsuario", usuario);
                 response.sendRedirect("index.jsp");
             } else {
                 response.sendRedirect("prueba.jsp");
@@ -166,6 +165,18 @@ public class ControladorUsuario extends HttpServlet {
         }
     }
 
+    protected void logout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            //Usuario usuario = (Usuario) request.getSession().getAttribute("sesionUsuario");
+            request.getSession().removeAttribute("sesionUsuario");
+        } catch (Exception e) {
+            System.out.println("ERROR " + e.getMessage());
+        } finally {
+            response.sendRedirect("index.jsp");
+        }
+    }
+
     protected void eliminarUsuario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -173,7 +184,7 @@ public class ControladorUsuario extends HttpServlet {
             Usuario usuario = usuarioFacade.buscar(usuarioID);
             // Al eliminar con JPA la entidad se elimina en cascada
             //Buscamos por ID y eliminamos
-            if (usuarioFacade.eliminar(usuario) ) {
+            if (usuarioFacade.eliminar(usuario)) {
                 //Mensaje SUCCESS
                 request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
             } else {
@@ -183,7 +194,7 @@ public class ControladorUsuario extends HttpServlet {
         } catch (Exception e) {
             //Error
             request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
-            System.out.println("ERROR " +e.getMessage());
+            System.out.println("ERROR " + e.getMessage());
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-usuarios.jsp");
@@ -195,10 +206,13 @@ public class ControladorUsuario extends HttpServlet {
             throws ServletException, IOException {
         String usuarioID = request.getParameter("eliminarUsuario");
         String username = request.getParameter("id");
+        String logout = request.getParameter("logout");
         if (usuarioID != null) {
             eliminarUsuario(request, response);
         } else if (username != null) {
             cargarDatosUsuario(request, response);
+        } else if (logout != null) {
+            logout(request, response);
         }
     }
 
