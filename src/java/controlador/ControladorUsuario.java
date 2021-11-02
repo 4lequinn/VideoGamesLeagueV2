@@ -45,6 +45,9 @@ public class ControladorUsuario extends HttpServlet {
         if (opcion.equalsIgnoreCase("ModificarUsuario")) {
             modificarUsuario(request, response);
         }
+        if (opcion.equalsIgnoreCase("ModificarPerfil")) {
+            modificarPerfil(request, response);
+        }
 
     }
 
@@ -122,9 +125,41 @@ public class ControladorUsuario extends HttpServlet {
             } else {
                 request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido modificar");
             }
-
+            request.getSession().setAttribute("sesionUsuario", usuario);
+            request.getSession().setAttribute("sesionPerfil", perfil);
         } catch (Exception e) {
-            System.out.println("ERROR");
+            System.out.println("ERROR " + e.getMessage());
+            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+        } finally {
+            //response.sendRedirect("admin/panel-usuarios.jsp");
+            response.sendRedirect("usuario/modificar-perfil-usuario.jsp");
+
+        }
+    }
+
+    protected void modificarPerfil(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String user = request.getParameter("txtUsuario");
+            Usuario usuario = usuarioFacade.buscar(user);
+            usuario.setContrasenia(request.getParameter("password"));
+            TipoUsuario tipoUsuario = new TipoUsuario(Integer.parseInt(request.getParameter("cboTipoUsuario")));
+            // Usuario Listo
+            PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
+            TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
+            perfil.setIdTipoJugador(tipoJugador);
+            perfil.setHabilidad(request.getParameter("habilidad"));
+            perfil.setCorreo(request.getParameter("correo"));
+            perfil.setNombre(request.getParameter("nombre"));
+            perfil.setApellido(request.getParameter("apellido"));
+            // Perfil modificado
+            if (usuarioFacade.modificar(usuario) && perfilJugadorFacade.modificar(perfil)) {
+                request.getSession().setAttribute("msOKRegistrarU", "Usuario modificado correctamente");
+            } else {
+                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido modificar");
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR " + e.getMessage());
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("admin/panel-usuarios.jsp");
@@ -154,7 +189,9 @@ public class ControladorUsuario extends HttpServlet {
             String pass = request.getParameter("password");
             if (usuarioFacade.Loguear(user, pass) != 0) {
                 Usuario usuario = usuarioFacade.buscar(user);
+                PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
                 request.getSession().setAttribute("sesionUsuario", usuario);
+                request.getSession().setAttribute("sesionPerfil", perfil);
                 response.sendRedirect("index.jsp");
             } else {
                 response.sendRedirect("prueba.jsp");

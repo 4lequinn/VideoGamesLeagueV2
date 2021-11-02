@@ -21,6 +21,7 @@
     Select u.usuario, t.descripcion
     FROM usuario u
     INNER JOIN tipo_usuario t on u.id_tipo = t.id
+    WHERE u.usuario <> '${sesionUsuario.usuario}'
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
