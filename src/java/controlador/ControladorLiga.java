@@ -11,9 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+import modelo.dto.Liga;
+=======
 import modelo.dao.LigaFacade;
 import modelo.dto.Liga;
 import modelo.dto.VideoJuego;
+>>>>>>> 7e99ef09ce80ead8c4ea0286779b568cf362f999
 
 /**
  *
@@ -26,6 +30,18 @@ public class ControladorLiga extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
+    }
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+=======
     }
 
     protected void eliminarLiga(HttpServletRequest request, HttpServletResponse response)
@@ -117,6 +133,7 @@ public class ControladorLiga extends HttpServlet {
         }
     }
 
+>>>>>>> 7e99ef09ce80ead8c4ea0286779b568cf362f999
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
