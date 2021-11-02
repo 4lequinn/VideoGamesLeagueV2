@@ -36,8 +36,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PerfilJugador.findAll", query = "SELECT p FROM PerfilJugador p")
     , @NamedQuery(name = "PerfilJugador.findById", query = "SELECT p FROM PerfilJugador p WHERE p.id = :id")
     , @NamedQuery(name = "PerfilJugador.findByNombre", query = "SELECT p FROM PerfilJugador p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "PerfilJugador.findByApellido", query = "SELECT p FROM PerfilJugador p WHERE p.apellido = :apellido")
     , @NamedQuery(name = "PerfilJugador.findByCorreo", query = "SELECT p FROM PerfilJugador p WHERE p.correo = :correo")
-    , @NamedQuery(name = "PerfilJugador.findByHabilidad", query = "SELECT p FROM PerfilJugador p WHERE p.habilidad = :habilidad")})
+    , @NamedQuery(name = "PerfilJugador.findByHabilidad", query = "SELECT p FROM PerfilJugador p WHERE p.habilidad = :habilidad")
+    , @NamedQuery(name = "PerfilJugador.findByUser", query = "SELECT p FROM PerfilJugador p WHERE p.idUsuario.usuario = :usuario")}) 
+// Crear consultas precargadas para los métodos customers
 public class PerfilJugador implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,6 +56,11 @@ public class PerfilJugador implements Serializable {
     private String nombre;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "apellido")
+    private String apellido;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 80)
     @Column(name = "correo")
     private String correo;
@@ -61,10 +69,10 @@ public class PerfilJugador implements Serializable {
     @Size(min = 1, max = 80)
     @Column(name = "habilidad")
     private String habilidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPerfil")
-    private List<Equipo> equipoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idJugador")
     private List<Incripcion> incripcionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPerfil")
+    private List<Equipo> equipoList;
     @JoinColumn(name = "id_tipo_jugador", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TipoJugador idTipoJugador;
@@ -79,21 +87,24 @@ public class PerfilJugador implements Serializable {
         this.id = id;
     }
 
-    public PerfilJugador(String nombre, String correo, String habilidad, TipoJugador idTipoJugador, Usuario idUsuario) {
+    public PerfilJugador(Integer id, String nombre, String apellido, String correo, String habilidad) {
+        this.id = id;
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.habilidad = habilidad;
+    }
+
+    public PerfilJugador(String nombre, String apellido, String correo, String habilidad, TipoJugador idTipoJugador, Usuario idUsuario) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
         this.habilidad = habilidad;
         this.idTipoJugador = idTipoJugador;
         this.idUsuario = idUsuario;
     }
-
-
-    public PerfilJugador(Integer id, String nombre, String correo, String habilidad) {
-        this.id = id;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.habilidad = habilidad;
-    }
+    
+    
 
     public Integer getId() {
         return id;
@@ -109,6 +120,14 @@ public class PerfilJugador implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -128,21 +147,21 @@ public class PerfilJugador implements Serializable {
     }
 
     @XmlTransient
-    public List<Equipo> getEquipoList() {
-        return equipoList;
-    }
-
-    public void setEquipoList(List<Equipo> equipoList) {
-        this.equipoList = equipoList;
-    }
-
-    @XmlTransient
     public List<Incripcion> getIncripcionList() {
         return incripcionList;
     }
 
     public void setIncripcionList(List<Incripcion> incripcionList) {
         this.incripcionList = incripcionList;
+    }
+
+    @XmlTransient
+    public List<Equipo> getEquipoList() {
+        return equipoList;
+    }
+
+    public void setEquipoList(List<Equipo> equipoList) {
+        this.equipoList = equipoList;
     }
 
     public TipoJugador getIdTipoJugador() {

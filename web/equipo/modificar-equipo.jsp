@@ -33,7 +33,6 @@
     <div class="background-transparencia"></div>
     <main>
         <form action="" class="formulario" id="formulario">
-
             <!-- Grupo: Nombre -->
             <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="formulario__label">Nombre del Equipo</label>
@@ -50,8 +49,7 @@
                 <label for="cboLiga" class="formulario__label-cbo">
                     <span>Liga</span>
                 <select name="cboLiga" id="cboLiga" class="formulario__input-cbo" required>
-                    <!-- Primer op -->
-                    <option disabled selected value="0">Seleccione</option>
+
                     <!--Quitar Options y poner la lista de la BDD -->
                 <c:forEach var="x" items="${ligas.rows}">
                     <option value="${x.id}">${x.descripcion}</option> 
@@ -91,7 +89,7 @@
     </main>
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../functions/js/forms/formulario-agregar-equipo.js"></script>
+    <!--<script src="../functions/js/forms/formulario-agregar-equipo.js"></script>-->
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <jsp:include page="../includes/cdn/cdn-sweet-alert.jsp"></jsp:include>
     <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>

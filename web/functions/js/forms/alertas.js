@@ -17,7 +17,7 @@ function eliminarUsuario(usuario) {
                     'Usuario Eliminado correctamente',
                     'success'
                     ).then(function () {
-                window.location.href = "ControladorUsuario?usuario=" + (usuario);
+                window.location.href = "../ControladorUsuario?eliminarUsuario=" + (usuario);
             })
         }
     })
@@ -40,7 +40,7 @@ function eliminarLiga(liga) {
                     'Liga Eliminada correctamente',
                     'success'
                     ).then(function () {
-                window.location.href = "ControladorAdminLiga?liga=" + (liga);
+                window.location.href = "../ControladorLiga?eliminarLiga=" + (liga);
             })
         }
     })
@@ -63,7 +63,7 @@ function eliminarEquipo(equipo) {
                     'Equipo Eliminado correctamente',
                     'success'
                     ).then(function () {
-                window.location.href = "ControladorAdminEquipo?equipo=" + (equipo);
+                window.location.href = "../ControladorEquipo?eliminarEquipo=" + (equipo);
             })
         }
     })

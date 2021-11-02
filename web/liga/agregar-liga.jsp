@@ -26,7 +26,7 @@
             <img class="background-img" src="../theme/img/equipo/team-fifa.png" alt="Imagen de fondo">
             <div class="background-transparencia"></div>
             <main>
-                <form action="" class="formulario" id="formulario">
+                <form action="../ControladorLiga" method="POST" class="formulario" id="formulario"> <!--Descbrí que ligapor alguna razón el ID del formulario no deja enviarlo -->
 
                     <!-- Grupo: Nombre -->
                     <div class="formulario__grupo" id="grupo__nombre">
@@ -78,15 +78,16 @@
 
 
                 <div class="formulario__grupo formulario__grupo-btn-enviar">
-                    <button type="submit" class="formulario__btn">Crear Liga</button>
+                    <button type="submit" class="formulario__btn" name="btnAccion" value="AgregarLiga">Crear Liga</button>
                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                 </div>
+                
             </form>
 
         </main>
         <!-- Sweet Alert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../functions/js/forms/formulario-agregar-liga.js"></script>
+        <!--<script src="../functions/js/forms/formulario-agregar-liga.js"></script>-->
         <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
         <jsp:include page="../includes/cdn/cdn-sweet-alert.jsp"></jsp:include>
         <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>

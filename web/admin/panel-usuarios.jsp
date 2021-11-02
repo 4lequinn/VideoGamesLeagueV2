@@ -10,12 +10,18 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:if test="${ sesionUsuario.idTipo.id != 1 }">
+    <c:redirect url="../usuario/login.jsp" >
+        <c:param name="errMsg" value="Please Enter UserName and Password" />
+    </c:redirect>
+</c:if>
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
 <sql:query dataSource="${dataSource}" var="listaUsuario">
     Select u.usuario, t.descripcion
     FROM usuario u
     INNER JOIN tipo_usuario t on u.id_tipo = t.id
+    WHERE u.usuario <> '${sesionUsuario.usuario}'
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,14 +69,16 @@
                             <td>${x.descripcion}</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="../usuario/modificar-usuario.jsp" class="btn btn-primary material-icons ">edit</a>
-                                    <a href="# " class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorUsuario?id=${x.usuario}" class="btn btn-primary material-icons ">edit</a>
+                                    <a onclick="eliminarUsuario('${x.usuario}')" class="btn btn-danger material-icons ">delete</a>
                                 </span>
                             </td>
                     </tbody>
                 </c:forEach>
             </table>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../functions/js/forms/alertas.js"></script>
         <jsp:include page="../template/footer.jsp"></jsp:include>
     </body>
 

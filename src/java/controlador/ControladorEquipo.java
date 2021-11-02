@@ -6,15 +6,21 @@
 package controlador;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.io.PrintWriter;
+=======
+>>>>>>> 7e99ef09ce80ead8c4ea0286779b568cf362f999
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import modelo.dto.Equipo;
 import modelo.dto.Liga;
 import modelo.dto.PerfilJugador;
+=======
+>>>>>>> 7e99ef09ce80ead8c4ea0286779b568cf362f999
 import modelo.dao.EquipoFacade;
 
 /**
@@ -22,12 +28,17 @@ import modelo.dao.EquipoFacade;
  * @author jorge
  */
 public class ControladorEquipo extends HttpServlet {
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 7e99ef09ce80ead8c4ea0286779b568cf362f999
     @EJB
     private EquipoFacade equipoFacade;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
          String opcion = request.getParameter("btnAccion");
         if (opcion.equals("RegistrarUsuario")) {
             CrearEquipo(request, response);
@@ -69,20 +80,41 @@ public class ControladorEquipo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+=======
+
+    }
+
+    protected void eliminarEquipo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int equipoID = Integer.parseInt(request.getParameter("eliminarEquipo"));
+            //Buscamos por ID y eliminamos
+            if (equipoFacade.eliminar(equipoFacade.buscar(equipoID))) {
+                //Mensaje SUCCESS
+                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            } else {
+                //Mensaje de error
+                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            }
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("admin/panel-equipos.jsp");
+        }
+    }
+
+>>>>>>> 7e99ef09ce80ead8c4ea0286779b568cf362f999
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String equipoID = request.getParameter("eliminarEquipo");
+        if (equipoID != null) {
+            eliminarEquipo(request, response);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
