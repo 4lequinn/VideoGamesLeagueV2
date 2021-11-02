@@ -35,7 +35,7 @@
                             <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ej. Liga de los MÃ¡quinas " required minlength="3" maxlength="40">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">El nombre sÃ³lo puede contener letras y espacios.</p>
+                        <p class="formulario__input-error">El nombre no puede contener letras y espacios.</p>
                     </div>
 
 
@@ -54,23 +54,6 @@
                         </select>
                     </label>
                 </div>
-
-
-                <!-- Grupo: Cbo Tipo Jugador TEST -->
-                <!-- 
-                    
-                <div class="formulario__grupo">
-                    <label for="cboTipo" class="formulario__label-cbo">
-                        <span>Tipo Jugador</span>
-                        <input list="cboTipo" placeholder="Seleccione" class="formulario__input-cbo">
-                        <datalist id = "cboTipo">
-                            <option value="Estratega"></option>
-                            <option value="Shooter"></option> 
-                        </datalist>
-                    </label>
-                </div>
-                
-                -->
 
                 <div class="formulario__mensaje" id="formulario__mensaje">
                     <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>

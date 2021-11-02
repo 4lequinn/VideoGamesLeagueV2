@@ -1,0 +1,90 @@
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+html {
+    font-size: 1rem;
+}
+body {
+    background: #f0f2f2;
+    color: #858585;
+}
+.tournament {
+    display: flex;
+    justify-content: center;
+}
+.tournament li {
+    display: flex;
+}
+.tournament li ul {
+    flex: 0 0 auto;
+    position: relative;
+}
+.tournament li ul:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 15px;
+    height: 50%;
+    transform: translate(100%,-50%);
+    border: 1px solid #c0c0c0;
+    border-left: 0;
+    border-radius: 0 10px 10px 0;
+}
+.tournament li ul:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 15px;
+    padding: 1px 0 0;
+    background: #c0c0c0;
+    transform: translate(200%,-50%);
+}
+.tournament li .game {
+    width: 200px;
+    flex: 0 1 auto;
+    margin: 10px 0 10px 30px;
+    align-self: center;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+.tournament li .game:first-child {
+    margin-left: 0;
+}
+.tournament li .game > * {
+    padding: 1rem 1.25rem;
+    background: #FFF;
+    border-left: 6px solid #858585;
+}
+.tournament li .game > *:not(:last-child) {
+    border-bottom: 1px solid #f2f2f2;
+}
+.tournament li .game > *:first-child {
+    border-left-color: #60c645;
+    color: #60c645;
+}
+.tournament li .game + ul {
+    margin-left: 30px;
+    margin-right: 0;
+}
+.tournament li .game + ul:before {
+    left: 0;
+    right: auto;
+    transform: translate(-100%,-50%);
+    border: 1px solid #c0c0c0;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+}
+.tournament li .game + ul:after {
+    left: 0;
+    right: auto;
+    transform: translate(-200%,-50%);
+}

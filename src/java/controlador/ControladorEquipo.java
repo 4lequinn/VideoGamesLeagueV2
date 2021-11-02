@@ -16,6 +16,9 @@ import modelo.dto.Equipo;
 import modelo.dto.Liga;
 import modelo.dto.PerfilJugador;
 import modelo.dao.EquipoFacade;
+import modelo.dao.PerfilJugadorFacade;
+import modelo.dao.UsuarioFacade;
+import modelo.dto.Usuario;
 
 /**
  *
@@ -25,39 +28,46 @@ public class ControladorEquipo extends HttpServlet {
     @EJB
     private EquipoFacade equipoFacade;
     
+     @EJB
+    private UsuarioFacade usuarioFacade;
+    
+     @EJB
+    private PerfilJugadorFacade perfilJugadorFacade;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          String opcion = request.getParameter("btnAccion");
-        if (opcion.equals("RegistrarUsuario")) {
-            CrearEquipo(request, response);
+        if (opcion.equals("CrearEquipo")) {
+            crearEquipo(request, response);
+        }
+        if (opcion.equals("")) {
+            eliminarEquipo(request, response);
         }
     }
     
-    protected void CrearEquipo(HttpServletRequest request, HttpServletResponse response)
+    protected void crearEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
+            String user = request.getParameter("txtUsuario");
+            Usuario usuario = usuarioFacade.buscar(user);
+            //Se busca el perfil de jugador con el usuario encontrado anteriormente
+            PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
              //Campos para crear Equipo
             String nombre = request.getParameter("nombre");
-            Liga l = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
-            
-            //Se busca el perfil de jugador con el usuario encontrado anteriormente
-            PerfilJugador p = new PerfilJugador(Integer.SIZE);
-            Equipo e = new Equipo(nombre, 1, p, l);
-            
+            Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
+            Equipo e = new Equipo(nombre, 1, perfil, liga);
             if (equipoFacade.agregar(e)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
+                request.getSession().setAttribute("msOKRegistrarU", "Equipo creado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
+                request.getSession().setAttribute("msNORegistrarU", "El equipo no se ha podido agregar");
             }
 
         } catch (Exception e) {
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
-            response.sendRedirect("usuario/registro.jsp");
+            response.sendRedirect("equipo/agregar-equipo.jsp");
         }
     }
-
 
     protected void eliminarEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -88,18 +98,13 @@ public class ControladorEquipo extends HttpServlet {
             eliminarEquipo(request, response);
         }
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

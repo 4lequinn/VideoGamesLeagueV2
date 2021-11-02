@@ -75,7 +75,7 @@
                                 </div>
                             </a>
                         </div>
-
+                        
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -89,5 +89,4 @@
             </header>
         <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>
     </body>
-
 </html>
