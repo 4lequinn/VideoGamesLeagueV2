@@ -19,7 +19,7 @@
         <jsp:include page="../includes/links/navbar-link.jsp"></jsp:include>
         </head>
         <!-- Incluimos la barra de navegaciÃ³n -->
-    <jsp:include page="../template/navbar.jsp"></jsp:include>
+    <jsp:include page="../template/navbar2.jsp"></jsp:include>
         <body>
             <img class="background-img" src="../theme/img/equipo/team-fifa.png" alt="Imagen de fondo">
             <div class="background-transparencia"></div>

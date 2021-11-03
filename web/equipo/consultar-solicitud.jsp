@@ -65,6 +65,5 @@
                 </tbody>
             </table>
         </div>
-        <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>
     </body>
 </html>

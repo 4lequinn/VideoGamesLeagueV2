@@ -33,7 +33,7 @@
             <div class="background-transparencia"></div>
             <main>
                 <form action="../ControladorEquipo" method="POST" class="formulario" id="formulario">
-                    <!-- <input name="txtUsuario" hidden value="${usuario.usuario}"> -->
+                    <input name="txtUsuario" hidden value="${sesionUsuario.usuario}">
                 <!-- Grupo: Nombre -->
                 <div class="formulario__grupo" id="grupo__nombre">
                     <label for="nombre" class="formulario__label">Nombre del Equipo</label>
@@ -68,7 +68,7 @@
         </main>
         <!-- Sweet Alert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../functions/js/forms/formulario-agregar-equipo.js"></script>
+        <!-- <script src="../functions/js/forms/formulario-agregar-equipo.js"></script>-->
         <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
         <jsp:include page="../includes/cdn/cdn-sweet-alert.jsp"></jsp:include>
         <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>

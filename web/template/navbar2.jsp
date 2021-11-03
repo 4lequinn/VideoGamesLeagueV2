@@ -82,7 +82,7 @@
                                     <div class="job">Usuario</div>
                                 </div>
                             </div>
-                            <a href="ControladorUsuario?logout=true"><i class='bx bx-log-out' id="log_out"></i></a>
+                            <a href="../ControladorUsuario?logout=true"><i class='bx bx-log-out' id="log_out"></i></a>
                         </div>
                     </div>
                 </c:when> 

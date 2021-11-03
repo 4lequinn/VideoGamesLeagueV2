@@ -39,7 +39,7 @@
             <div class="formulario__grupo" id="grupo__password">
                 <label for="password" class="formulario__label">Contraseña</label>
                 <div class="formulario__grupo-input">
-                    <input type="password" class="formulario__input" name="password" id="password" required minlength="8" maxlength="20">
+                    <input type="password" class="formulario__input" name="password" id="password" required minlength="3" maxlength="20">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
