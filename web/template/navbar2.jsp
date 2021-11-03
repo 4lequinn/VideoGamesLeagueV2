@@ -52,11 +52,18 @@
                             <span class="tooltip">Ver Solicitudes</span>
                         </li>       
                         <li>
-                            <a href="../equipo/panel-equipos.jsp">
+                            <a href="../equipo/agregar-equipo.jsp">
                                 <i class='bx bxs-group'></i>
-                                <span class="links_name">Equipo</span>
+                                <span class="links_name">Crear Equipo</span>
                             </a>
-                            <span class="tooltip">Equipo</span>
+                            <span class="tooltip">Crear Equipo</span>
+                        </li>
+                        <li>
+                            <a href="../equipo/modificar-equipo.jsp">
+                                <i class='bx bxs-group'></i>
+                                <span class="links_name">Modificar Equipo</span>
+                            </a>
+                            <span class="tooltip">Modificar Equipo</span>
                         </li>
                         <li>
                             <a href="../usuario/modificar-perfil-usuario.jsp">
@@ -75,7 +82,7 @@
                                     <div class="job">Usuario</div>
                                 </div>
                             </div>
-                            <a href="ControladorUsuario?logout=true"><i class='bx bx-log-out' id="log_out"></i></a>
+                            <a href="../ControladorUsuario?logout=true"><i class='bx bx-log-out' id="log_out"></i></a>
                         </div>
                     </div>
                 </c:when> 
@@ -159,6 +166,13 @@
                                 <span class="links_name">Liga</span>
                             </a>
                             <span class="tooltip">Liga</span>
+                        </li>
+                        <li>
+                            <a href="../partido/clasificatoria.jsp">
+                                <i class='bx bx-grid-alt'></i>
+                                <span class="links_name">Clasificatoria</span>
+                            </a>
+                            <span class="tooltip">Clasificatoria</span>
                         </li>
                     </ul>
                 </c:otherwise>

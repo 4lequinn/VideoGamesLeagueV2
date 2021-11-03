@@ -131,9 +131,7 @@ public class ControladorUsuario extends HttpServlet {
             System.out.println("ERROR " + e.getMessage());
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
-            //response.sendRedirect("admin/panel-usuarios.jsp");
             response.sendRedirect("usuario/modificar-perfil-usuario.jsp");
-
         }
     }
 

@@ -50,4 +50,5 @@ public class PerfilJugadorFacade extends AbstractFacade<PerfilJugador> {
             return null;
         }
     }
+    
 }

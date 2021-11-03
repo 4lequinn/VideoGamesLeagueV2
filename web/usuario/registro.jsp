@@ -25,7 +25,7 @@
         </head>
 
         <!-- Incluimos la barra de navegación -->
-        <jsp:include page="../template/navbar.jsp"></jsp:include>
+        <jsp:include page="../template/navbar2.jsp"></jsp:include>
 
         <body>
             <img class="background-img" src="../theme/img/equipo/team-fifa.png" alt="Imagen de fondo">
@@ -40,7 +40,7 @@
                             <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ej. Francisco" required minlength="3" maxlength="40">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">El nombre sÃ³lo puede contener letras y espacios.</p>
+                        <p class="formulario__input-error">El nombre no puede contener letras y espacios.</p>
                     </div>
 
                     <!-- Grupo: Apellido -->
@@ -50,12 +50,12 @@
                             <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Ej. Juillet" required minlength="3" maxlength="40">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">El apellido sÃ³lo puede contener letras y espacios.</p>
+                        <p class="formulario__input-error">El apellido no puede contener letras y espacios.</p>
                     </div>
 
                     <!-- Grupo: Correo Electronico -->
                     <div class="formulario__grupo" id="grupo__correo">
-                        <label for="correo" class="formulario__label">Correo ElectrÃ³nico</label>
+                        <label for="correo" class="formulario__label">Correo Electrónico</label>
                         <div class="formulario__grupo-input">
                             <input type="email" class="formulario__input" name="correo" id="correo" placeholder="Ej. correo@correo.com" required minlength="10" maxlength="60">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -70,9 +70,8 @@
                             <input type="text" class="formulario__input" name="habilidad" id="habilidad" placeholder="Ej. Ninguna" required minlength="10" maxlength="40">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">La habilidad sÃ³lo puede contener letras y espacios.</p>
+                        <p class="formulario__input-error">La habilidad no puede contener letras y espacios.</p>
                     </div>
-
 
                     <!-- Grupo: Usuario -->
                     <div class="formulario__grupo" id="grupo__usuario">
@@ -97,48 +96,21 @@
                              <option value="${x.id}">${x.descripcion}</option>
                         </c:forEach>
                 </select>
-    
                     </div>
 
                     <!-- Grupo: ContraseÃ±a -->
                     <div class="formulario__grupo" id="grupo__password">
-                        <label for="password" class="formulario__label">ContraseÃ±a</label>
+                        <label for="password" class="formulario__label">Contraseña</label>
                         <div class="formulario__grupo-input">
                             <input type="password" class="formulario__input" name="password" id="password" required minlength="8" maxlength="20">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
-                        <p class="formulario__input-error">La contraseÃ±a tiene que ser de 4 a 12 dÃ­gitos.</p>
+                        <p class="formulario__input-error">La contraseÃ±a tiene que ser de 4 a 12 digitos.</p>
                     </div>
-
-                    <!-- Grupo: ContraseÃ±a 2 -->
-                    <div class="formulario__grupo" id="grupo__password2">
-                        <label for="password2" class="formulario__label">Repetir ContraseÃ±a</label>
-                        <div class="formulario__grupo-input">
-                            <input type="password" class="formulario__input" name="password2" id="password2" required minlength="8" maxlength="20">
-                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">Ambas contraseÃ±as deben ser iguales.</p>
-                    </div>
-
-                    <!-- Grupo: Cbo Tipo Jugador TEST -->
-                    <!-- 
-                
-            <div class="formulario__grupo">
-                <label for="cboTipo" class="formulario__label-cbo">
-                    <span>Tipo Jugador</span>
-                    <input list="cboTipo" placeholder="Seleccione" class="formulario__input-cbo">
-                    <datalist id = "cboTipo">
-                        <option value="Estratega"></option>
-                        <option value="Shooter"></option> 
-                    </datalist>
-                </label>
-            </div>  
-            -->
 
                     <div class="formulario__mensaje" id="formulario__mensaje">
                         <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
                     </div>
-
 
                     <div class="formulario__grupo formulario__grupo-btn-enviar">
                         <button type="submit" class="formulario__btn" name="btnAccion" value="RegistrarUsuario">Registrarse</button>
