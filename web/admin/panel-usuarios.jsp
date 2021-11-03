@@ -81,5 +81,4 @@
         <script src="../functions/js/forms/alertas.js"></script>
         <jsp:include page="../template/footer.jsp"></jsp:include>
     </body>
-
 </html>

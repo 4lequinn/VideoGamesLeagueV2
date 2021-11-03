@@ -19,7 +19,6 @@
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <title>Panel de Ligas</title>
@@ -29,15 +28,12 @@
         </head>
     <jsp:include page="../template/navbar2.jsp"></jsp:include>
         <body>
-
             <h1 class="title">¡Compite y Gana!</h1>
-
             <div class="container">
             <c:forEach var="x" items="${listaLigas.rows}">
                 <div class="card">
                     <img src="../theme/img/equipo/team-fifa.png">
                     <div class="card__contenedor">
-
                         <h4>
                             ${x.descripcion}
                         </h4>
@@ -67,5 +63,4 @@
         </div>
         <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>
     </body>
-
 </html>

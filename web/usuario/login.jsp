@@ -25,8 +25,6 @@
     <main>
         <form action="../ControladorUsuario" method="POST" class="formulario" id="formulario">
 
-
-
             <!-- Grupo: Usuario -->
             <div class="formulario__grupo" id="grupo__usuario">
                 <label for="usuario" class="formulario__label">Usuario</label>
@@ -41,33 +39,15 @@
             <div class="formulario__grupo" id="grupo__password">
                 <label for="password" class="formulario__label">Contraseña</label>
                 <div class="formulario__grupo-input">
-                    <input type="password" class="formulario__input" name="password" id="password" required minlength="8" maxlength="20">
+                    <input type="password" class="formulario__input" name="password" id="password" required minlength="3" maxlength="20">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">La contraseÃ±a tiene que ser de 4 a 12 dígitos.</p>
+                <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
             </div>
-
-
-            <!-- Grupo: Cbo Tipo Jugador TEST -->
-            <!-- 
-                
-            <div class="formulario__grupo">
-                <label for="cboTipo" class="formulario__label-cbo">
-                    <span>Tipo Jugador</span>
-                    <input list="cboTipo" placeholder="Seleccione" class="formulario__input-cbo">
-                    <datalist id = "cboTipo">
-                        <option value="Estratega"></option>
-                        <option value="Shooter"></option> 
-                    </datalist>
-                </label>
-            </div>
-            
-            -->
 
             <div class="formulario__mensaje" id="formulario__mensaje">
                 <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
             </div>
-
 
             <div class="formulario__grupo formulario__grupo-btn-enviar">
                 <button type="submit" class="formulario__btn" name="btnAccion" value="Loguear">Iniciar sesión</button>

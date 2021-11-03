@@ -22,7 +22,6 @@
 <!--Validación para que no puedas enviar Solicitud a un equipo que ya está completo -->
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <title>Panel de Equipos</title>
@@ -33,15 +32,12 @@
         </head>
     <jsp:include page="../template/navbar2.jsp"></jsp:include>
         <body>
-
             <h1 class="title">¡Únete! ¿Qué esperas?</h1>
-
             <div class="container">
             <c:forEach var="x" items="${listaEquipos.rows}">
                 <div class="card">
                     <img src="../theme/img/equipo/team-fifa.png">
                     <div class="card__contenedor">
-
                         <h4>
                             ${x.nombre}
                             <br> ${x.id_usuario}
@@ -52,14 +48,11 @@
                         <p class="card__cupos">
                             Sólo quedan ${8 - x.cantidad_jugador} cupos!
                         </p>
-
                         <a href="#" class="btn-solicitar">Solicitar Unirse</a>
                     </div>
                 </div>
             </c:forEach>
-
         </div>
         <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>
     </body>
-
 </html>
