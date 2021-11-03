@@ -55,7 +55,7 @@ public class ControladorEquipo extends HttpServlet {
              //Campos para crear Equipo
             String nombre = request.getParameter("nombre");
             Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
-            Equipo e = new Equipo(nombre, perfil, liga);
+            Equipo e = new Equipo(nombre, 1, perfil, liga);
             System.out.println(e.getNombre()+e.getCantidadJugador()+e.getIdLiga()+e.getIdPerfil());
             if (equipoFacade.agregar(e)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Equipo creado correctamente");

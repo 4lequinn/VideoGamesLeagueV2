@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorUsuario.java</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/theme/css/liga/panel-ligas-usuario.css</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/liga/panel-ligas.jsp</file>
-            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/theme/global-theme/global-variables.css</file>
-=======
-            <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/web/template/navbar.jsp</file>
-            <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorEquipo.java</file>
-            <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/web/template/navbar2.jsp</file>
-            <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/web/usuario/agregar-usuario.jsp</file>
-            <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorUsuario.java</file>
->>>>>>> 71357110cdd4ce82322314b4a0c92657e79096e6
-        </group>
+        <group/>
     </open-files>
 </project-private>
