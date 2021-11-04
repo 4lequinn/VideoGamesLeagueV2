@@ -63,10 +63,8 @@
                             <th>Acción</th>
                         </tr>
                     </thead>
-
                 <c:forEach var="x" items="${listaLigas.rows}">
                     <tbody>
-
                         <tr>
                             <td>${x.id}</td>
                             <td>${x.descripcion}</td>
@@ -75,8 +73,9 @@
                             <td>${16 - x.cantidad_equipo}</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="../ControladorLiga?id=${x.id}" class="btn btn-primary material-icons ">edit</a>
-                                    <a onclick="eliminarLiga('${x.id}')" class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorLiga?id=${x.id}" class="btn btn-primary material-icons" data-toggle="tooltip" data-placement="top" title="Editar" >edit</a>
+                                    <a onclick="eliminarLiga('${x.id}')" class="btn btn-danger material-icons" data-toggle="tooltip" data-placement="top" title="Eliminar" >delete</a>
+                                    <a href="#" class="btn btn-warning material-icons" data-toggle="tooltip" data-placement="top" title="Iniciar Torneo" >gamepad</a>
                                 </span>
                             </td>
                     </tbody>  
