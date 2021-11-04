@@ -72,6 +72,13 @@
                             </a>
                             <span class="tooltip">Perfil Jugador</span>
                         </li>
+                        <li>
+                            <a href="../equipo/panel-equipos.jsp">
+                                <i class='bx bx-game'></i>
+                                <span class="links_name">Equipos</span>
+                            </a>
+                            <span class="tooltip">Equipos</span>
+                        </li>
                     </ul>
                     <div class="profile_content">
                         <div class="profile">
