@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.dto.Liga;
 import modelo.dao.LigaFacade;
 import modelo.dto.Liga;
 import modelo.dto.VideoJuego;
@@ -28,8 +27,6 @@ public class ControladorLiga extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-
-    
 
     protected void eliminarLiga(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,7 +102,6 @@ public class ControladorLiga extends HttpServlet {
             liga.setIdJuego(videoJuego);
             if (ligaFacade.modificar(liga)) {
                 request.getSession().setAttribute("msjErrorEliminar", "modificó");
-                
             } else {
                 //Mensaje de error
                 request.getSession().setAttribute("msjErrorEliminar", "else");
@@ -113,7 +109,6 @@ public class ControladorLiga extends HttpServlet {
         } catch (Exception e) {
             //Error
             request.getSession().setAttribute("msjErrorEliminar", e.getMessage());
-            System.out.println("ERRRRORRRR " + e.getMessage());
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-ligas.jsp");
