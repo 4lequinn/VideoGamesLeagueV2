@@ -31,7 +31,7 @@
                 <c:when test="${sesionUsuario.idTipo.id == 2 }">
                     <ul class="nav_list">
                         <li>
-                            <a href="./index.jsp">
+                            <a href="index.jsp">
                                 <i class='bx bx-grid-alt'></i>
                                 <span class="links_name">Inicio</span>
                             </a>
@@ -58,6 +58,15 @@
                             </a>
                             <span class="tooltip">Crear Equipo</span>
                         </li>
+
+                        <li>
+                            <a href="equipo/modificar-equipo.jsp">
+                                <i class='bx bxs-group'></i>
+                                <span class="links_name">Modificar Equipo</span>
+                            </a>
+                            <span class="tooltip">Modificar Equipo</span>
+                        </li>
+
                         <li>
                             <a href="usuario/modificar-perfil-usuario.jsp">
                                 <i class='bx bxs-id-card'></i>
@@ -71,6 +80,13 @@
                                 <span class="links_name">Clasificatoria</span>
                             </a>
                             <span class="tooltip">Clasificatoria</span>
+
+                            <a href="equipo/panel-equipos.jsp">
+                                <i class='bx bx-game'></i>
+                                <span class="links_name">Equipos</span>
+                            </a>
+                            <span class="tooltip">Equipos</span>
+
                         </li>
                     </ul>
                     <div class="profile_content">

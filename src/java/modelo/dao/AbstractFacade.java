@@ -7,6 +7,7 @@ package modelo.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolation;
 
 /**
  *
@@ -27,6 +28,7 @@ public abstract class AbstractFacade<T> {
             getEntityManager().persist(entity);
             return true;
         } catch (Exception e) {
+            // Aqui tira los errores de constraint
             System.out.println("Error al agregar " + e.getMessage());
             return false;
         }

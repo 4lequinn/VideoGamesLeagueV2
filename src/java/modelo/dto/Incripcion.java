@@ -7,9 +7,7 @@ package modelo.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,13 +17,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -47,12 +43,10 @@ public class Incripcion implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
+    //@NotNull RESTRICCIÓN 
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInscripcion")
-    private List<DetalleEquipo> detalleEquipoList;
     @JoinColumn(name = "id_jugador", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private PerfilJugador idJugador;
@@ -75,6 +69,12 @@ public class Incripcion implements Serializable {
         this.fecha = fecha;
     }
 
+    public Incripcion(PerfilJugador idJugador, EstadoSolicitud idEstado, Equipo idEquipo) {
+        this.idJugador = idJugador;
+        this.idEstado = idEstado;
+        this.idEquipo = idEquipo;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -89,15 +89,6 @@ public class Incripcion implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    @XmlTransient
-    public List<DetalleEquipo> getDetalleEquipoList() {
-        return detalleEquipoList;
-    }
-
-    public void setDetalleEquipoList(List<DetalleEquipo> detalleEquipoList) {
-        this.detalleEquipoList = detalleEquipoList;
     }
 
     public PerfilJugador getIdJugador() {
@@ -148,5 +139,5 @@ public class Incripcion implements Serializable {
     public String toString() {
         return "modelo.dto.Incripcion[ id=" + id + " ]";
     }
-    
+
 }
