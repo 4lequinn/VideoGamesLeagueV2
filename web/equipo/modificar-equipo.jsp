@@ -11,30 +11,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
-<sql:query dataSource="${dataSource}" var="ligas">
+<sql:query dataSource="${dataSource}" var="equipo">
     Select id, descripcion FROM liga
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar Equipo</title>
-    <link rel="stylesheet" href="../theme/css/forms/forms2.css">
-    <jsp:include page="../includes/links/navbar-link.jsp"></jsp:include>
-</head>
-<!-- Incluimos la barra de navegaciÃ³n -->
-<jsp:include page="../template/navbar2.jsp"></jsp:include>
-    <body>
-        <img class="background-img" src="../theme/img/equipo/team-fifa.png" alt="Imagen de fondo">
-        <div class="background-transparencia"></div>
-        <main>
-            <form  action="../ControladorEquipo" method="POST" class="formulario" id="formulario">
-                <!-- Grupo: Nombre -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modificar Equipo</title>
+        <link rel="stylesheet" href="../theme/css/forms/forms2.css">
+        <jsp:include page="../includes/links/navbar-link.jsp"></jsp:include>
+        </head>
+        <!-- Incluimos la barra de navegaciÃ³n -->
+    <jsp:include page="../template/navbar2.jsp"></jsp:include>
+        <body>
+            <img class="background-img" src="../theme/img/equipo/team-fifa.png" alt="Imagen de fondo">
+            <div class="background-transparencia"></div>
+            <main>
+                <form  action="../ControladorEquipo" method="POST" class="formulario" id="formulario">
+                    <!-- Grupo: Nombre -->
+                    <input name="txtID" hidden value="${dataEquipo.id}">
                 <div class="formulario__grupo" id="grupo__nombre">
                     <label for="nombre" class="formulario__label">Nombre del Equipo</label>
                     <div class="formulario__grupo-input">
-                        <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ej. Corxea" required minlength="3" maxlength="40">
+                        <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ej. Corxea" required maxlength="40" value="${dataEquipo.nombre}">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">El nombre no puede contener letras y espacios.</p>
@@ -43,11 +44,19 @@
                 <div class="formulario__grupo">
                     <label for="cboLiga" class="formulario__label-cbo">
                         <span>Liga</span>
-                    <select name="cboLiga" id="cboLiga" class="formulario__input-cbo" required>
-                    <c:forEach var="x" items="${ligas.rows}">
-                        <option value="${x.id}">${x.descripcion}</option> 
-                    </c:forEach>
-                    </select>
+                        <select name="cboLiga" id="cboLiga" class="formulario__input-cbo" required>
+                            <!-- For each que encuentra el Match -->
+                            <c:forEach var="x" items="${equipo.rows}">
+                                <c:choose>
+                                    <c:when test="${x.id == dataLiga}">
+                                        <option selected value="${x.id}">${x.descripcion}</option>
+                                    </c:when>    
+                                    <c:when test="${x.id != dataLiga}">
+                                        <option value="${x.id}">${x.descripcion}</option>
+                                    </c:when>  
+                                </c:choose>
+                            </c:forEach>
+                        </select>
                     </label>
                 </div>
                 <div class="formulario__mensaje" id="formulario__mensaje">

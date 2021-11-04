@@ -38,6 +38,13 @@
                             <span class="tooltip">Inicio</span>
                         </li>
                         <li>
+                            <a href="../partido/clasificatoria.jsp">
+                                <i class='bx bx-grid-alt'></i>
+                                <span class="links_name">Clasificatoria</span>
+                            </a>
+                            <span class="tooltip">Clasificatoria</span>
+                        </li>
+                        <li>
                             <a href="../liga/panel-ligas.jsp">
                                 <i class='bx bx-mouse'></i>
                                 <span class="links_name">Liga</span>
@@ -53,17 +60,10 @@
                         </li>       
                         <li>
                             <a href="../equipo/agregar-equipo.jsp">
-                                <i class='bx bxs-group'></i>
+                                <i class='bx bx-ghost'></i>
                                 <span class="links_name">Crear Equipo</span>
                             </a>
                             <span class="tooltip">Crear Equipo</span>
-                        </li>
-                        <li>
-                            <a href="../equipo/modificar-equipo.jsp">
-                                <i class='bx bxs-group'></i>
-                                <span class="links_name">Modificar Equipo</span>
-                            </a>
-                            <span class="tooltip">Modificar Equipo</span>
                         </li>
                         <li>
                             <a href="../usuario/modificar-perfil-usuario.jsp">
@@ -103,6 +103,13 @@
                             <span class="tooltip">Inicio</span>
                         </li>
                         <li>
+                            <a href="../partido/clasificatoria.jsp">
+                                <i class='bx bx-grid-alt'></i>
+                                <span class="links_name">Clasificatoria</span>
+                            </a>
+                            <span class="tooltip">Clasificatoria</span>
+                        </li>
+                        <li>
                             <a href="../liga/panel-ligas.jsp">
                                 <i class='bx bx-mouse'></i>
                                 <span class="links_name">Liga</span>
@@ -131,7 +138,7 @@
                             <span class="tooltip">Perfil Jugador</span>
                         </li>
                         <li>
-                            <a href="../admin/panel-usuarios.jsp">
+                            <a href="../admin/panel-admin.jsp">
                                 <i class='bx bx-lock'></i>
                                 <span class="links_name">Panel Admin</span>
                             </a>

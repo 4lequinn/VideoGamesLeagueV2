@@ -58,6 +58,7 @@
                             </a>
                             <span class="tooltip">Crear Equipo</span>
                         </li>
+
                         <li>
                             <a href="equipo/modificar-equipo.jsp">
                                 <i class='bx bxs-group'></i>
@@ -65,6 +66,7 @@
                             </a>
                             <span class="tooltip">Modificar Equipo</span>
                         </li>
+
                         <li>
                             <a href="usuario/modificar-perfil-usuario.jsp">
                                 <i class='bx bxs-id-card'></i>
@@ -73,11 +75,18 @@
                             <span class="tooltip">Perfil Jugador</span>
                         </li>
                         <li>
+                            <a href="partido/clasificatoria.jsp">
+                                <i class='bx bx-grid-alt'></i>
+                                <span class="links_name">Clasificatoria</span>
+                            </a>
+                            <span class="tooltip">Clasificatoria</span>
+
                             <a href="equipo/panel-equipos.jsp">
                                 <i class='bx bx-game'></i>
                                 <span class="links_name">Equipos</span>
                             </a>
                             <span class="tooltip">Equipos</span>
+
                         </li>
                     </ul>
                     <div class="profile_content">
@@ -124,18 +133,18 @@
                             <span class="tooltip">Equipo</span>
                         </li>
                         <li>
-                            <a href="usuario/modificar-perfil-usuario.jsp">
-                                <i class='bx bxs-id-card'></i>
-                                <span class="links_name">Perfil Jugador</span>
-                            </a>
-                            <span class="tooltip">Perfil Jugador</span>
-                        </li>
-                        <li>
-                            <a href="admin/panel-usuarios.jsp">
+                            <a href="admin/panel-admin.jsp">
                                 <i class='bx bx-lock'></i>
                                 <span class="links_name">Panel Admin</span>
                             </a>
                             <span class="tooltip">Panel Admin</span>
+                        </li>
+                        <li>
+                            <a href="partido/clasificatoria.jsp">
+                                <i class='bx bx-grid-alt'></i>
+                                <span class="links_name">Clasificatoria</span>
+                            </a>
+                            <span class="tooltip">Clasificatoria</span>
                         </li>
                     </ul>
                     <div class="profile_content">

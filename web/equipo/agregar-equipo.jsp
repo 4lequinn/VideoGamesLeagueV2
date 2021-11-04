@@ -38,7 +38,7 @@
                 <div class="formulario__grupo" id="grupo__nombre">
                     <label for="nombre" class="formulario__label">Nombre del Equipo</label>
                     <div class="formulario__grupo-input">
-                        <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ej. Corxea" required minlength="3" maxlength="40">
+                        <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ej. Corxea" required maxlength="40">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">El nombre no puede contener letras y espacios.</p>

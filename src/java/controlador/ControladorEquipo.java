@@ -54,6 +54,10 @@ public class ControladorEquipo extends HttpServlet {
         if (opcion.equals("")) {
             eliminarEquipo(request, response);
         }
+        if (opcion.equals("ModificarEquipo")) {
+            modificarEquipo(request, response);
+        }
+        
     }
 
     protected void crearEquipo(HttpServletRequest request, HttpServletResponse response)
@@ -66,8 +70,7 @@ public class ControladorEquipo extends HttpServlet {
             //Campos para crear Equipo
             String nombre = request.getParameter("nombre");
             Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
-            Equipo e = new Equipo(nombre, 1, perfil, liga);
-            System.out.println(e.getNombre() + e.getCantidadJugador() + e.getIdLiga() + e.getIdPerfil());
+            Equipo e = new Equipo(nombre,1, perfil, liga);
             if (equipoFacade.agregar(e)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Equipo creado correctamente");
             } else {
@@ -78,6 +81,43 @@ public class ControladorEquipo extends HttpServlet {
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("equipo/agregar-equipo.jsp");
+        }
+    }
+    
+    protected void modificarEquipo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            Equipo equipo = equipoFacade.buscar(Integer.parseInt(request.getParameter("txtID")));
+            equipo.setNombre(request.getParameter("nombre"));
+            Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
+            equipo.setIdLiga(liga);
+            if (equipoFacade.modificar(equipo)) {
+                request.getSession().setAttribute("msOKRegistrarU", "Equipo modificado correctamente");
+            } else {
+                request.getSession().setAttribute("msNORegistrarU", "El equipo no se ha podido modificar");
+            }
+
+        } catch (Exception e) {
+            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+        } finally {
+            response.sendRedirect("admin/panel-equipos.jsp");
+        }
+    }
+    
+    protected void cargarDatosModificar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int equipoID = Integer.parseInt(request.getParameter("id"));
+            //Buscamos por ID
+            Equipo equipo = equipoFacade.buscar(equipoID);
+            request.getSession().setAttribute("dataEquipo", equipo);
+            request.getSession().setAttribute("dataLiga", equipo.getIdLiga().getId());
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("equipo/modificar-equipo.jsp");
         }
     }
 
@@ -135,8 +175,11 @@ public class ControladorEquipo extends HttpServlet {
         String equipoID = request.getParameter("eliminarEquipo");
         String id_equipo = request.getParameter("equipoID");
         String id_perfil = request.getParameter("perfilID");
+        String id = request.getParameter("id");
         if (equipoID != null) {
             eliminarEquipo(request, response);
+        }else if (id != null) {
+            cargarDatosModificar(request, response);
         } else if (id_equipo != null && id_perfil != null) {
             agregarInscripcion(request, response);
         }
