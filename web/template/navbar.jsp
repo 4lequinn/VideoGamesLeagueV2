@@ -112,6 +112,13 @@
                             <span class="tooltip">Inicio</span>
                         </li>
                         <li>
+                            <a href="partido/clasificatoria.jsp">
+                                <i class='bx bx-layer'></i>
+                                <span class="links_name">Clasificatoria</span>
+                            </a>
+                            <span class="tooltip">Clasificatoria</span>
+                        </li>
+                        <li>
                             <a href="liga/panel-ligas.jsp">
                                 <i class='bx bx-mouse'></i>
                                 <span class="links_name">Liga</span>
@@ -133,19 +140,20 @@
                             <span class="tooltip">Equipo</span>
                         </li>
                         <li>
+                            <a href="usuario/modificar-perfil-usuario.jsp">
+                                <i class='bx bxs-id-card'></i>
+                                <span class="links_name">Perfil Jugador</span>
+                            </a>
+                            <span class="tooltip">Perfil Jugador</span>
+                        </li>
+                        <li>
                             <a href="admin/panel-usuarios.jsp">
                                 <i class='bx bx-lock'></i>
                                 <span class="links_name">Administración</span>
                             </a>
                             <span class="tooltip">Administración</span>
                         </li>
-                        <li>
-                            <a href="partido/clasificatoria.jsp">
-                                <i class='bx bx-layer'></i>
-                                <span class="links_name">Clasificatoria</span>
-                            </a>
-                            <span class="tooltip">Clasificatoria</span>
-                        </li>
+
                     </ul>
                     <div class="profile_content">
                         <div class="profile">
