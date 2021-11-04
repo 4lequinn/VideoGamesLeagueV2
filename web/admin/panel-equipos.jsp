@@ -76,7 +76,7 @@
                             <td>${ 8 - x.cantidad_jugador}</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="# " class="btn btn-primary material-icons ">edit</a>
+                                    <a href="../ControladorEquipo?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
                                     <a onclick="eliminarEquipo('${x.id}')" class="btn btn-danger material-icons ">delete</a>
                                 </span>
                             </td>
