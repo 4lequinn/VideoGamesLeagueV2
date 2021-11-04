@@ -16,8 +16,11 @@ import modelo.dto.Equipo;
 import modelo.dto.Liga;
 import modelo.dto.PerfilJugador;
 import modelo.dao.EquipoFacade;
+import modelo.dao.IncripcionFacade;
 import modelo.dao.PerfilJugadorFacade;
 import modelo.dao.UsuarioFacade;
+import modelo.dto.EstadoSolicitud;
+import modelo.dto.Incripcion;
 import modelo.dto.Usuario;
 
 /**
@@ -25,18 +28,22 @@ import modelo.dto.Usuario;
  * @author jorge
  */
 public class ControladorEquipo extends HttpServlet {
+
     @EJB
     private EquipoFacade equipoFacade;
-    
-     @EJB
+
+    @EJB
     private UsuarioFacade usuarioFacade;
-    
-     @EJB
+
+    @EJB
     private PerfilJugadorFacade perfilJugadorFacade;
-    
+
+    @EJB
+    private IncripcionFacade inscripcionFacade;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String opcion = request.getParameter("btnAccion");
+        String opcion = request.getParameter("btnAccion");
         if (opcion.equals("CrearEquipo")) {
             crearEquipo(request, response);
         }
@@ -44,7 +51,7 @@ public class ControladorEquipo extends HttpServlet {
             eliminarEquipo(request, response);
         }
     }
-    
+
     protected void crearEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -52,11 +59,11 @@ public class ControladorEquipo extends HttpServlet {
             Usuario usuario = usuarioFacade.buscar(user);
             //Se busca el perfil de jugador con el usuario encontrado anteriormente
             PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
-             //Campos para crear Equipo
+            //Campos para crear Equipo
             String nombre = request.getParameter("nombre");
             Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
             Equipo e = new Equipo(nombre, 1, perfil, liga);
-            System.out.println(e.getNombre()+e.getCantidadJugador()+e.getIdLiga()+e.getIdPerfil());
+            System.out.println(e.getNombre() + e.getCantidadJugador() + e.getIdLiga() + e.getIdPerfil());
             if (equipoFacade.agregar(e)) {
                 request.getSession().setAttribute("msOKRegistrarU", "Equipo creado correctamente");
             } else {
@@ -91,15 +98,45 @@ public class ControladorEquipo extends HttpServlet {
         }
     }
 
+    protected void agregarInscripcion(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id_equipo = Integer.parseInt(request.getParameter("equipoID"));
+            int id_perfil = Integer.parseInt(request.getParameter("perfilID"));
+            // Creamos un perfil de jugador
+            PerfilJugador perfil = perfilJugadorFacade.buscar(id_perfil);
+            // Creamos un equipo 
+            Equipo equipo = equipoFacade.buscar(id_equipo);
+            // Creamos un estado de solicitud
+            EstadoSolicitud estado = new EstadoSolicitud(1);
+            Incripcion inscripcion = new Incripcion(perfil, estado, equipo);
+            if (inscripcionFacade.agregar(inscripcion)) {
+                //Mensaje SUCCESS
+                request.getSession().setAttribute("msjAgregarInscripcion", "¡Agregado!");
+            } else {
+                request.getSession().setAttribute("msjNoAgregarInscripcion", "¡No agregado!");
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR " + e.getMessage());
+            request.getSession().setAttribute("msjErrorInscripcion", "Errorsito");
+        } finally {
+            
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String equipoID = request.getParameter("eliminarEquipo");
+        String id_equipo = request.getParameter("equipoID");
+        String id_perfil = request.getParameter("perfilID");
         if (equipoID != null) {
             eliminarEquipo(request, response);
+        } else if (id_equipo != null && id_perfil != null) {
+            agregarInscripcion(request, response);
         }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

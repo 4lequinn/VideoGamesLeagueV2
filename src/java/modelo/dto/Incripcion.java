@@ -75,6 +75,14 @@ public class Incripcion implements Serializable {
         this.fecha = fecha;
     }
 
+    public Incripcion(PerfilJugador idJugador, EstadoSolicitud idEstado, Equipo idEquipo) {
+        this.idJugador = idJugador;
+        this.idEstado = idEstado;
+        this.idEquipo = idEquipo;
+    }
+    
+    
+
     public Integer getId() {
         return id;
     }
