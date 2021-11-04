@@ -67,7 +67,7 @@
                         </li>
                         <li>
                             <a href="partido/clasificatoria.jsp">
-                                <i class='bx bx-grid-alt'></i>
+                                <i class='bx bx-layer'></i>
                                 <span class="links_name">Clasificatoria</span>
                             </a>
                             <span class="tooltip">Clasificatoria</span>
@@ -117,15 +117,15 @@
                             <span class="tooltip">Equipo</span>
                         </li>
                         <li>
-                            <a href="admin/panel-admin.jsp">
+                            <a href="admin/panel-usuarios.jsp">
                                 <i class='bx bx-lock'></i>
-                                <span class="links_name">Panel Admin</span>
+                                <span class="links_name">Administración</span>
                             </a>
-                            <span class="tooltip">Panel Admin</span>
+                            <span class="tooltip">Administración</span>
                         </li>
                         <li>
                             <a href="partido/clasificatoria.jsp">
-                                <i class='bx bx-grid-alt'></i>
+                                <i class='bx bx-layer'></i>
                                 <span class="links_name">Clasificatoria</span>
                             </a>
                             <span class="tooltip">Clasificatoria</span>
@@ -169,7 +169,7 @@
                         </li>
                         <li>
                             <a href="partido/clasificatoria.jsp">
-                                <i class='bx bx-grid-alt'></i>
+                                <i class='bx bx-layer'></i>
                                 <span class="links_name">Clasificatoria</span>
                             </a>
                             <span class="tooltip">Clasificatoria</span>
