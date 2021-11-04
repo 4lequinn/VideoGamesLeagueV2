@@ -49,7 +49,7 @@
                             Sólo quedan ${8 - x.cantidad_jugador} cupos!
                         </p>
                         <a href="../ControladorEquipo?equipoID=${x.id}&perfilID=${sesionPerfil.id}" class="btn-solicitar">Solicitar Unirse</a>
-                    </div>
+                    </div> 
                 </div>
             </c:forEach>
         </div>

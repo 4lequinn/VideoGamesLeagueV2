@@ -16,6 +16,7 @@ import modelo.dto.Equipo;
 import modelo.dto.Liga;
 import modelo.dto.PerfilJugador;
 import modelo.dao.EquipoFacade;
+import modelo.dao.EstadoSolicitudFacade;
 import modelo.dao.IncripcionFacade;
 import modelo.dao.PerfilJugadorFacade;
 import modelo.dao.UsuarioFacade;
@@ -40,6 +41,9 @@ public class ControladorEquipo extends HttpServlet {
 
     @EJB
     private IncripcionFacade inscripcionFacade;
+    
+    @EJB
+    private EstadoSolicitudFacade estadoFacade;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -108,7 +112,8 @@ public class ControladorEquipo extends HttpServlet {
             // Creamos un equipo 
             Equipo equipo = equipoFacade.buscar(id_equipo);
             // Creamos un estado de solicitud
-            EstadoSolicitud estado = new EstadoSolicitud(1);
+            EstadoSolicitud estado = estadoFacade.buscar(1);
+            System.out.println("ESTADO " + estado.getDescripcion());
             Incripcion inscripcion = new Incripcion(perfil, estado, equipo);
             if (inscripcionFacade.agregar(inscripcion)) {
                 //Mensaje SUCCESS
@@ -120,7 +125,7 @@ public class ControladorEquipo extends HttpServlet {
             System.out.println("ERROR " + e.getMessage());
             request.getSession().setAttribute("msjErrorInscripcion", "Errorsito");
         } finally {
-            
+            response.sendRedirect("index.jsp");
         }
     }
 
