@@ -13,12 +13,14 @@
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
 <sql:query dataSource="${dataSource}" var="listaSolicitudes">
-    Select i.id, e.nombre,p.id_usuario, p.habilidad, i.fecha, es.descripcion 
-    FROM equipo e 
-    INNER JOIN perfil_jugador p on e.id_perfil = p.id
-    INNER JOIN incripcion i on i.id_jugador = p.id
-    INNER JOIN tipo_jugador t on t.id = p.id_tipo_jugador
-    INNER JOIN estado_solicitud es on es.id = i.id_estado
+    SELECT i.id, eq.nombre, p.id_usuario, i.fecha, e.descripcion
+    FROM incripcion i
+        INNER JOIN estado_solicitud e 
+        ON i.id_estado = e.id
+        INNER JOIN perfil_jugador p 
+        ON i.id_jugador = p.id
+        INNER JOIN equipo eq 
+        ON i.id_equipo = eq.id
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +34,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- Iconos de Material Desing Google-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     </head>
+
     <body>
+
         <!-- Nav Agregar Buscar-->
         <nav class="nav-crud">
             <ul class="nav-crud__lista">
@@ -46,43 +51,42 @@
                 </li>
             </ul>
         </nav>
-        <div class="table_responsive">
 
+        <div class="table_responsive">
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre Equipo</th>
+                        <th>Equipo</th>
                         <th>Usuario</th>
-                        <th>Jugador</th>
                         <th>Fecha Solicitud</th>
                         <th>Estado</th>
                         <th>Aceptar/Rechazar</th>
                     </tr>
                 </thead>
 
-                <tbody>
-                   
+                <c:forEach var="x" items="${listaSolicitudes.rows}">
+                    <tbody>
                         <tr>
-                             <c:forEach var="x" items="${listaSolicitudes.rows}">
-                            <td>${ x.id }<td>
-                            <td>${ x.nombre }</td>
+                            <td>${x.id}</td>
+                            <td>${x.nombre}</td>
                             <td>${x.id_usuario}</td>
-                            <td>${ x.descripcion }</td>
-                            <td> ${ x.fecha } </td>
-                            <td> ${x.descripcion}</td>
+                            <td>${x.fecha}</td>
+                            <td>${x.descripcion}</td>
                             <td>
                                 <span class="action_btn ">
                                     <a href="# " class="btn btn-success material-icons ">done</a>
                                     <a href="# " class="btn btn-danger material-icons ">close</a>
                                 </span>
                             </td>
-                                 </c:forEach>
-                        </tr>
-               
-                </tbody>
 
+
+                    </tbody>
+
+                </c:forEach>
             </table>
         </div>
+        <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>
     </body>
+
 </html>

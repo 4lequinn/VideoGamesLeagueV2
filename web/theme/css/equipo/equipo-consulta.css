@@ -1,0 +1,33 @@
+
+h3{
+    color:#fff;
+}
+
+.table{
+    border-collapse: collapse;
+    border: 2px solid #fa2356; 
+    overflow: hidden;
+}
+
+.table:hover{}
+
+th{
+    color:#fff;
+}
+
+
+
+tr, td{
+    background: #2C394B;   
+}
+
+tbody{
+    border: 2px solid #fa2356; 
+}
+
+.thead{
+    background: #fa2356;
+    border: 2px solid #fa2356;
+}
+
+.derecho{margin-top: 668px;}
