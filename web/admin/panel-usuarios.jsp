@@ -69,8 +69,8 @@
                             <td>${x.descripcion}</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="../ControladorUsuario?id=${x.usuario}" class="btn btn-primary material-icons ">edit</a>
-                                    <a onclick="eliminarUsuario('${x.usuario}')" class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorUsuario?id=${x.usuario}" class="btn btn-primary material-icons " data-toggle="tooltip" data-placement="top" title="Editar">edit</a>
+                                    <a onclick="eliminarUsuario('${x.usuario}')" class="btn btn-danger material-icons " data-toggle="tooltip" data-placement="top" title="Eliminar" >delete</a>
                                 </span>
                             </td>
                     </tbody>
