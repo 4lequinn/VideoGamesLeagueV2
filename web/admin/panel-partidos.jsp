@@ -18,14 +18,17 @@
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
 <sql:query dataSource="${dataSource}" var="listaEquipos">
-    Select e.id, e.nombre, e.cantidad_jugador, p.id_usuario, l.descripcion
-    FROM equipo e 
-    INNER JOIN perfil_jugador p on e.id_perfil = p.id
-    INNER JOIN liga l on e.id_liga = l.id
+    SELECT p.id , p.fecha, p.hora_inicio, 
+    p.hora_termino, concat(f.descripcion) as fase,
+    concat(l.descripcion) as liga
+    FROM partido p
+    INNER JOIN LIGA l
+    ON p.id_liga = l.id
+    INNER JOIN FASE f 
+    ON p.id_fase = f.id
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,11 +72,11 @@
                     <tbody>
                         <tr>
                             <td>${x.id}</td>
-                            <td>${x.nombre}</td>
-                            <td>${x.descripcion}</td>
-                            <td>${x.id_usuario}</td>
-                            <td>${x.cantidad_jugador}</td>
-                            <td>${ 8 - x.cantidad_jugador}</td>
+                            <td>${x.fecha}</td>
+                            <td>${x.hora_inicio}</td>
+                            <td>${x.hora_termino}</td>
+                            <td>${x.fase }</td>
+                            <td>${x.liga }</td>
                             <td>
                                 <span class="action_btn ">
                                     <a href="../ControladorEquipo?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
