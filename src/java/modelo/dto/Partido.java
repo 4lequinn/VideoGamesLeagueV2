@@ -6,10 +6,7 @@
 package modelo.dto;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -51,9 +44,9 @@ public class Partido implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
@@ -64,8 +57,6 @@ public class Partido implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "hora_termino")
     private String horaTermino;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPartido")
-    private List<DetallePartido> detallePartidoList;
     @JoinColumn(name = "id_fase", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Fase idFase;
@@ -80,7 +71,7 @@ public class Partido implements Serializable {
         this.id = id;
     }
 
-    public Partido(Integer id, Date fecha, String horaInicio, String horaTermino) {
+    public Partido(Integer id, String fecha, String horaInicio, String horaTermino) {
         this.id = id;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
@@ -95,11 +86,11 @@ public class Partido implements Serializable {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -117,15 +108,6 @@ public class Partido implements Serializable {
 
     public void setHoraTermino(String horaTermino) {
         this.horaTermino = horaTermino;
-    }
-
-    @XmlTransient
-    public List<DetallePartido> getDetallePartidoList() {
-        return detallePartidoList;
-    }
-
-    public void setDetallePartidoList(List<DetallePartido> detallePartidoList) {
-        this.detallePartidoList = detallePartidoList;
     }
 
     public Fase getIdFase() {
