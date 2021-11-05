@@ -28,6 +28,7 @@
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
                     </div>
                     <div class="carousel-inner">
 
@@ -70,7 +71,17 @@
                                 </div>
                             </a>
                         </div>
-                        
+
+                        <div class="carousel-item">
+                            <a href="panel-partidos.jsp">
+                                <img src="../theme/img/partido/partido.jpg" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Administración de Partidos</h5>
+                                    <p>Aquí podrás gestionar a los Partidos del sistema.</p>
+                                </div>
+                            </a>
+                        </div>
+
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
