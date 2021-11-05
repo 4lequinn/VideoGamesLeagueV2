@@ -46,7 +46,7 @@
             <nav class="nav-crud">
                 <ul class="nav-crud__lista">
                     <li class="nav-crud__item">
-                        <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../equipo/agregar-equipo.jsp"><span class="material-icons nav-crud__item-icon">add</span>Agregar</a>
+                        <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../partido/agregar-partido.jsp"><span class="material-icons nav-crud__item-icon">add</span>Agregar</a>
                     </li>
                     <li class="nav-crud__item">
                         <input class="nav-crud__item-text" type="text" placeholder="Ingrese un ID">

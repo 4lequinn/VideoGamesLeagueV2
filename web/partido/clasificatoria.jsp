@@ -195,7 +195,7 @@ join liga l on l.id=e.id_liga and p.id_liga=l.id
                     </ul>
                 </div>
                 <div class="tournament-bracket__round tournament-bracket__round--bronze">
-                    <h3 class="tournament-bracket__round-title">Bronce y Plata</h3>
+                    <h3 class="tournament-bracket__round-title">Tercer y Cuarto Lugar</h3>
                     <ul class="tournament-bracket__list">
                         <li class="tournament-bracket__item">
                             <div class="tournament-bracket__match" tabindex="0">
@@ -236,7 +236,7 @@ join liga l on l.id=e.id_liga and p.id_liga=l.id
                     </ul>
                 </div>
                 <div class="tournament-bracket__round tournament-bracket__round--gold">
-                    <h3 class="tournament-bracket__round-title">Ganador de Oro</h3>
+                    <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
                         <li class="tournament-bracket__item">
                             <div class="tournament-bracket__match" tabindex="0">
