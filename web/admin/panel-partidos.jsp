@@ -81,7 +81,8 @@
                                 <span class="action_btn ">
                                     <a href="../ControladorPartido?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
                                     <a onclick="eliminarPartido('${x.id}')" class="btn btn-danger material-icons ">delete</a>
-                                    <a href="../ControladorPartido?partidoID=${x.id}" class="btn btn-warning material-icons ">gamepad</a>
+                                    <a href="../ControladorPartido?partidoID=${x.id}" class="btn btn-warning material-icons ">groups</a>
+                                    <a href="../ControladorPartido?id_partido=${x.id}" class="btn btn-warning material-icons ">gamepad</a>
                                 </span>
                             </td>
                     </tbody>

@@ -28,10 +28,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DetallePartido.findAll", query = "SELECT d FROM DetallePartido d")
+    , @NamedQuery(name = "DetallePartido.findByPartidoID", query = "SELECT d FROM DetallePartido d WHERE d.idPartido.id = :partidoID") // CUSTOMER
+    , @NamedQuery(name = "DetallePartido.findByPartidoIDandEquipoID", query = "SELECT d FROM DetallePartido d WHERE d.idPartido.id = :partidoID and d.idEquipo.id = :equipoID") // CUSTOMER
     , @NamedQuery(name = "DetallePartido.findById", query = "SELECT d FROM DetallePartido d WHERE d.id = :id")})
 public class DetallePartido implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L; 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
