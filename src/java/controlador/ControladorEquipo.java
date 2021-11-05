@@ -104,6 +104,48 @@ public class ControladorEquipo extends HttpServlet {
         }
     }
     
+    protected void aceptar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            //Buscamos por ID y eliminamos
+            Incripcion incripcion  = inscripcionFacade.buscar(Integer.parseInt(request.getParameter("cambiarEstadoAceptado")));
+            EstadoSolicitud estado = new EstadoSolicitud(3);
+            incripcion.setIdEstado(estado);
+            if (inscripcionFacade.modificar(incripcion)) {
+                request.getSession().setAttribute("msOKRegistrarU", "Inscripción modificada correctamente");
+            }  else {
+                request.getSession().setAttribute("msNORegistrarU", "No se ha podido modificar inscripción");
+            }
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("equipo/consultar-solicitud.jsp");
+        }
+    }
+    
+    protected void rechazar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            //Buscamos por ID y eliminamos
+            Incripcion incripcion  = inscripcionFacade.buscar(Integer.parseInt(request.getParameter("cambiarEstadoRechazado")));
+            EstadoSolicitud estado = new EstadoSolicitud(2);
+            incripcion.setIdEstado(estado);
+            if (inscripcionFacade.modificar(incripcion)) {
+                request.getSession().setAttribute("msOKRegistrarU", "Inscripción modificada correctamente");
+            }  else {
+                request.getSession().setAttribute("msNORegistrarU", "No se ha podido modificar inscripción");
+            }
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("equipo/consultar-solicitud.jsp");
+        }
+    }
+    
     protected void cargarDatosModificar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -175,6 +217,8 @@ public class ControladorEquipo extends HttpServlet {
         String equipoID = request.getParameter("eliminarEquipo");
         String id_equipo = request.getParameter("equipoID");
         String id_perfil = request.getParameter("perfilID");
+        String incripcionIDAceptar = request.getParameter("cambiarEstadoAceptado");
+        String incripcionIDRechazar = request.getParameter("cambiarEstadoRechazado");
         String id = request.getParameter("id");
         if (equipoID != null) {
             eliminarEquipo(request, response);
@@ -182,7 +226,12 @@ public class ControladorEquipo extends HttpServlet {
             cargarDatosModificar(request, response);
         } else if (id_equipo != null && id_perfil != null) {
             agregarInscripcion(request, response);
+        }else if (incripcionIDAceptar != null) {
+            aceptar(request, response);
+        }else if (incripcionIDRechazar != null) {
+            rechazar(request, response);
         }
+        
     }
 
     @Override

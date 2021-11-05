@@ -47,9 +47,16 @@
                         <li>
                             <a href="../liga/panel-ligas.jsp">
                                 <i class='bx bx-mouse'></i>
-                                <span class="links_name">Liga</span>
+                                <span class="links_name">Ver Liga</span>
                             </a>
-                            <span class="tooltip">Liga</span>
+                            <span class="tooltip">Ver Liga</span>
+                        </li>
+                        <li>
+                            <a href="../equipo/panel-equipos.jsp">
+                                <i class='bx bx-game'></i>
+                                <span class="links_name">Ver Equipos</span>
+                            </a>
+                            <span class="tooltip">Ver Equipos</span>
                         </li>
                         <li>
                             <a href="../equipo/consultar-solicitud.jsp">
@@ -66,19 +73,20 @@
                             <span class="tooltip">Crear Equipo</span>
                         </li>
                         <li>
+                            <a href="../equipo/modificar-equipo.jsp">
+                                <i class='bx bxs-group'></i>
+                                <span class="links_name">Modificar Equipo</span>
+                            </a>
+                            <span class="tooltip">Modificar Equipo</span>
+                        </li>
+                        <li>
                             <a href="../usuario/modificar-perfil-usuario.jsp">
                                 <i class='bx bxs-id-card'></i>
                                 <span class="links_name">Perfil Jugador</span>
                             </a>
                             <span class="tooltip">Perfil Jugador</span>
                         </li>
-                        <li>
-                            <a href="../equipo/panel-equipos.jsp">
-                                <i class='bx bx-game'></i>
-                                <span class="links_name">Equipos</span>
-                            </a>
-                            <span class="tooltip">Equipos</span>
-                        </li>
+
                     </ul>
                     <div class="profile_content">
                         <div class="profile">
