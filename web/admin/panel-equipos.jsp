@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Login
-    Created on : 11-10-2021, 17:28:20
-    Author     : jorge
---%>
-
 <!-- Prefijos -->
 <!-- JSTL -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -25,7 +19,6 @@
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -82,7 +75,6 @@
                             </td>
                     </tbody>
                 </c:forEach>
-
             </table>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

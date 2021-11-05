@@ -1,8 +1,3 @@
-<%-- 
-    Document   : Login
-    Created on : 11-10-2021, 17:28:20
-    Author     : jorge
---%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:if test="${ sesionUsuario.idTipo.id != 1 }">
