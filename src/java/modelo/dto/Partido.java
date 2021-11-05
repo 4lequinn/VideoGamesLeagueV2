@@ -70,6 +70,11 @@ public class Partido implements Serializable {
     public Partido(Integer id) {
         this.id = id;
     }
+    public Partido(String fecha, String horaInicio, String horaTermino) {
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.horaTermino = horaTermino;
+    }
 
     public Partido(Integer id, String fecha, String horaInicio, String horaTermino) {
         this.id = id;
@@ -77,6 +82,15 @@ public class Partido implements Serializable {
         this.horaInicio = horaInicio;
         this.horaTermino = horaTermino;
     }
+
+    public Partido(String fecha, String horaInicio, String horaTermino, Fase idFase, Liga idLiga) {
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.horaTermino = horaTermino;
+        this.idFase = idFase;
+        this.idLiga = idLiga;
+    }
+    
 
     public Integer getId() {
         return id;
