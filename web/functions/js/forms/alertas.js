@@ -69,6 +69,28 @@ function eliminarEquipo(equipo) {
     })
 }
 
+function eliminarPartido(partido) {
+    Swal.fire({
+        icon: 'warning',
+        title: '¿Estás Seguro?',
+        text: '¡No podrás deshacer la acción!',
+        showCancelButton: true,
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, Eliminar",
+    }).then((result) => {
+        if (result.value) {
+            Swal.fire(
+                    '¡Eliminado!',
+                    'Partido Eliminado correctamente',
+                    'success'
+                    ).then(function () {
+                window.location.href = "../ControladorPartido?eliminarPartido=" + (partido);
+            })
+        }
+    })
+}
+
 function mostrarAlerta(titulo, descripcion, tipoAleta) {
     swal.fire(
             titulo,

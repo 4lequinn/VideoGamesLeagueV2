@@ -54,6 +54,12 @@ public class DetallePartido implements Serializable {
         this.id = id;
     }
 
+    public DetallePartido(Equipo idEquipo, Resultado idResultado, Partido idPartido) {
+        this.idEquipo = idEquipo;
+        this.idResultado = idResultado;
+        this.idPartido = idPartido;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -110,5 +116,5 @@ public class DetallePartido implements Serializable {
     public String toString() {
         return "modelo.dto.DetallePartido[ id=" + id + " ]";
     }
-    
+
 }

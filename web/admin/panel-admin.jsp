@@ -88,6 +88,5 @@
                 </div>
             </header>
         <jsp:include page="../includes/scripts/navbar-script.jsp"></jsp:include>
-                <jsp:include page="../template/footer.jsp"></jsp:include>
     </body>
 </html>

@@ -79,8 +79,9 @@
                             <td>${x.liga }</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="../ControladorEquipo?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
-                                    <a onclick="eliminarEquipo('${x.id}')" class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorPartido?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
+                                    <a onclick="eliminarPartido('${x.id}')" class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorPartido?partidoID=${x.id}" class="btn btn-warning material-icons ">gamepad</a>
                                 </span>
                             </td>
                     </tbody>
