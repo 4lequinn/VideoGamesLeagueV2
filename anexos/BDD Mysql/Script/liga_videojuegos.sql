@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2021 a las 23:49:39
+-- Tiempo de generación: 05-11-2021 a las 02:04:10
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -98,6 +98,14 @@ CREATE TABLE `equipo` (
   `id_liga` int(11) NOT NULL,
   `id_perfil` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `equipo`
+--
+
+INSERT INTO `equipo` (`id`, `nombre`, `cantidad_jugador`, `id_liga`, `id_perfil`) VALUES
+(1, 'wena mi rey', 1, 2, 5),
+(2, 'wena mi rey xd ola', 1, 3, 5);
 
 --
 -- Disparadores `equipo`
@@ -224,8 +232,8 @@ CREATE TABLE `liga` (
 
 INSERT INTO `liga` (`id`, `descripcion`, `cantidad_equipo`, `id_juego`) VALUES
 (1, 'LIGA DE LOS MUCAS', 0, 1),
-(2, 'LIGA DE LOL', 0, 1),
-(3, 'LIGA DE Apex', 0, 2),
+(2, 'LIGA DE LOL', 1, 1),
+(3, 'LIGA DE Apex', 1, 2),
 (4, 'LIGA DE Brazukas', 0, 3),
 (5, 'LIGA DE Pelota', 0, 4);
 
@@ -237,7 +245,7 @@ INSERT INTO `liga` (`id`, `descripcion`, `cantidad_equipo`, `id_juego`) VALUES
 
 CREATE TABLE `partido` (
   `id` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` varchar(15) NOT NULL,
   `hora_inicio` varchar(5) NOT NULL,
   `hora_termino` varchar(5) NOT NULL,
   `id_fase` int(11) NOT NULL,
@@ -345,7 +353,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`usuario`, `contrasenia`, `id_tipo`) VALUES
 ('admin', 'admin', 1),
-('panshoots', 'HOLAAAAAA', 2);
+('panshoots', 'panshoots', 2);
 
 -- --------------------------------------------------------
 
@@ -493,7 +501,7 @@ ALTER TABLE `detalle_partido`
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_solicitud`
