@@ -144,8 +144,9 @@ public class ControladorPartido extends HttpServlet {
             DetallePartido perdedor = detallePartidoFacade.buscarDetallePorPartido2(detallePartido, equipoPerdedor);
             perdedor.setIdResultado(rPerdedor);
             if(detallePartidoFacade.modificar(ganador) && detallePartidoFacade.modificar(perdedor)){
-                System.out.println("MAKINOLA MASTER DE LOS MASTERS");
+                // Finaliza el partido estableciendo un ganador
             }else{
+                // No actualizó el partido
                 System.out.println("ERROR PERUANO");
             }
         } catch (Exception e) {
