@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Login
-    Created on : 11-10-2021, 17:28:20
-    Author     : jorge
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +47,9 @@
                 <button type="submit" class="formulario__btn" name="btnAccion" value="Loguear">Iniciar sesión</button>
                 <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
             </div>
+            <a href="registro.jsp">No tienes Cuenta Registrate</a>
         </form>
-
+        
     </main>
     <!--Incluir el CDN de Sweet alert -->
     <!-- Sweet Alert -->

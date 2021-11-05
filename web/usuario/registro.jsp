@@ -1,8 +1,3 @@
-<%-- 
-    Document   : prueba
-    Created on : 07-10-2021, 14:32:53
-    Author     : jorge
---%>
 <!-- Prefijos -->
 <!-- JSTL -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

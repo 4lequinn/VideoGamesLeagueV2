@@ -1,8 +1,3 @@
-<%-- 
-    Document   : prueba
-    Created on : 07-10-2021, 14:32:53
-    Author     : jorge
---%>
 <!-- Prefijos -->
 <!-- JSTL -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,6 +5,11 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Establecemos la conexión a la BD -->
+<c:if test="${ sesionUsuario.idTipo.id != 1 && sesionUsuario.idTipo.id != 2}">
+    <c:redirect url="../usuario/login.jsp" >
+        <c:param name="errMsg" value="Please Enter UserName and Password" />
+    </c:redirect>
+</c:if>
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
 <sql:query dataSource="${dataSource}" var="tipoJugador">
     Select id, descripcion FROM tipo_jugador

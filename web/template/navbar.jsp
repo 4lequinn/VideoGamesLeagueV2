@@ -38,11 +38,25 @@
                             <span class="tooltip">Inicio</span>
                         </li>
                         <li>
+                            <a href="partido/clasificatoria.jsp">
+                                <i class='bx bx-layer'></i>
+                                <span class="links_name">Clasificatoria</span>
+                            </a>
+                            <span class="tooltip">Clasificatoria</span>
+                        </li>
+                        <li>
                             <a href="liga/panel-ligas.jsp">
                                 <i class='bx bx-mouse'></i>
-                                <span class="links_name">Liga</span>
+                                <span class="links_name">Ver Liga</span>
                             </a>
-                            <span class="tooltip">Liga</span>
+                            <span class="tooltip">Ver Liga</span>
+                        </li>
+                        <li>
+                            <a href="equipo/panel-equipos.jsp">
+                                <i class='bx bx-game'></i>
+                                <span class="links_name">Ver Equipos</span>
+                            </a>
+                            <span class="tooltip">Ver Equipos</span>
                         </li>
                         <li>
                             <a href="equipo/consultar-solicitud.jsp">
@@ -53,12 +67,11 @@
                         </li>       
                         <li>
                             <a href="equipo/agregar-equipo.jsp">
-                                <i class='bx bxs-group'></i>
+                                <i class='bx bx-ghost'></i>
                                 <span class="links_name">Crear Equipo</span>
                             </a>
                             <span class="tooltip">Crear Equipo</span>
                         </li>
-
                         <li>
                             <a href="equipo/modificar-equipo.jsp">
                                 <i class='bx bxs-group'></i>
@@ -66,27 +79,12 @@
                             </a>
                             <span class="tooltip">Modificar Equipo</span>
                         </li>
-
                         <li>
                             <a href="usuario/modificar-perfil-usuario.jsp">
                                 <i class='bx bxs-id-card'></i>
                                 <span class="links_name">Perfil Jugador</span>
                             </a>
                             <span class="tooltip">Perfil Jugador</span>
-                        </li>
-                        <li>
-                            <a href="partido/clasificatoria.jsp">
-                                <i class='bx bx-layer'></i>
-                                <span class="links_name">Clasificatoria</span>
-                            </a>
-                            <span class="tooltip">Clasificatoria</span>
-
-                            <a href="equipo/panel-equipos.jsp">
-                                <i class='bx bx-game'></i>
-                                <span class="links_name">Equipos</span>
-                            </a>
-                            <span class="tooltip">Equipos</span>
-
                         </li>
                     </ul>
                     <div class="profile_content">
