@@ -9,6 +9,11 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:if test="${ sesionUsuario.idTipo.id != 1 }">
+    <c:redirect url="../usuario/login.jsp" >
+        <c:param name="errMsg" value="Please Enter UserName and Password" />
+    </c:redirect>
+</c:if>
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
 <sql:query dataSource="${dataSource}" var="tipoFase">

@@ -34,14 +34,9 @@ public class PerfilJugadorFacade extends AbstractFacade<PerfilJugador> {
     }
     
     // Método Customer que me busca el perfil jugador por nombre de Usuario
-    // Primer customer BUENO AAA
+    // Primer customer
     public PerfilJugador buscarUsuario(String username){
         try {
-            /*
-            System.out.println(em.createNamedQuery("PerfilJugador.findByUser",PerfilJugador.class)
-                    .setParameter("usuario", username).
-                    getSingleResult().getIdUsuario().getUsuario());
-*/
             return em.createNamedQuery("PerfilJugador.findByUser",PerfilJugador.class)
                     .setParameter("usuario", username).
                     getSingleResult();

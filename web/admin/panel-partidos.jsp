@@ -46,7 +46,7 @@
             <nav class="nav-crud">
                 <ul class="nav-crud__lista">
                     <li class="nav-crud__item">
-                        <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../equipo/agregar-equipo.jsp"><span class="material-icons nav-crud__item-icon">add</span>Agregar</a>
+                        <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../partido/agregar-partido.jsp"><span class="material-icons nav-crud__item-icon">add</span>Agregar</a>
                     </li>
                     <li class="nav-crud__item">
                         <input class="nav-crud__item-text" type="text" placeholder="Ingrese un ID">
@@ -79,8 +79,10 @@
                             <td>${x.liga }</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="../ControladorEquipo?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
-                                    <a onclick="eliminarEquipo('${x.id}')" class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorPartido?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
+                                    <a onclick="eliminarPartido('${x.id}')" class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorPartido?partidoID=${x.id}" class="btn btn-warning material-icons ">groups</a>
+                                    <a href="../ControladorPartido?id_partido=${x.id}" class="btn btn-warning material-icons ">gamepad</a>
                                 </span>
                             </td>
                     </tbody>

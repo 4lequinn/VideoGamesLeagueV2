@@ -79,8 +79,6 @@ public class Liga implements Serializable {
         this.descripcion = descripcion;
         this.idJuego = idJuego;
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -156,5 +154,5 @@ public class Liga implements Serializable {
     public String toString() {
         return "modelo.dto.Liga[ id=" + id + " ]";
     }
-    
+
 }
