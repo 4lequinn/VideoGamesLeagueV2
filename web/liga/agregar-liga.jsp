@@ -5,7 +5,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Establecemos la conexión a la BD -->
-<c:if test="${ sesionUsuario.idTipo.id != 2 }">
+<c:if test="${ sesionUsuario.idTipo.id != 1 }">
     <c:redirect url="../usuario/login.jsp" >
         <c:param name="errMsg" value="Please Enter UserName and Password" />
     </c:redirect>
