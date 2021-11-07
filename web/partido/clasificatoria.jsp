@@ -105,7 +105,7 @@
     </head>
     <!-- Incluimos la barra de navegación -->    
     <%@include file="../template/navbar2.jsp" %>
-    <body>
+    <body style="overflow: scroll">
         <div class="container">
             <h1>Video Juego</h1>
             <h2>[Liga correspondiente]</h2>
@@ -128,11 +128,11 @@
                                                 <th>Score</th>
                                             </tr>
                                         </thead>  
-                                        <c:forEach var="y" items="${listaEquipos4toFinal.rows}">
-                                            <c:if test="${y.id_partido == x.id}">
-                                                <c:choose>
-                                                    <c:when test="${y.id_localidad == 1}">
-                                                        <tbody class="tournament-bracket__content">
+                                        <tbody class="tournament-bracket__content">
+                                            <c:forEach var="y" items="${listaEquipos4toFinal.rows}">
+                                                <c:if test="${y.id_partido == x.id}">
+                                                    <c:choose>
+                                                        <c:when test="${y.id_localidad == 1}">
                                                             <tr class="tournament-bracket__team"> <!-- tournament-bracket__team--winner -->
                                                                 <td class="tournament-bracket__country">
                                                                     <abbr class="tournament-bracket__code" title="Canada">${y.nombre}</abbr>
@@ -153,11 +153,11 @@
                                                                     <span class="tournament-bracket__number">${y.estado_partido}</span>
                                                                 </td>
                                                             </tr>
-                                                        </tbody>  
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:if>
-                                        </c:forEach>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:if>
+                                            </c:forEach>
+                                        </tbody>  
                                     </table>
                                 </div>
                             </li>
