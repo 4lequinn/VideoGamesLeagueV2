@@ -119,7 +119,7 @@
                     <button type="submit" class="formulario__btn" name="btnAccion" value="ModificarPartido">Modificar Partido</button>
                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                 </div>
-                <div>${msOKModificarP}${msNOModificarP}${msNOModificarP}</div>       
+                <div>${msOKModificarP}${msNOModificarP}${msErrorModificarP}</div>       
 
             </form>
 

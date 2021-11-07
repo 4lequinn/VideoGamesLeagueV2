@@ -126,7 +126,7 @@
                     <button type="submit" class="formulario__btn" name="btnAccion" value="ModificarPerfil">Modificar Perfil</button>
                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                 </div>
-                <div>${msOKRegistrarU}${msNORegistrarU}${msErrorRegistrarU}</div>       
+                <div>${msOKModificarPer}${msNOModificarPer}${msErrorModificarPer}</div>       
 
             </form>
 

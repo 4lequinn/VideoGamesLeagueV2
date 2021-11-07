@@ -65,10 +65,10 @@ public class ControladorUsuario extends HttpServlet {
             TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
             PerfilJugador perfilJugador = new PerfilJugador(nombre, apellido, correo, habilidad, tipoJugador, usuario);
             if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
+                request.getSession().setAttribute("msOKRegistrarU", "Usuario registrado correctamente");
             } else {
 
-                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
+                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido registrar");
             }
 
         } catch (Exception e) {
@@ -92,13 +92,13 @@ public class ControladorUsuario extends HttpServlet {
             TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
             PerfilJugador perfilJugador = new PerfilJugador(nombre, apellido, correo, habilidad, tipoJugador, usuario);
             if (usuarioFacade.agregar(usuario) && perfilJugadorFacade.agregar(perfilJugador)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Usuario agregado correctamente");
+                request.getSession().setAttribute("msOKAgregarU", "Usuario agregado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido agregar");
+                request.getSession().setAttribute("msNOAgregarU", "El usuario no se ha podido agregar");
             }
 
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorAgregarU", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("admin/panel-usuarios.jsp");
         }
@@ -121,14 +121,14 @@ public class ControladorUsuario extends HttpServlet {
             perfil.setApellido(request.getParameter("apellido"));
             // Perfil modificado
             if (usuarioFacade.modificar(usuario) && perfilJugadorFacade.modificar(perfil)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Usuario modificado correctamente");
+                request.getSession().setAttribute("msOKModificarU", "Usuario modificado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido modificar");
+                request.getSession().setAttribute("msNOModificarU", "El usuario no se ha podido modificar");
             }
             request.getSession().setAttribute("sesionUsuario", usuario);
             request.getSession().setAttribute("sesionPerfil", perfil);
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorModificarU", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("admin/panel-usuarios.jsp");
         }
@@ -149,14 +149,14 @@ public class ControladorUsuario extends HttpServlet {
             perfil.setApellido(request.getParameter("apellido"));
             // Perfil modificado
             if (usuarioFacade.modificar(usuario) && perfilJugadorFacade.modificar(perfil)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Usuario modificado correctamente");
+                request.getSession().setAttribute("msOKModificarPer", "Perfil modificado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido modificar");
+                request.getSession().setAttribute("msNOModificarPer", "El perfil no se ha podido modificar");
             }
             request.getSession().setAttribute("sesionUsuario", usuario);
             request.getSession().setAttribute("sesionPerfil", perfil);
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorModificarPer", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("usuario/modificar-perfil-usuario.jsp");
         }
@@ -171,7 +171,7 @@ public class ControladorUsuario extends HttpServlet {
             request.getSession().setAttribute("usuario", usuario);
             request.getSession().setAttribute("perfil", perfil);
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorCargarDu", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("usuario/modificar-usuario.jsp");
         }
@@ -216,14 +216,14 @@ public class ControladorUsuario extends HttpServlet {
             //Buscamos por ID y eliminamos
             if (usuarioFacade.eliminar(usuario)) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "Se ha eliminado el usuario");
+                request.getSession().setAttribute("msOKEliminarU", "Se ha eliminado el usuario");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido eliminar el usuario");
+                request.getSession().setAttribute("msNOEliminarU", "No se ha podido eliminar el usuario");
             }
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msErrorEliminarU", "Error"+ e.getMessage());
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-usuarios.jsp");

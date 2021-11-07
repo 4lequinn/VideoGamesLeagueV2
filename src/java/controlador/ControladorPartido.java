@@ -64,12 +64,12 @@ public class ControladorPartido extends HttpServlet {
             Liga tipoLiga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
             Partido par = new Partido(fecha, hora_inicio, hora_termino, tipoFase, tipoLiga);
             if (partidoFacade.agregar(par)) {
-                request.getSession().setAttribute("msOKRegistrarP", "Partido creado correctamente");
+                request.getSession().setAttribute("msOKCrearP", "Partido creado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarP", "El partido no se ha podido crear");
+                request.getSession().setAttribute("msNOCrearP", "El partido no se ha podido crear");
             }
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarP", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorCrearP", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("partido/agregar-partido.jsp");
         }
@@ -89,12 +89,12 @@ public class ControladorPartido extends HttpServlet {
             partido.setIdFase(tipoFase);
             partido.setIdLiga(tipoLiga);
             if (partidoFacade.modificar(partido)) {
-                request.getSession().setAttribute("msOKModificarP", "Partido creado correctamente");
+                request.getSession().setAttribute("msOKModificarP", "Partido modificado correctamente");
             } else {
-                request.getSession().setAttribute("msNOModificarP", "El partido no se ha podido crear");
+                request.getSession().setAttribute("msNOModificarP", "El partido no se ha podido modificar");
             }
         } catch (Exception e) {
-            request.getSession().setAttribute("msNOModificarP", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorModificarP", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("partido/modificar-partido.jsp");
         }

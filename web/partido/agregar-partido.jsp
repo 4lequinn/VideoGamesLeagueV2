@@ -106,7 +106,7 @@
                     <button type="submit" class="formulario__btn" name="btnAccion" value="CrearPartido">Agregar Partido</button>
                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                 </div>
-                <div>${msOKRegistrarP}${msNORegistrarP}${msErrorRegistrarP}</div>       
+                <div>${msOKCrearP}${msNOCrearP}${msErrorCrearP}</div>       
 
             </form>
 
