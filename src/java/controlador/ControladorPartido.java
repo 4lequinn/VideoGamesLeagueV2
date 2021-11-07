@@ -20,6 +20,7 @@ import modelo.dto.DetallePartido;
 import modelo.dto.Equipo;
 import modelo.dto.Fase;
 import modelo.dto.Liga;
+import modelo.dto.Localidad;
 import modelo.dto.Partido;
 import modelo.dto.Resultado;
 
@@ -105,6 +106,8 @@ public class ControladorPartido extends HttpServlet {
             throws ServletException, IOException {
         try {
             Resultado resultado = new Resultado(1); // Definimos el resultado como PENDIENTE
+            Localidad local = new Localidad(1);
+            Localidad visita = new Localidad(2);
             int partidoID = Integer.parseInt(request.getParameter("txtPartidoID"));
             int equipo1ID = Integer.parseInt(request.getParameter("cboEquipo1"));
             int equipo2ID = Integer.parseInt(request.getParameter("cboEquipo2"));
@@ -113,9 +116,9 @@ public class ControladorPartido extends HttpServlet {
             Equipo equipo2 = new Equipo(equipo2ID);
             // Insertamos 2 detalles para completar el partido
             // EQUIPO 1
-            DetallePartido detalle1 = new DetallePartido(equipo1, resultado, partido);
+            DetallePartido detalle1 = new DetallePartido(equipo1, resultado, partido, local); //Local
             //EQUIPO 2
-            DetallePartido detalle2 = new DetallePartido(equipo2, resultado, partido);
+            DetallePartido detalle2 = new DetallePartido(equipo2, resultado, partido, visita); // Visita
             if (detallePartidoFacade.agregar(detalle1) && detallePartidoFacade.agregar(detalle2)) {
                 // Se agregan los 2 equipos al partido
             } else {

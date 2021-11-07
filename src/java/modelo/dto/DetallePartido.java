@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "DetallePartido.findById", query = "SELECT d FROM DetallePartido d WHERE d.id = :id")})
 public class DetallePartido implements Serializable {
 
-    private static final long serialVersionUID = 1L; 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -48,6 +48,9 @@ public class DetallePartido implements Serializable {
     @JoinColumn(name = "id_partido", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Partido idPartido;
+    @JoinColumn(name = "id_localidad", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Localidad idLocalidad;
 
     public DetallePartido() {
     }
@@ -56,12 +59,13 @@ public class DetallePartido implements Serializable {
         this.id = id;
     }
 
-    public DetallePartido(Equipo idEquipo, Resultado idResultado, Partido idPartido) {
+    public DetallePartido(Equipo idEquipo, Resultado idResultado, Partido idPartido, Localidad idLocalidad) {
         this.idEquipo = idEquipo;
         this.idResultado = idResultado;
         this.idPartido = idPartido;
+        this.idLocalidad = idLocalidad;
     }
-
+    
     public Integer getId() {
         return id;
     }
@@ -92,6 +96,14 @@ public class DetallePartido implements Serializable {
 
     public void setIdPartido(Partido idPartido) {
         this.idPartido = idPartido;
+    }
+
+    public Localidad getIdLocalidad() {
+        return idLocalidad;
+    }
+
+    public void setIdLocalidad(Localidad idLocalidad) {
+        this.idLocalidad = idLocalidad;
     }
 
     @Override

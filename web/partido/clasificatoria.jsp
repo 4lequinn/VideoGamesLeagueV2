@@ -300,11 +300,11 @@
                                                         <tbody class="tournament-bracket__content">
                                                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Czech Republic">CZE</abbr>
+                                                                    <abbr class="tournament-bracket__code" title="Czech Republic">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-cz" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
-                                                                    <span class="tournament-bracket__number">1</span>
+                                                                    <span class="tournament-bracket__number">${y.estado_partido}</span>
                                                                     <span class="tournament-bracket__medal tournament-bracket__medal--gold fa fa-trophy" aria-label="Gold medal"></span>
                                                                 </td>
                                                             </tr>
@@ -312,11 +312,11 @@
                                                         <c:otherwise>
                                                             <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Russia">RUS</abbr>
+                                                                    <abbr class="tournament-bracket__code" title="Russia">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-ru" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
-                                                                    <span class="tournament-bracket__number">0</span>
+                                                                    <span class="tournament-bracket__number">${y.estado_partido}</span>
                                                                     <span class="tournament-bracket__medal tournament-bracket__medal--silver fa fa-trophy" aria-label="Silver medal"></span>
                                                                 </td>
                                                             </tr>

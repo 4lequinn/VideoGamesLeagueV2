@@ -79,6 +79,7 @@
                             <!--Quitar Options y poner la lista de la BDD -->
                         <c:forEach var="x" items="${tipoFase.rows}">
                             <option value="${x.id}">${x.descripcion}</option>
+                      
                         </c:forEach>
                     </select>
                         

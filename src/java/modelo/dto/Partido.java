@@ -6,7 +6,9 @@
 package modelo.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Partido.findByHoraInicio", query = "SELECT p FROM Partido p WHERE p.horaInicio = :horaInicio")
     , @NamedQuery(name = "Partido.findByHoraTermino", query = "SELECT p FROM Partido p WHERE p.horaTermino = :horaTermino")})
 public class Partido implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPartido")
+    private List<DetallePartido> detallePartidoList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -163,6 +170,15 @@ public class Partido implements Serializable {
     @Override
     public String toString() {
         return "modelo.dto.Partido[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public List<DetallePartido> getDetallePartidoList() {
+        return detallePartidoList;
+    }
+
+    public void setDetallePartidoList(List<DetallePartido> detallePartidoList) {
+        this.detallePartidoList = detallePartidoList;
     }
     
 }
