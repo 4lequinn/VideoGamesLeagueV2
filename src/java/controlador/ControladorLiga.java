@@ -35,14 +35,14 @@ public class ControladorLiga extends HttpServlet {
             //Buscamos por ID y eliminamos
             if (ligaFacade.eliminar(ligaFacade.buscar(ligaID))) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "Se ha elimado la liga");
+                request.getSession().setAttribute("msjEliminarLiga", "Se ha elimado la liga");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido eliminar la liga");
+                request.getSession().setAttribute("msjErrorEliminarLiga", "No se ha podido eliminar la liga");
             }
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msjErrorEliminarLiga", "Errorsito");
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-ligas.jsp");
@@ -60,14 +60,14 @@ public class ControladorLiga extends HttpServlet {
             //Agregamos una liga
             if (ligaFacade.agregar(liga)) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "Se registro correctamente la liga");
+                request.getSession().setAttribute("msjAgregarLiga", "Se registro correctamente la liga");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido registrar la liga");
+                request.getSession().setAttribute("msjErrorAgregarLiga", "No se ha podido registrar la liga");
             }
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msjErrorAgregarLiga", "Errorsito");
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-ligas.jsp");
@@ -84,7 +84,7 @@ public class ControladorLiga extends HttpServlet {
             request.getSession().setAttribute("dataVideoJuego", liga.getIdJuego().getId());
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msjErrorCargarLiga", "Errorsito");
         } finally {
             // Recargamos la página
             response.sendRedirect("liga/modificar-liga.jsp");
@@ -101,14 +101,14 @@ public class ControladorLiga extends HttpServlet {
             VideoJuego videoJuego = new VideoJuego(Integer.parseInt(request.getParameter("cboVideoJuego")));
             liga.setIdJuego(videoJuego);
             if (ligaFacade.modificar(liga)) {
-                request.getSession().setAttribute("msjErrorEliminar", "Se ha modificado la liga");
+                request.getSession().setAttribute("msjModificarLiga", "Se ha modificado la liga");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido modificar la liga");
+                request.getSession().setAttribute("msjErrorModificarLiga", "No se ha podido modificar la liga");
             }
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", e.getMessage());
+            request.getSession().setAttribute("msjErrorModificarLiga", e.getMessage());
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-ligas.jsp");

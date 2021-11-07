@@ -72,13 +72,13 @@ public class ControladorEquipo extends HttpServlet {
             Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
             Equipo e = new Equipo(nombre,1, perfil, liga);
             if (equipoFacade.agregar(e)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Equipo creado correctamente");
+                request.getSession().setAttribute("msOKRegistrarEquipo", "Equipo creado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarU", "El equipo no se ha podido agregar");
+                request.getSession().setAttribute("msNORegistrarEquipo", "El equipo no se ha podido agregar");
             }
 
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorRegistrarEquipo", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("equipo/agregar-equipo.jsp");
         }
@@ -92,13 +92,13 @@ public class ControladorEquipo extends HttpServlet {
             Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
             equipo.setIdLiga(liga);
             if (equipoFacade.modificar(equipo)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Equipo modificado correctamente");
+                request.getSession().setAttribute("msOKModificarEquipo", "Equipo modificado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarU", "El equipo no se ha podido modificar");
+                request.getSession().setAttribute("msNOModificarEquipo", "El equipo no se ha podido modificar");
             }
 
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorModificarEquipo", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("admin/panel-equipos.jsp");
         }
@@ -112,13 +112,13 @@ public class ControladorEquipo extends HttpServlet {
             Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
             equipo.setIdLiga(liga);
             if (equipoFacade.modificar(equipo)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Equipo modificado correctamente");
+                request.getSession().setAttribute("msOKModificarEquipoUsuario", "Equipo modificado correctamente");
             } else {
-                request.getSession().setAttribute("msNORegistrarU", "El equipo no se ha podido modificar");
+                request.getSession().setAttribute("msNOModificarEquipoUsuario", "El equipo no se ha podido modificar");
             }
 
         } catch (Exception e) {
-            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+            request.getSession().setAttribute("msErrorModificarEquipoUsuario", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("equipo/mostrar-equipos.jsp");
         }
@@ -132,13 +132,13 @@ public class ControladorEquipo extends HttpServlet {
             EstadoSolicitud estado = new EstadoSolicitud(3);
             incripcion.setIdEstado(estado);
             if (inscripcionFacade.modificar(incripcion)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Se aceptado la solicitud");
+                request.getSession().setAttribute("msOKAceptarSolicitud", "Se aceptado la solicitud");
             }  else {
-                request.getSession().setAttribute("msNORegistrarU", "No se ha podido aceptado la solicitud");
+                request.getSession().setAttribute("msNOAceptarSolicitud", "No se ha podido aceptado la solicitud");
             }
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msjErrorSolicitud", "Errorsito");
         } finally {
             // Recargamos la página
             response.sendRedirect("equipo/consultar-solicitud.jsp");
@@ -153,13 +153,13 @@ public class ControladorEquipo extends HttpServlet {
             EstadoSolicitud estado = new EstadoSolicitud(2);
             incripcion.setIdEstado(estado);
             if (inscripcionFacade.modificar(incripcion)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Se rechazado la solicitud");
+                request.getSession().setAttribute("msOKRechazarSolicitud", "Se rechazado la solicitud");
             }  else {
-                request.getSession().setAttribute("msNORegistrarU", "No se ha rechazado la solicitud");
+                request.getSession().setAttribute("msNORechazarSolicitud", "No se ha rechazado la solicitud");
             }
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msjErrorSolicitud", "Errorsito");
         } finally {
             // Recargamos la página
             response.sendRedirect("equipo/consultar-solicitud.jsp");
@@ -176,7 +176,7 @@ public class ControladorEquipo extends HttpServlet {
             request.getSession().setAttribute("dataLiga", equipo.getIdLiga().getId());
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msjErrorRecuperarDatos", "Errorsito");
         } finally {
             // Recargamos la página
             response.sendRedirect("equipo/modificar-equipo.jsp");
@@ -190,14 +190,14 @@ public class ControladorEquipo extends HttpServlet {
             //Buscamos por ID y eliminamos
             if (equipoFacade.eliminar(equipoFacade.buscar(equipoID))) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "Se ha eliminado el equipo");
+                request.getSession().setAttribute("msjEliminarEquipo", "Se ha eliminado el equipo");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido eliminado el equipo");
+                request.getSession().setAttribute("msjErrorEliminarEquipo", "No se ha podido eliminado el equipo");
             }
         } catch (Exception e) {
             //Error
-            request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+            request.getSession().setAttribute("msjErrorEliminarEquipo", "Errorsito");
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-equipos.jsp");
