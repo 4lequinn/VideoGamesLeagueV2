@@ -140,7 +140,6 @@
                                                 <c:if test="${y.id_partido == x.id}">
                                                     <c:choose>
                                                         <c:when test="${y.id_localidad == 1}">
-
                                                             <tr class="tournament-bracket__team"> <!-- tournament-bracket__team--winner -->
                                                                 <td class="tournament-bracket__country">
                                                                     <abbr class="tournament-bracket__code">${y.nombre}</abbr>
@@ -164,6 +163,7 @@
                                                     </c:choose>
                                                 </c:if>
                                             </c:forEach>
+                                        </tbody>  
                                     </table>
                                 </div>
                             </li>
