@@ -61,7 +61,7 @@
                     <button type="submit" class="formulario__btn" name="btnAccion" value="CrearEquipo">Crear Equipo</button>
                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                 </div>
-                <div>${msOKRegistrarU}${msNORegistrarU}${msErrorRegistrarU}</div>       
+                <div>${msOKRegistrarEquipo}${msNORegistrarEquipo}${msErrorRegistrarEquipo}</div>       
             </form>
         </main>
         <!-- Sweet Alert -->
