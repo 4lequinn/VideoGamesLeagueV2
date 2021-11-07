@@ -71,7 +71,7 @@ public class ControladorPartido extends HttpServlet {
         } catch (Exception e) {
             request.getSession().setAttribute("msErrorRegistrarP", "Error:" + e.getMessage());
         } finally {
-            response.sendRedirect("partido/agregar-partido.jsp");
+            response.sendRedirect("admin/panel-partidos.jsp");
         }
 
     }
