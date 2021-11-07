@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2021 a las 07:30:16
+-- Tiempo de generación: 07-11-2021 a las 07:34:09
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -129,7 +129,7 @@ DELIMITER $$
 CREATE TRIGGER `TRG_VALIDAR_LIGA_INSERT` BEFORE INSERT ON `equipo` FOR EACH ROW BEGIN
     declare v_cantidad int;
 	SELECT cantidad_equipo into v_cantidad from liga where id = new.id_liga;
-    IF v_cantidad < 16 THEN
+    IF v_cantidad < 8 THEN
 		UPDATE liga set cantidad_equipo = cantidad_equipo + 1 where id = new.id_liga;
     else
 		SIGNAL SQLSTATE '45004' SET MESSAGE_TEXT = 'ERROR LA LIGA ESTÁ COMPLETA';
