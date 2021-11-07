@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2021 a las 21:09:09
+-- Tiempo de generación: 08-11-2021 a las 00:00:41
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -107,11 +107,11 @@ CREATE TABLE `equipo` (
 INSERT INTO `equipo` (`id`, `nombre`, `cantidad_jugador`, `id_liga`, `id_perfil`) VALUES
 (1, 'Colo Colo', 1, 1, 8),
 (2, 'Santiago Wanderers', 1, 1, 13),
-(3, 'Santiago Warder', 1, 1, 10),
-(4, 'calo calo', 1, 1, 12),
+(3, 'Barcelona', 1, 1, 10),
+(4, 'Real Madrid', 1, 1, 12),
 (5, 'Team Queso', 1, 1, 9),
 (6, 'Macacos', 1, 1, 11),
-(7, 'Sin Skill', 1, 1, 6),
+(7, 'Los 10 + 1', 1, 1, 6),
 (8, 'Tuki Team', 1, 1, 5);
 
 --
@@ -277,20 +277,6 @@ CREATE TABLE `partido` (
   `id_fase` int(11) NOT NULL,
   `id_liga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `partido`
---
-
-INSERT INTO `partido` (`id`, `fecha`, `hora_inicio`, `hora_termino`, `id_fase`, `id_liga`) VALUES
-(24, '2021-11-07', '17:34', '18:34', 1, 1),
-(25, '2021-11-06', '16:51', '19:49', 1, 1),
-(26, '2021-11-20', '18:49', '16:52', 1, 1),
-(27, '2021-11-17', '17:49', '19:50', 1, 1),
-(28, '2021-11-12', '17:08', '19:06', 2, 1),
-(29, '2021-11-12', '20:06', '20:06', 2, 1),
-(30, '2021-11-16', '19:07', '19:07', 3, 1),
-(31, '2021-11-05', '17:10', '20:08', 4, 1);
 
 --
 -- Disparadores `partido`
