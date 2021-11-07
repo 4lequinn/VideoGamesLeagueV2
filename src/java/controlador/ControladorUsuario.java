@@ -189,7 +189,7 @@ public class ControladorUsuario extends HttpServlet {
                 request.getSession().setAttribute("sesionPerfil", perfil);
                 response.sendRedirect("index.jsp");
             } else {
-                response.sendRedirect("prueba.jsp");
+                response.sendRedirect("usuario/login.jsp");
             }
 
         } catch (Exception e) {

@@ -12,15 +12,21 @@
 </c:if>
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
 <sql:query dataSource="${dataSource}" var="listaSolicitudes">
-    SELECT i.id, eq.nombre, p.id_usuario, i.fecha, e.descripcion
+SELECT i.id, eq.nombre, us.usuario, i.fecha, e.descripcion
     FROM incripcion i
         INNER JOIN estado_solicitud e 
         ON i.id_estado = e.id
-        INNER JOIN perfil_jugador p 
-        ON i.id_jugador = p.id
         INNER JOIN equipo eq 
         ON i.id_equipo = eq.id
-        where p.id_usuario <> '${sesionUsuario.usuario}' and e.id = 1
+        INNER JOIN perfil_jugador pe
+        ON eq.id_perfil = pe.id
+        INNER JOIN usuario u 
+        ON pe.id_usuario = u.usuario
+        INNER JOIN perfil_jugador pei
+        ON i.id_jugador = pei.id
+        INNER JOIN usuario us 
+        ON pei.id_usuario = us.usuario
+        WHERE e.id = 1 and u.usuario = '${sesionUsuario.usuario}' and us.usuario <> '${sesionUsuario.usuario}'
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,10 +47,6 @@
             <ul class="nav-crud__lista">
                 <li class="nav-crud__item">
                     <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../index.jsp"><span class="material-icons nav-crud__item-icon">exit_to_app</span>Volver</a>
-                </li>
-                <li class="nav-crud__item">
-                    <input class="nav-crud__item-text" type="text" placeholder="Ingrese un ID">
-                    <a class="nav-crud__item-link nav-crud__item-link-search btn-warning" href=""><span class="nav-crud__item-icon material-icons">search</span></a>
                 </li>
             </ul>
         </nav>
@@ -67,7 +69,7 @@
                         <tr>
                             <td>${x.id}</td>
                             <td>${x.nombre}</td>
-                            <td>${x.id_usuario}</td>
+                            <td>${x.usuario}</td>
                             <td>${x.fecha}</td>
                             <td>${x.descripcion}</td>
                             <td>

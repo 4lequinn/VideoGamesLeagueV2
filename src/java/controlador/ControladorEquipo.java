@@ -129,7 +129,7 @@ public class ControladorEquipo extends HttpServlet {
         try {
             //Buscamos por ID y eliminamos
             Incripcion incripcion  = inscripcionFacade.buscar(Integer.parseInt(request.getParameter("cambiarEstadoAceptado")));
-            EstadoSolicitud estado = new EstadoSolicitud(3);
+            EstadoSolicitud estado = new EstadoSolicitud(2);
             incripcion.setIdEstado(estado);
             if (inscripcionFacade.modificar(incripcion)) {
                 request.getSession().setAttribute("msOKAceptarSolicitud", "Se aceptado la solicitud");
@@ -150,7 +150,7 @@ public class ControladorEquipo extends HttpServlet {
         try {
             //Buscamos por ID y eliminamos
             Incripcion incripcion  = inscripcionFacade.buscar(Integer.parseInt(request.getParameter("cambiarEstadoRechazado")));
-            EstadoSolicitud estado = new EstadoSolicitud(2);
+            EstadoSolicitud estado = new EstadoSolicitud(3);
             incripcion.setIdEstado(estado);
             if (inscripcionFacade.modificar(incripcion)) {
                 request.getSession().setAttribute("msOKRechazarSolicitud", "Se rechazado la solicitud");
