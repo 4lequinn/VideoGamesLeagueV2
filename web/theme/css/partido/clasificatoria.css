@@ -382,7 +382,7 @@
 	 text-transform: uppercase;
 	 border: 0;
 	 text-decoration: none;
-	 cursor: help;
+	 cursor: pointer;
 	 transition: padding 0.2s ease-in-out;
 }
  @media (max-width: 24em) {

@@ -35,10 +35,10 @@ public class ControladorLiga extends HttpServlet {
             //Buscamos por ID y eliminamos
             if (ligaFacade.eliminar(ligaFacade.buscar(ligaID))) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+                request.getSession().setAttribute("msjErrorEliminar", "Se ha elimado la liga");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido eliminar la liga");
             }
         } catch (Exception e) {
             //Error
@@ -60,10 +60,10 @@ public class ControladorLiga extends HttpServlet {
             //Agregamos una liga
             if (ligaFacade.agregar(liga)) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "agregó");
+                request.getSession().setAttribute("msjErrorEliminar", "Se registro correctamente la liga");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "else");
+                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido registrar la liga");
             }
         } catch (Exception e) {
             //Error
@@ -101,10 +101,10 @@ public class ControladorLiga extends HttpServlet {
             VideoJuego videoJuego = new VideoJuego(Integer.parseInt(request.getParameter("cboVideoJuego")));
             liga.setIdJuego(videoJuego);
             if (ligaFacade.modificar(liga)) {
-                request.getSession().setAttribute("msjErrorEliminar", "modificó");
+                request.getSession().setAttribute("msjErrorEliminar", "Se ha modificado la liga");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "else");
+                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido modificar la liga");
             }
         } catch (Exception e) {
             //Error

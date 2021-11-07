@@ -108,27 +108,6 @@
 
                 </div>
 
-                <!-- Grupo: Cbo Tipo Usuario --> <!-- NEW -->
-                <div class="formulario__grupo">
-                    <label for="cboTipoUsuario" class="formulario__label-cbo">
-                        <span>Tipo Usuario</span>
-                    </label>
-                    <select name="cboTipoUsuario" id="cboTipoUsuario" class="formulario__input-cbo" required>
-                        <!--Quitar Options y poner la lista de la BDD -->
-                        <c:forEach var="x" items="${tipoUsuario.rows}">
-                            <c:choose>
-                                <c:when test="${x.id == sesionUsuario.idTipo.id}">
-                                    <option selected value="${x.id}">${x.descripcion}</option>
-                                </c:when>    
-                                <c:when test="${x.id != sesionUsuario.idTipo.id}">
-                                    <option value="${x.id}">${x.descripcion}</option>
-                                </c:when>  
-                            </c:choose>
-                        </c:forEach>
-                    </select>
-
-                </div>
-
                 <!-- Grupo: ContraseÃ±a -->
                 <div class="formulario__grupo" id="grupo__password">
                     <label for="password" class="formulario__label">Contraseña</label>
@@ -144,7 +123,7 @@
                 </div>
 
                 <div class="formulario__grupo formulario__grupo-btn-enviar">
-                    <button type="submit" class="formulario__btn" name="btnAccion" value="ModificarPerfil">Modificar Usuario</button>
+                    <button type="submit" class="formulario__btn" name="btnAccion" value="ModificarPerfil">Modificar Perfil</button>
                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                 </div>
                 <div>${msOKRegistrarU}${msNORegistrarU}${msErrorRegistrarU}</div>       

@@ -104,6 +104,7 @@ public class ControladorUsuario extends HttpServlet {
         }
     }
 
+    //Modificar Usuario Admin
     protected void modificarUsuario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -111,10 +112,9 @@ public class ControladorUsuario extends HttpServlet {
             Usuario usuario = usuarioFacade.buscar(user);
             usuario.setContrasenia(request.getParameter("password"));
             TipoUsuario tipoUsuario = new TipoUsuario(Integer.parseInt(request.getParameter("cboTipoUsuario")));
+            usuario.setIdTipo(tipoUsuario);
             // Usuario Listo
             PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
-            TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
-            perfil.setIdTipoJugador(tipoJugador);
             perfil.setHabilidad(request.getParameter("habilidad"));
             perfil.setCorreo(request.getParameter("correo"));
             perfil.setNombre(request.getParameter("nombre"));
@@ -128,24 +128,21 @@ public class ControladorUsuario extends HttpServlet {
             request.getSession().setAttribute("sesionUsuario", usuario);
             request.getSession().setAttribute("sesionPerfil", perfil);
         } catch (Exception e) {
-            System.out.println("ERROR " + e.getMessage());
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
-            response.sendRedirect("usuario/modificar-perfil-usuario.jsp");
+            response.sendRedirect("admin/panel-usuarios.jsp");
         }
     }
 
+    //Modificar usuario de la sesion 
     protected void modificarPerfil(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             String user = request.getParameter("txtUsuario");
             Usuario usuario = usuarioFacade.buscar(user);
             usuario.setContrasenia(request.getParameter("password"));
-            TipoUsuario tipoUsuario = new TipoUsuario(Integer.parseInt(request.getParameter("cboTipoUsuario")));
             // Usuario Listo
             PerfilJugador perfil = perfilJugadorFacade.buscarUsuario(usuario.getUsuario());
-            TipoJugador tipoJugador = new TipoJugador(Integer.parseInt(request.getParameter("cboTipoJugador")));
-            perfil.setIdTipoJugador(tipoJugador);
             perfil.setHabilidad(request.getParameter("habilidad"));
             perfil.setCorreo(request.getParameter("correo"));
             perfil.setNombre(request.getParameter("nombre"));
@@ -156,11 +153,12 @@ public class ControladorUsuario extends HttpServlet {
             } else {
                 request.getSession().setAttribute("msNORegistrarU", "El usuario no se ha podido modificar");
             }
+            request.getSession().setAttribute("sesionUsuario", usuario);
+            request.getSession().setAttribute("sesionPerfil", perfil);
         } catch (Exception e) {
-            System.out.println("ERROR " + e.getMessage());
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
-            response.sendRedirect("admin/panel-usuarios.jsp");
+            response.sendRedirect("usuario/modificar-perfil-usuario.jsp");
         }
     }
 
@@ -173,7 +171,6 @@ public class ControladorUsuario extends HttpServlet {
             request.getSession().setAttribute("usuario", usuario);
             request.getSession().setAttribute("perfil", perfil);
         } catch (Exception e) {
-            System.out.println("ERROR " + e.getMessage());
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("usuario/modificar-usuario.jsp");
@@ -203,10 +200,8 @@ public class ControladorUsuario extends HttpServlet {
     protected void logout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            //Usuario usuario = (Usuario) request.getSession().getAttribute("sesionUsuario");
             request.getSession().removeAttribute("sesionUsuario");
         } catch (Exception e) {
-            System.out.println("ERROR " + e.getMessage());
         } finally {
             response.sendRedirect("index.jsp");
         }
@@ -221,15 +216,14 @@ public class ControladorUsuario extends HttpServlet {
             //Buscamos por ID y eliminamos
             if (usuarioFacade.eliminar(usuario)) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+                request.getSession().setAttribute("msjErrorEliminar", "Se ha eliminado el usuario");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido eliminar el usuario");
             }
         } catch (Exception e) {
             //Error
             request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
-            System.out.println("ERROR " + e.getMessage());
         } finally {
             // Recargamos la página
             response.sendRedirect("admin/panel-usuarios.jsp");
