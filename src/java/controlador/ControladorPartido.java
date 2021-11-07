@@ -141,6 +141,27 @@ public class ControladorPartido extends HttpServlet {
         }
     }
 
+    protected void eliminarPartido(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int partidoID = Integer.parseInt(request.getParameter("eliminarPartido"));
+            //Buscamos por ID y eliminamos
+            if (partidoFacade.eliminar(partidoFacade.buscar(partidoID))) {
+                //Mensaje SUCCESS
+                request.getSession().setAttribute("msjEliminarPartido", "Se ha eliminado el partido correctamente");
+            } else {
+                //Mensaje de error
+                request.getSession().setAttribute("msjErrorEliminarPartido", "No se ha podido eliminado el partido");
+            }
+        } catch (Exception e) {
+            //Error
+            request.getSession().setAttribute("msjErrorEliminarPartido", "Error al eliminar partido");
+        } finally {
+            // Recargamos la página
+            response.sendRedirect("admin/panel-partidos.jsp");
+        }
+    }
+
     protected void elegirGanador(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -181,7 +202,7 @@ public class ControladorPartido extends HttpServlet {
         String equipoPerdedor = request.getParameter("perdedorEquipo");
 
         if (eliminarID != null) {
-
+            eliminarPartido(request, response);
         } else if (modificarID != null) {
 
         } else if (detalleID != null) {
