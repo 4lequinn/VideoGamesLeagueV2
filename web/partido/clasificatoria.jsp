@@ -3,7 +3,25 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
-<sql:query dataSource="${dataSource}" var="DatosEquipos">
+<sql:query dataSource="${dataSource}" var="DatosQuatos">
+Select  
+    p.hora_inicio, 
+    p.hora_termino, 
+    f.descripcion,
+    r.descripcion,
+    e.id,
+    r.descripcion,
+    e.nombre,
+    l.descripcion
+FROM partido p 
+join fase f on f.id=p.id_fase 
+join detalle_partido dp on dp.id_partido=p.id
+join resultado r on r.id=dp.id_resultado
+join equipo e on e.id=dp.id_equipo
+join liga l on l.id=e.id_liga and p.id_liga=l.id
+where p.id_fase = 2
+</sql:query>
+<sql:query dataSource="${dataSource}" var="DatosQuatos">
 Select  
     p.hora_inicio, 
     p.hora_termino, 
@@ -18,6 +36,58 @@ join detalle_partido dp on dp.id_partido=p.id
 join resultado r on r.id=dp.id_resultado
 join equipo e on e.id=dp.id_equipo
 join liga l on l.id=e.id_liga and p.id_liga=l.id
+where p.id_fase = 2
+</sql:query>
+<sql:query dataSource="${dataSource}" var="DatosSemi">
+Select  
+    p.hora_inicio, 
+    p.hora_termino, 
+    f.descripcion,
+    r.descripcion,
+    e.id,
+    e.nombre,
+    l.descripcion
+FROM partido p 
+join fase f on f.id=p.id_fase 
+join detalle_partido dp on dp.id_partido=p.id
+join resultado r on r.id=dp.id_resultado
+join equipo e on e.id=dp.id_equipo
+join liga l on l.id=e.id_liga and p.id_liga=l.id
+where p.id_fase = 3
+</sql:query>
+<sql:query dataSource="${dataSource}" var="DatosBronce">
+Select  
+    p.hora_inicio, 
+    p.hora_termino, 
+    f.descripcion,
+    r.descripcion,
+    e.id,
+    e.nombre,
+    l.descripcion
+FROM partido p 
+join fase f on f.id=p.id_fase 
+join detalle_partido dp on dp.id_partido=p.id
+join resultado r on r.id=dp.id_resultado
+join equipo e on e.id=dp.id_equipo
+join liga l on l.id=e.id_liga and p.id_liga=l.id
+where p.id_fase = 3
+</sql:query>
+<sql:query dataSource="${dataSource}" var="Datosfinal">
+Select  
+    p.hora_inicio, 
+    p.hora_termino, 
+    f.descripcion,
+    r.descripcion,
+    e.id,
+    e.nombre,
+    l.descripcion
+FROM partido p 
+join fase f on f.id=p.id_fase 
+join detalle_partido dp on dp.id_partido=p.id
+join resultado r on r.id=dp.id_resultado
+join equipo e on e.id=dp.id_equipo
+join liga l on l.id=e.id_liga and p.id_liga=l.id
+where p.id_fase = 3
 </sql:query>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,7 +104,7 @@ join liga l on l.id=e.id_liga and p.id_liga=l.id
     </head>
     <!-- Incluimos la barra de navegación -->    
     <%@include file="../template/navbar2.jsp" %>
-    <body>
+    <body style="overflow: scroll">
         <div class="container">
             <h1>Video Juego</h1>
             <h2>[Liga correspondiente]</h2>
@@ -79,7 +149,7 @@ join liga l on l.id=e.id_liga and p.id_liga=l.id
                             </div>
                         </li>
 -->
-<c:forEach var="x" items="${DatosEquipos.rows}">
+<c:forEach var="x" items="${DatosQuatos.rows}">
                     <li class="tournament-bracket__item">
                             <div class="tournament-bracket__match" tabindex="0">
                                 <table class="tournament-bracket__table">
@@ -102,15 +172,17 @@ join liga l on l.id=e.id_liga and p.id_liga=l.id
                                                 <span class="tournament-bracket__number">4</span>
                                             </td>
                                         </tr>
+                                        <c:forEach var="x" items="${DatosQuatos.rows}">
                                         <tr class="tournament-bracket__team">
                                             <td class="tournament-bracket__country">
-                                                <abbr class="tournament-bracket__code" title="Kazakhstan">KAZ</abbr>
+                                                <abbr class="tournament-bracket__code" title="Kazakhstan">${x.nombre}</abbr>
                                                 <span class="tournament-bracket__flag flag-icon flag-icon-kz" aria-label="Flag"></span>
                                             </td>
                                             <td class="tournament-bracket__score">
                                                 <span class="tournament-bracket__number">1</span>
                                             </td>
                                         </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -279,17 +351,6 @@ join liga l on l.id=e.id_liga and p.id_liga=l.id
                 </div>
                 
             </div>
-                    <nav class="nav-crud">
-                <ul class="nav-crud__lista">
-                    <li class="nav-crud__item">
-                        <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../equipo/agregar-equipo.jsp"><span class="material-icons nav-crud__item-icon">add</span>Agregar</a>
-                    </li>
-                    <li class="nav-crud__item">
-                        <input class="nav-crud__item-text" type="text" placeholder="Ingrese un ID">
-                        <a class="nav-crud__item-link nav-crud__item-link-search btn-warning" href=""><span class="nav-crud__item-icon material-icons">search</span></a>
-                    </li>
-                </ul>
-            </nav>
         </div>
 
 
