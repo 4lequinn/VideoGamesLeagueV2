@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.dao.DetallePartidoFacade;
+import modelo.dao.EquipoFacade;
 import modelo.dao.PartidoFacade;
 import modelo.dto.DetallePartido;
 import modelo.dto.Equipo;
@@ -36,6 +37,9 @@ public class ControladorPartido extends HttpServlet {
 
     @EJB
     private DetallePartidoFacade detallePartidoFacade;
+
+    @EJB
+    private EquipoFacade equipoFacade;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -111,18 +115,24 @@ public class ControladorPartido extends HttpServlet {
             int partidoID = Integer.parseInt(request.getParameter("txtPartidoID"));
             int equipo1ID = Integer.parseInt(request.getParameter("cboEquipo1"));
             int equipo2ID = Integer.parseInt(request.getParameter("cboEquipo2"));
-            Partido partido = new Partido(partidoID); // Asignamos el partido
-            Equipo equipo1 = new Equipo(equipo1ID);
-            Equipo equipo2 = new Equipo(equipo2ID);
-            // Insertamos 2 detalles para completar el partido
-            // EQUIPO 1
-            DetallePartido detalle1 = new DetallePartido(equipo1, resultado, partido, local); //Local
-            //EQUIPO 2
-            DetallePartido detalle2 = new DetallePartido(equipo2, resultado, partido, visita); // Visita
-            if (detallePartidoFacade.agregar(detalle1) && detallePartidoFacade.agregar(detalle2)) {
-                // Se agregan los 2 equipos al partido
+            if (equipo1ID == equipo2ID) {
+                request.getSession().setAttribute("msjErrorDetallePartido", "¡Seleccione 2 equipos diferentes!");
             } else {
-                //No se pudo agregar
+                Partido partido = new Partido(partidoID); // Asignamos el partido
+                Equipo equipo1 = new Equipo(equipo1ID);
+                Equipo equipo2 = new Equipo(equipo2ID);
+                // Insertamos 2 detalles para completar el partido
+                // EQUIPO 1
+                DetallePartido detalle1 = new DetallePartido(equipo1, resultado, partido, local); //Local
+                //EQUIPO 2
+                DetallePartido detalle2 = new DetallePartido(equipo2, resultado, partido, visita); // Visita
+                if (detallePartidoFacade.agregar(detalle1) && detallePartidoFacade.agregar(detalle2)) {
+                    // Se agregan los 2 equipos al partido
+                    request.getSession().setAttribute("msjDetallePartido", "Equipos agregados correctamente");
+                } else {
+                    //No se pudo agregar
+                    request.getSession().setAttribute("msjErrorDetallePartido", "¡ERROR, No se pudo agregar!");
+                }
             }
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
@@ -146,9 +156,9 @@ public class ControladorPartido extends HttpServlet {
             // EL EQUIPO ELEGIDO COMO PERDEDOR ACTUALIZARÁ SU ESTADO DE PENDIENTE A PERDEDOR
             DetallePartido perdedor = detallePartidoFacade.buscarDetallePorPartido2(detallePartido, equipoPerdedor);
             perdedor.setIdResultado(rPerdedor);
-            if(detallePartidoFacade.modificar(ganador) && detallePartidoFacade.modificar(perdedor)){
+            if (detallePartidoFacade.modificar(ganador) && detallePartidoFacade.modificar(perdedor)) {
                 // Finaliza el partido estableciendo un ganador
-            }else{
+            } else {
                 // No actualizó el partido
                 System.out.println("ERROR PERUANO");
             }

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Equipo.findAll", query = "SELECT e FROM Equipo e")
     , @NamedQuery(name = "Equipo.findById", query = "SELECT e FROM Equipo e WHERE e.id = :id")
     , @NamedQuery(name = "Equipo.findByNombre", query = "SELECT e FROM Equipo e WHERE e.nombre = :nombre")
+    , @NamedQuery(name = "Equipo.findByLiga", query = "SELECT e FROM Equipo e WHERE e.idLiga.id = :idLiga")
     , @NamedQuery(name = "Equipo.findByCantidadJugador", query = "SELECT e FROM Equipo e WHERE e.cantidadJugador = :cantidadJugador")})
 public class Equipo implements Serializable {
 
@@ -79,8 +80,8 @@ public class Equipo implements Serializable {
         this.nombre = nombre;
         this.cantidadJugador = cantidadJugador;
     }
-    
-     public Equipo( String nombre, int cantidadJugador, PerfilJugador idPerfil, Liga idLiga) {
+
+    public Equipo(String nombre, int cantidadJugador, PerfilJugador idPerfil, Liga idLiga) {
         this.nombre = nombre;
         this.cantidadJugador = cantidadJugador;
         this.idLiga = idLiga;
@@ -178,5 +179,5 @@ public class Equipo implements Serializable {
     public String toString() {
         return "modelo.dto.Equipo[ id=" + id + " ]";
     }
-    
+
 }

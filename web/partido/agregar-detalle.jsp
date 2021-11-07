@@ -16,10 +16,36 @@
 </c:if>
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
-<sql:query dataSource="${dataSource}" var="listaEquipos">
-    Select id, nombre 
-    FROM equipo
-    WHERE id_liga = '${partido.idLiga.id}'
+
+<sql:query dataSource="${dataSource}" var="listaEquipoCuartos">
+    SELECT e.id, e.nombre FROM equipo e 
+    left JOIN detalle_partido dp 
+    ON e.id = dp.id_equipo
+    WHERE id_liga = '${partido.idLiga.id}' and dp.id IS NULL;
+</sql:query>
+<sql:query dataSource="${dataSource}" var="listaEquipoSemifinal">
+    SELECT e.id, e.nombre FROM EQUIPO e
+    left JOIN detalle_partido dp
+    ON e.id = dp.id_equipo
+    left JOIN partido p
+    on dp.id_partido = p.id
+    where id_fase = 1 and dp.id_resultado = 2 and p.id_liga = '${partido.idLiga.id}';
+</sql:query>
+<sql:query dataSource="${dataSource}" var="listaEquipoTercerCuarto">
+    SELECT e.id, e.nombre FROM EQUIPO e
+    left JOIN detalle_partido dp
+    ON e.id = dp.id_equipo
+    left JOIN partido p
+    on dp.id_partido = p.id
+    where id_fase = 2 and dp.id_resultado = 2 and p.id_liga = '${partido.idLiga.id}';
+</sql:query>
+<sql:query dataSource="${dataSource}" var="listaEquipoFinal">
+    SELECT e.id, e.nombre FROM EQUIPO e
+    left JOIN detalle_partido dp
+    ON e.id = dp.id_equipo
+    left JOIN partido p
+    on dp.id_partido = p.id
+    where id_fase = 3 and dp.id_resultado = 2 and p.id_liga = '${partido.idLiga.id}';
 </sql:query>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,37 +66,140 @@
             <main>
                 <form action="../ControladorPartido" method="POST" class="formulario" id="formulario">
                     <input hidden value="${partido.id}" name="txtPartidoID">
-                    <!--VER ALGUNA FORMA DE VALIDAR QUE AL ELEGIR UN EQUIPO NO APAREZCA EN EL OTRO CBO -->
-                    <!-- Grupo: Cbo Equipo -->
-                    <div class="formulario__grupo">
-                        <label for="cboEquipo1" class="formulario__label-cbo">
-                            <span>Equipo 1</span>
-                        </label>
-                        <select name="cboEquipo1" id="cboEquipo1" class="formulario__input-cbo" required>
-                            <!-- Primer op -->
-                            <option disabled selected value="0">Seleccione</option>
-                            <!--Quitar Options y poner la lista de la BDD -->
-                        <c:forEach var="x" items="${listaEquipos.rows}">
-                            <option value="${x.id}">${x.nombre}</option>
-                        </c:forEach>
-                    </select>
-                    </div>
+                <c:choose>
+                    <c:when test="${partido.idFase.id == 1}">
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo1" class="formulario__label-cbo">
+                                <span>Equipo 1</span>
+                            </label>
+                            <select name="cboEquipo1" id="cboEquipo1" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoCuartos.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
-                <!-- Grupo: Cbo Equipo -->
-                <div class="formulario__grupo">
-                    <label for="cboEquipo2" class="formulario__label-cbo">
-                        <span>Equipo 2</span>
-                    </label>
-                    <select name="cboEquipo2" id="cboEquipo2" class="formulario__input-cbo" required>
-                        <!-- Primer op -->
-                        <option disabled selected value="0">Seleccione</option>
-                        <!--Quitar Options y poner la lista de la BDD -->
-                        <c:forEach var="x" items="${listaEquipos.rows}">
-                            <option value="${x.id}">${x.nombre}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo2" class="formulario__label-cbo">
+                                <span>Equipo 2</span>
+                            </label>
+                            <select name="cboEquipo2" id="cboEquipo2" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoCuartos.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </c:when>
+                    <c:when test="${partido.idFase.id == 2}">
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo1" class="formulario__label-cbo">
+                                <span>Equipo 1</span>
+                            </label>
+                            <select name="cboEquipo1" id="cboEquipo1" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoSemifinal.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo2" class="formulario__label-cbo">
+                                <span>Equipo 2</span>
+                            </label>
+                            <select name="cboEquipo2" id="cboEquipo2" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoSemifinal.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </c:when>    
+                    <c:when test="${partido.idFase.id == 3}">
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo1" class="formulario__label-cbo">
+                                <span>Equipo 1</span>
+                            </label>
+                            <select name="cboEquipo1" id="cboEquipo1" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoTercerCuarto.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo2" class="formulario__label-cbo">
+                                <span>Equipo 2</span>
+                            </label>
+                            <select name="cboEquipo2" id="cboEquipo2" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoTercerCuarto.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </c:when>    
+                    <c:when test="${partido.idFase.id == 4}">
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo1" class="formulario__label-cbo">
+                                <span>Equipo 1</span>
+                            </label>
+                            <select name="cboEquipo1" id="cboEquipo1" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoFinal.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <!-- Grupo: Cbo Equipo -->
+                        <div class="formulario__grupo">
+                            <label for="cboEquipo2" class="formulario__label-cbo">
+                                <span>Equipo 2</span>
+                            </label>
+                            <select name="cboEquipo2" id="cboEquipo2" class="formulario__input-cbo" required>
+                                <!-- Primer op -->
+                                <option disabled selected value="0">Seleccione</option>
+                                <!--Quitar Options y poner la lista de la BDD -->
+                                <c:forEach var="x" items="${listaEquipoFinal.rows}">
+                                    <option value="${x.id}">${x.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </c:when>    
+                </c:choose>
+                <c:choose>
+                    <c:when test="${msjDetallePartido != null}">
+                        ${msjDetallePartido}
+                    </c:when>
+                    <c:otherwise>
+                        ${msjErrorDetallePartido} 
+                    </c:otherwise>
+                </c:choose>
                 <div class="formulario__grupo formulario__grupo-btn-enviar">
                     <button type="submit" class="formulario__btn" name="btnAccion" value="AgregarEquipos">Agregar Equipos</button>
                     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
