@@ -16,7 +16,6 @@
     FROM equipo e 
     INNER JOIN perfil_jugador p on e.id_perfil = p.id
     INNER JOIN liga l on e.id_liga = l.id
-    WHERE e.cantidad_jugador < 8 
 </sql:query>
 <!--Validación para que no puedas enviar Solicitud a un equipo que ya está completo -->
 <!DOCTYPE html>
