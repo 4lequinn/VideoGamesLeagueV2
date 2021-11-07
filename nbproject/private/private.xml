@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/controlador/ControladorLiga.java</file>
             <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/web/partido/clasificatoria.jsp</file>
             <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/web/partido/elegir-ganador.jsp</file>
@@ -17,6 +18,16 @@
             <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/src/java/modelo/dto/DetallePartido.java</file>
             <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/web/admin/panel-ligas.jsp</file>
             <file>file:/C:/Users/sebas/Documents/NetBeansProjects/VideoGamesLeagueV2/web/equipo/panel-equipos.jsp</file>
+=======
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/partido/clasificatoria.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/admin/panel-equipos.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/admin/panel-usuarios.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/equipo/panel-equipos.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/admin/panel-admin.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/equipo/modificar-equipo.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/admin/panel-partidos.jsp</file>
+            <file>file:/C:/Users/jorge/Documents/NetBeansProjects/VideoGamesLeagueV2/web/partido/agregar-detalle.jsp</file>
+>>>>>>> 666900cfc0f0b5c6495047a223dd967f1fdebf26
         </group>
     </open-files>
 </project-private>

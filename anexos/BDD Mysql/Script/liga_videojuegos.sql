@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2021 a las 00:38:45
+-- Tiempo de generación: 07-11-2021 a las 01:57:57
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -82,8 +82,23 @@ CREATE TABLE `detalle_partido` (
   `id` int(11) NOT NULL,
   `id_equipo` int(11) NOT NULL,
   `id_resultado` int(11) NOT NULL,
-  `id_partido` int(11) NOT NULL
+  `id_partido` int(11) NOT NULL,
+  `id_localidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalle_partido`
+--
+
+INSERT INTO `detalle_partido` (`id`, `id_equipo`, `id_resultado`, `id_partido`, `id_localidad`) VALUES
+(1, 1, 2, 1, 1),
+(2, 2, 3, 1, 2),
+(3, 3, 3, 2, 1),
+(4, 4, 2, 2, 2),
+(5, 5, 1, 3, 1),
+(6, 6, 1, 3, 2),
+(9, 7, 1, 4, 1),
+(10, 8, 1, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -104,8 +119,14 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`id`, `nombre`, `cantidad_jugador`, `id_liga`, `id_perfil`) VALUES
-(1, 'wena mi rey', 1, 2, 5),
-(2, 'wena mi rey xd ola', 1, 3, 5);
+(1, 'Colo Colo', 1, 1, 8),
+(2, 'Santiago Wanderers', 1, 1, 13),
+(3, '10 + 1', 1, 1, 10),
+(4, 'Pen', 1, 1, 12),
+(5, 'Team Queso', 1, 1, 9),
+(6, 'Macacos', 1, 1, 11),
+(7, 'Sin Skill', 1, 1, 6),
+(8, 'Tuki Team', 1, 1, 5);
 
 --
 -- Disparadores `equipo`
@@ -232,11 +253,30 @@ CREATE TABLE `liga` (
 --
 
 INSERT INTO `liga` (`id`, `descripcion`, `cantidad_equipo`, `id_juego`) VALUES
-(1, 'LIGA DE LOS MUCAS', 0, 1),
-(2, 'LIGA DE LOL', 1, 1),
-(3, 'LIGA DE Apex', 1, 2),
+(1, 'LIGA DE LOS MUCAS', 8, 1),
+(2, 'LIGA DE LOL', 0, 1),
+(3, 'LIGA DE Apex', 0, 2),
 (4, 'LIGA DE Brazukas', 0, 3),
 (5, 'LIGA DE Pelota', 0, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `localidad`
+--
+
+CREATE TABLE `localidad` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `localidad`
+--
+
+INSERT INTO `localidad` (`id`, `descripcion`) VALUES
+(1, 'Local'),
+(2, 'Visitante');
 
 -- --------------------------------------------------------
 
@@ -291,12 +331,12 @@ INSERT INTO `perfil_jugador` (`id`, `nombre`, `apellido`, `correo`, `habilidad`,
 (1, 'Admin', '', 'Admin@admin.cl', 'Banear', 2, 'admin'),
 (5, 'Francisco', 'Juillet', 'panshoots11@gmail.com', 'Jugador bueno para banear a la gente', 3, 'panshoots'),
 (6, 'Jorge', 'Quintui', 'jorge@gmail.com', 'Trolear al Ãºltimo minuto', 1, 'x4leqxinn'),
-(7, 'JoaquÃ­n', 'Reyes', 'joaco@gmail.com', 'Experto en mainear Teemo', 1, 'Teemo123'),
 (8, 'JoaquÃ­n', 'Reyes', 'joaco@gmail.com', 'Experto en mainear Teemo', 1, 'MainTeemo'),
 (9, 'SebastiÃ¡n', 'Rojas', 'seba@gmail.com', 'Experto en usar Yasuo', 1, 'yasuolover'),
 (10, 'JosÃ©', 'Luis', 'jose@gmail.com', 'Ninguna por el momento', 1, 'Joshelui'),
 (11, 'Tomas', 'Campos', 'tomasito@gmail.com', 'Experto en el counter', 1, 'tomasito11'),
-(12, 'Piperuano', 'Torres', 'peruano@gmail.com', 'Comer palomitas', 1, 'PeruanoMain');
+(12, 'Piperuano', 'Torres', 'peruano@gmail.com', 'Comer palomitas', 1, 'PeruanoMain'),
+(13, 'Fabrizio', 'Copano', 'fab.co@gmail.com', 'Comediante', 1, 'fabiiioCop');
 
 -- --------------------------------------------------------
 
@@ -375,11 +415,11 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`usuario`, `contrasenia`, `id_tipo`) VALUES
 ('admin', 'admin', 1),
+('fabiiioCop', 'fabiiioCop', 2),
 ('Joshelui', 'Joshelui', 2),
 ('MainTeemo', 'MainTeemo', 2),
 ('panshoots', 'panshoots', 2),
 ('PeruanoMain', 'PeruanoMain', 2),
-('Teemo123', 'Teemo123', 2),
 ('tomasito11', 'tomasito11', 2),
 ('x4leqxinn', 'x4leqxinn', 2),
 ('yasuolover', 'yasuolover', 2);
@@ -425,7 +465,8 @@ ALTER TABLE `detalle_partido`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_equipo` (`id_equipo`),
   ADD KEY `id_resultado` (`id_resultado`),
-  ADD KEY `id_partido` (`id_partido`);
+  ADD KEY `id_partido` (`id_partido`),
+  ADD KEY `id_localidad` (`id_localidad`);
 
 --
 -- Indices de la tabla `equipo`
@@ -462,6 +503,12 @@ ALTER TABLE `incripcion`
 ALTER TABLE `liga`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_juego` (`id_juego`);
+
+--
+-- Indices de la tabla `localidad`
+--
+ALTER TABLE `localidad`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `partido`
@@ -524,13 +571,13 @@ ALTER TABLE `detalle_equipo`
 -- AUTO_INCREMENT de la tabla `detalle_partido`
 --
 ALTER TABLE `detalle_partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_solicitud`
@@ -557,6 +604,12 @@ ALTER TABLE `liga`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `localidad`
+--
+ALTER TABLE `localidad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `partido`
 --
 ALTER TABLE `partido`
@@ -566,7 +619,7 @@ ALTER TABLE `partido`
 -- AUTO_INCREMENT de la tabla `perfil_jugador`
 --
 ALTER TABLE `perfil_jugador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `resultado`
@@ -609,7 +662,8 @@ ALTER TABLE `detalle_equipo`
 ALTER TABLE `detalle_partido`
   ADD CONSTRAINT `detalle_partido_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id`),
   ADD CONSTRAINT `detalle_partido_ibfk_2` FOREIGN KEY (`id_resultado`) REFERENCES `resultado` (`id`),
-  ADD CONSTRAINT `detalle_partido_ibfk_3` FOREIGN KEY (`id_partido`) REFERENCES `partido` (`id`);
+  ADD CONSTRAINT `detalle_partido_ibfk_3` FOREIGN KEY (`id_partido`) REFERENCES `partido` (`id`),
+  ADD CONSTRAINT `detalle_partido_ibfk_4` FOREIGN KEY (`id_localidad`) REFERENCES `localidad` (`id`);
 
 --
 -- Filtros para la tabla `equipo`

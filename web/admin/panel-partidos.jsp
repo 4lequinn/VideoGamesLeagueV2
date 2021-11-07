@@ -27,6 +27,15 @@
     INNER JOIN FASE f 
     ON p.id_fase = f.id
 </sql:query>
+<!-- Recorrer los detalles -->
+<sql:query dataSource="${dataSource}" var="listaDetalle">
+    select concat(p.id) as id_partido,
+    COUNT(dp.id) as id_detalle 
+    from partido p
+    LEFT JOIN detalle_partido dp
+    ON p.id = dp.id_partido
+    GROUP BY concat(p.id)
+</sql:query>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -81,8 +90,18 @@
                                 <span class="action_btn ">
                                     <a href="../ControladorPartido?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
                                     <a onclick="eliminarPartido('${x.id}')" class="btn btn-danger material-icons ">delete</a>
-                                    <a href="../ControladorPartido?partidoID=${x.id}" class="btn btn-warning material-icons ">groups</a>
-                                    <a href="../ControladorPartido?id_partido=${x.id}" class="btn btn-warning material-icons ">gamepad</a>
+                                    <c:forEach var="y" items="${listaDetalle.rows}">
+                                        <c:if test="${x.id == y.id_partido}">
+                                            <c:choose>
+                                                <c:when test="${y.id_detalle == 0}"> <!-- Si no tiene detalle que permita agregarle uno -->
+                                                    <a href="../ControladorPartido?partidoID=${x.id}" class="btn btn-warning material-icons ">groups</a>
+                                                </c:when>    
+                                                <c:otherwise> <!-- Si tiene un detalle, que se pueda elegir un ganador del encuentro -->
+                                                    <a href="../ControladorPartido?id_partido=${x.id}" class="btn btn-warning material-icons ">gamepad</a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:if>
+                                    </c:forEach>
                                 </span>
                             </td>
                     </tbody>
