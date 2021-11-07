@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2021 a las 01:57:57
+-- Tiempo de generación: 07-11-2021 a las 07:30:16
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -86,20 +86,6 @@ CREATE TABLE `detalle_partido` (
   `id_localidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `detalle_partido`
---
-
-INSERT INTO `detalle_partido` (`id`, `id_equipo`, `id_resultado`, `id_partido`, `id_localidad`) VALUES
-(1, 1, 2, 1, 1),
-(2, 2, 3, 1, 2),
-(3, 3, 3, 2, 1),
-(4, 4, 2, 2, 2),
-(5, 5, 1, 3, 1),
-(6, 6, 1, 3, 2),
-(9, 7, 1, 4, 1),
-(10, 8, 1, 4, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -121,8 +107,8 @@ CREATE TABLE `equipo` (
 INSERT INTO `equipo` (`id`, `nombre`, `cantidad_jugador`, `id_liga`, `id_perfil`) VALUES
 (1, 'Colo Colo', 1, 1, 8),
 (2, 'Santiago Wanderers', 1, 1, 13),
-(3, '10 + 1', 1, 1, 10),
-(4, 'Pen', 1, 1, 12),
+(3, 'Santiago Warder', 1, 1, 10),
+(4, 'calo calo', 1, 1, 12),
 (5, 'Team Queso', 1, 1, 9),
 (6, 'Macacos', 1, 1, 11),
 (7, 'Sin Skill', 1, 1, 6),
@@ -201,11 +187,10 @@ CREATE TABLE `fase` (
 --
 
 INSERT INTO `fase` (`id`, `descripcion`) VALUES
-(1, '8vos de Final'),
-(2, '4tos de Final'),
-(3, 'Semifinal'),
-(4, 'Tercer y Cuarto'),
-(5, 'Final');
+(1, '4tos de Final'),
+(2, 'Semifinal'),
+(3, 'Tercer y Cuarto'),
+(4, 'Final');
 
 -- --------------------------------------------------------
 
@@ -292,20 +277,6 @@ CREATE TABLE `partido` (
   `id_fase` int(11) NOT NULL,
   `id_liga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `partido`
---
-
-INSERT INTO `partido` (`id`, `fecha`, `hora_inicio`, `hora_termino`, `id_fase`, `id_liga`) VALUES
-(1, '08/11/2021', '17:00', '18:00', 2, 1),
-(2, '08/11/2021', '17:00', '18:00', 2, 1),
-(3, '09/11/2021', '17:00', '18:00', 2, 1),
-(4, '09/11/2021', '17:00', '18:00', 2, 1),
-(5, '14/11/2021', '17:00', '18:00', 3, 1),
-(6, '15/11/2021', '17:00', '18:00', 3, 1),
-(7, '20/11/2021', '17:00', '18:00', 4, 1),
-(8, '21/11/2021', '17:00', '18:00', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -571,7 +542,7 @@ ALTER TABLE `detalle_equipo`
 -- AUTO_INCREMENT de la tabla `detalle_partido`
 --
 ALTER TABLE `detalle_partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
@@ -613,7 +584,7 @@ ALTER TABLE `localidad`
 -- AUTO_INCREMENT de la tabla `partido`
 --
 ALTER TABLE `partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil_jugador`
