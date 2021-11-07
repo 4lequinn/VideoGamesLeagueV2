@@ -38,10 +38,6 @@
                     <li class="nav-crud__item">
                         <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../equipo/agregar-equipo.jsp"><span class="material-icons nav-crud__item-icon">add</span>Agregar</a>
                     </li>
-                    <li class="nav-crud__item">
-                        <input class="nav-crud__item-text" type="text" placeholder="Ingrese un ID">
-                        <a class="nav-crud__item-link nav-crud__item-link-search btn-warning" href=""><span class="nav-crud__item-icon material-icons">search</span></a>
-                    </li>
                 </ul>
             </nav>
 

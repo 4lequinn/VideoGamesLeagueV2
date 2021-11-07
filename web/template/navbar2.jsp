@@ -73,7 +73,7 @@
                             <span class="tooltip">Crear Equipo</span>
                         </li>
                         <li>
-                            <a href="../equipo/modificar-equipo.jsp">
+                            <a href="../equipo/mostrar-equipos.jsp">
                                 <i class='bx bxs-group'></i>
                                 <span class="links_name">Modificar Equipo</span>
                             </a>

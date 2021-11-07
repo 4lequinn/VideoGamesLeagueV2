@@ -37,10 +37,6 @@
                 <li class="nav-crud__item">
                     <a class="nav-crud__item-link nav-crud__item-link-add btn btn-success" href="../index.jsp"><span class="material-icons nav-crud__item-icon">exit_to_app</span>Volver</a>
                 </li>
-                <li class="nav-crud__item">
-                    <input class="nav-crud__item-text" type="text" placeholder="Ingrese un ID">
-                    <a class="nav-crud__item-link nav-crud__item-link-search btn-warning" href=""><span class="nav-crud__item-icon material-icons">search</span></a>
-                </li>
             </ul>
         </nav>
 
