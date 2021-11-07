@@ -64,7 +64,7 @@
                             <td>${x.descripcion}</td>
                             <td>${x.nombre}</td>
                             <td>${x.cantidad_equipo}</td>
-                            <td>${16 - x.cantidad_equipo}</td>
+                            <td>${8 - x.cantidad_equipo}</td>
                             <td>
                                 <span class="action_btn ">
                                     <a href="../ControladorLiga?id=${x.id}" class="btn btn-primary material-icons" data-toggle="tooltip" data-placement="top" title="Editar" >edit</a>

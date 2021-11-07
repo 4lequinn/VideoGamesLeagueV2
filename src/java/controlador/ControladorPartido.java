@@ -48,6 +48,8 @@ public class ControladorPartido extends HttpServlet {
             CrearPartido(request, response);
         } else if (opcion.equalsIgnoreCase("AgregarEquipos")) {
             agregarEquipo(request, response);
+        }else if(opcion.equalsIgnoreCase("ModificarPartido")){
+            modificarPartido(request, response);
         }
 
     }
@@ -70,6 +72,31 @@ public class ControladorPartido extends HttpServlet {
             request.getSession().setAttribute("msErrorRegistrarP", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("partido/agregar-partido.jsp");
+        }
+
+    }
+
+    protected void modificarPartido(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int partidoID = Integer.parseInt(request.getParameter("txtPartidoID"));
+            Partido partido = partidoFacade.buscar(partidoID);
+            Fase tipoFase = new Fase(Integer.parseInt(request.getParameter("cboFase")));
+            Liga tipoLiga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
+            partido.setFecha(request.getParameter("fecha"));
+            partido.setHoraInicio(request.getParameter("hora_inicio"));
+            partido.setHoraTermino(request.getParameter("hora_termino"));
+            partido.setIdFase(tipoFase);
+            partido.setIdLiga(tipoLiga);
+            if (partidoFacade.modificar(partido)) {
+                request.getSession().setAttribute("msOKModificarP", "Partido creado correctamente");
+            } else {
+                request.getSession().setAttribute("msNOModificarP", "El partido no se ha podido crear");
+            }
+        } catch (Exception e) {
+            request.getSession().setAttribute("msNOModificarP", "Error:" + e.getMessage());
+        } finally {
+            response.sendRedirect("partido/modificar-partido.jsp");
         }
 
     }
@@ -103,6 +130,19 @@ public class ControladorPartido extends HttpServlet {
             System.out.println("ERROR " + e.getMessage());
         } finally {
             response.sendRedirect("partido/elegir-ganador.jsp");
+        }
+    }
+    
+        protected void cargarPartido3(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Partido partido = partidoFacade.buscar(id);
+            request.getSession().setAttribute("partidoMod", partido);
+        } catch (Exception e) {
+            System.out.println("ERROR " + e.getMessage());
+        } finally {
+            response.sendRedirect("partido/modificar-partido.jsp");
         }
     }
 
@@ -204,7 +244,7 @@ public class ControladorPartido extends HttpServlet {
         if (eliminarID != null) {
             eliminarPartido(request, response);
         } else if (modificarID != null) {
-
+            cargarPartido3(request, response);
         } else if (detalleID != null) {
             cargarPartido(request, response);
         } else if (eleccion != null) {
