@@ -55,7 +55,7 @@ public class ControladorEquipo extends HttpServlet {
             eliminarEquipo(request, response);
         }
         if (opcion.equals("ModificarEquipo")) {
-            modificarEquipo(request, response);
+            modificarEquipoUsuario(request, response);
         }
         
     }
@@ -101,6 +101,26 @@ public class ControladorEquipo extends HttpServlet {
             request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
         } finally {
             response.sendRedirect("admin/panel-equipos.jsp");
+        }
+    }
+    
+        protected void modificarEquipoUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            Equipo equipo = equipoFacade.buscar(Integer.parseInt(request.getParameter("txtID")));
+            equipo.setNombre(request.getParameter("nombre"));
+            Liga liga = new Liga(Integer.parseInt(request.getParameter("cboLiga")));
+            equipo.setIdLiga(liga);
+            if (equipoFacade.modificar(equipo)) {
+                request.getSession().setAttribute("msOKRegistrarU", "Equipo modificado correctamente");
+            } else {
+                request.getSession().setAttribute("msNORegistrarU", "El equipo no se ha podido modificar");
+            }
+
+        } catch (Exception e) {
+            request.getSession().setAttribute("msErrorRegistrarU", "Error:" + e.getMessage());
+        } finally {
+            response.sendRedirect("equipo/mostrar-equipos.jsp");
         }
     }
     
@@ -220,6 +240,7 @@ public class ControladorEquipo extends HttpServlet {
         String incripcionIDAceptar = request.getParameter("cambiarEstadoAceptado");
         String incripcionIDRechazar = request.getParameter("cambiarEstadoRechazado");
         String id = request.getParameter("id");
+        String equipoIDmostrar = request.getParameter("id");
         if (equipoID != null) {
             eliminarEquipo(request, response);
         }else if (id != null) {
@@ -230,6 +251,8 @@ public class ControladorEquipo extends HttpServlet {
             aceptar(request, response);
         }else if (incripcionIDRechazar != null) {
             rechazar(request, response);
+        }else if(equipoIDmostrar !=null){
+            cargarDatosModificar(request, response);
         }
         
     }

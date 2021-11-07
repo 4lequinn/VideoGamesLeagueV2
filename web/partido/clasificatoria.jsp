@@ -180,11 +180,11 @@
                                                 <th>Score</th>
                                             </tr>
                                         </thead>  
-                                        <c:forEach var="y" items="${listaEquiposSemifinal.rows}">
-                                            <c:if test="${y.id_partido == x.id}">
-                                                <c:choose>
-                                                    <c:when test="${y.id_localidad == 1}">
-                                                        <tbody class="tournament-bracket__content">
+                                        <tbody class="tournament-bracket__content">
+                                            <c:forEach var="y" items="${listaEquiposSemifinal.rows}">
+                                                <c:if test="${y.id_partido == x.id}">
+                                                    <c:choose>
+                                                        <c:when test="${y.id_localidad == 1}">
                                                             <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
                                                                     <abbr class="tournament-bracket__code">${y.nombre}</abbr>
@@ -196,7 +196,7 @@
                                                             </tr>
                                                         </c:when>    
                                                         <c:otherwise>
-                                                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                                                            <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
                                                                     <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-cz" aria-label="Flag"></span>
@@ -205,11 +205,11 @@
                                                                     <span class="tournament-bracket__number">${y.estado_partido}</span>
                                                                 </td>
                                                             </tr>
-                                                        </tbody>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:if>
-                                        </c:forEach>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:if>
+                                            </c:forEach>
+                                        </tbody>
                                     </table>
                                 </div>
                             </li>
@@ -240,7 +240,7 @@
                                                 <c:choose>
                                                     <c:when test="${y.id_localidad == 1}">
                                                         <tbody class="tournament-bracket__content">
-                                                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                                                            <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
                                                                     <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-fi" aria-label="Flag"></span>
@@ -296,7 +296,7 @@
                                                 <c:choose>
                                                     <c:when test="${y.id_localidad == 1}">
                                                         <tbody class="tournament-bracket__content">
-                                                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                                                            <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
                                                                     <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-cz" aria-label="Flag"></span>
