@@ -3,6 +3,12 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
+<sql:query dataSource="${dataSource}" var="dataLiga">
+    SELECT DISTINCT  p.id, p.fecha, p.hora_inicio, p.hora_termino, l.descripcion
+    FROM partido p join liga l on l.id=p.id_liga
+    WHERE id_fase = 2 and id_liga = 1
+    group by l.descripcion;
+</sql:query>
     <!-- 4tos de Final  DATA -->
 <sql:query dataSource="${dataSource}" var="listaPartidos4toFinal">
     SELECT id, fecha, hora_inicio, hora_termino
@@ -95,7 +101,7 @@
 <html>
 
     <head>
-        <title>Inicio</title>
+        <title>Clasificatoria</title>
         <link rel="stylesheet" type="text/css" href="../theme/css/partido/clasificatoria.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.css">
@@ -108,19 +114,20 @@
     <body style="overflow: scroll">
         <div class="container">
             <h1>Video Juego</h1>
-            <h2>[Liga correspondiente]</h2>
+            <c:forEach var="x" items="${dataLiga.rows}">
+                <h2>${x.descripcion}</h2>
+            </c:forEach>
             <div class="tournament-bracket tournament-bracket--rounded">                                                     
                 <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
-                    <h3 class="tournament-bracket__round-title">Cuartos de Final</h3>
+                    <h3 class="tournament-bracket__round-title mt-5">Cuartos de Final</h3>
                     <ul class="tournament-bracket__list">
-
                         <!-- Item  4tos de Final -->
                         <c:forEach var="x" items="${listaPartidos4toFinal.rows}">
                             <li class="tournament-bracket__item">
                                 <div class="tournament-bracket__match" tabindex="0">
                                     <table class="tournament-bracket__table">
                                         <caption class="tournament-bracket__caption">
-                                            <time datetime="1998-02-18">${x.fecha} - (${x.hora_inicio} - ${x.hora_termino})</time>
+                                            <time>${x.fecha} - (${x.hora_inicio} - ${x.hora_termino})</time>
                                         </caption>
                                         <thead class="sr-only">
                                             <tr>
@@ -135,8 +142,7 @@
                                                         <c:when test="${y.id_localidad == 1}">
                                                             <tr class="tournament-bracket__team"> <!-- tournament-bracket__team--winner -->
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Canada">${y.nombre}</abbr>
-                                                                    <span class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag"></span>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
                                                                     <span class="tournament-bracket__number">${y.estado_partido}</span>
@@ -146,8 +152,8 @@
                                                         <c:otherwise>
                                                             <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Kazakhstan">${y.nombre}</abbr>
-                                                                    <span class="tournament-bracket__flag flag-icon flag-icon-kz" aria-label="Flag"></span>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
+
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
                                                                     <span class="tournament-bracket__number">${y.estado_partido}</span>
@@ -162,11 +168,12 @@
                                 </div>
                             </li>
                         </c:forEach>
+                        </tbody>  
                     </ul>
                 </div>
 
                 <div class="tournament-bracket__round tournament-bracket__round--semifinals">
-                    <h3 class="tournament-bracket__round-title">Semi Final</h3>
+                    <h3 class="tournament-bracket__round-title mt-5">Semi Final</h3>
                     <ul class="tournament-bracket__list">
                         <!-- Item  -->
                         <c:forEach var="x" items="${listaPartidosSemifinal.rows}">
@@ -189,7 +196,7 @@
                                                         <tbody class="tournament-bracket__content">
                                                             <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Canada">${y.nombre}</abbr>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
@@ -200,7 +207,7 @@
                                                         <c:otherwise>
                                                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Czech Republic">${y.nombre}</abbr>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-cz" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
@@ -220,7 +227,7 @@
                 </div>
 
                 <div class="tournament-bracket__round tournament-bracket__round--bronze">
-                    <h3 class="tournament-bracket__round-title">Tercer y Cuarto Lugar</h3>
+                    <h3 class="tournament-bracket__round-title mt-5">Tercer y Cuarto Lugar</h3>
                     <ul class="tournament-bracket__list">
 
                         <!-- Item Tercer y Cuarto Lugar -->
@@ -244,7 +251,7 @@
                                                         <tbody class="tournament-bracket__content">
                                                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Finland">${y.nombre}</abbr>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-fi" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
@@ -256,7 +263,7 @@
                                                         <c:otherwise>
                                                             <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Canada">${y.nombre}</abbr>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
@@ -276,7 +283,7 @@
                 </div>
 
                 <div class="tournament-bracket__round tournament-bracket__round--gold">
-                    <h3 class="tournament-bracket__round-title">Final</h3>
+                    <h3 class="tournament-bracket__round-title mt-5">Final</h3>
                     <ul class="tournament-bracket__list">
 
                         <!-- Item Final -->
@@ -300,7 +307,7 @@
                                                         <tbody class="tournament-bracket__content">
                                                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Czech Republic">${y.nombre}</abbr>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-cz" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
@@ -312,7 +319,7 @@
                                                         <c:otherwise>
                                                             <tr class="tournament-bracket__team">
                                                                 <td class="tournament-bracket__country">
-                                                                    <abbr class="tournament-bracket__code" title="Russia">${y.nombre}</abbr>
+                                                                    <abbr class="tournament-bracket__code">${y.nombre}</abbr>
                                                                     <span class="tournament-bracket__flag flag-icon flag-icon-ru" aria-label="Flag"></span>
                                                                 </td>
                                                                 <td class="tournament-bracket__score">
@@ -336,7 +343,6 @@
             </div>
 
         </div>
-
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.pkgd.min.js"></script>
 
         <%@include file="../includes/scripts/navbar-script.jsp" %>

@@ -30,7 +30,7 @@
             <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         </head>
     <jsp:include page="../template/navbar2.jsp"></jsp:include>
-        <body>
+    <body style="overflow: scroll ">
             <h1 class="title">¡Únete! ¿Qué esperas?</h1>
             <div class="container">
             <c:forEach var="x" items="${listaEquipos.rows}">

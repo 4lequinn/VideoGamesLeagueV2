@@ -112,9 +112,9 @@ public class ControladorEquipo extends HttpServlet {
             EstadoSolicitud estado = new EstadoSolicitud(3);
             incripcion.setIdEstado(estado);
             if (inscripcionFacade.modificar(incripcion)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Inscripción modificada correctamente");
+                request.getSession().setAttribute("msOKRegistrarU", "Se aceptado la solicitud");
             }  else {
-                request.getSession().setAttribute("msNORegistrarU", "No se ha podido modificar inscripción");
+                request.getSession().setAttribute("msNORegistrarU", "No se ha podido aceptado la solicitud");
             }
         } catch (Exception e) {
             //Error
@@ -133,9 +133,9 @@ public class ControladorEquipo extends HttpServlet {
             EstadoSolicitud estado = new EstadoSolicitud(2);
             incripcion.setIdEstado(estado);
             if (inscripcionFacade.modificar(incripcion)) {
-                request.getSession().setAttribute("msOKRegistrarU", "Inscripción modificada correctamente");
+                request.getSession().setAttribute("msOKRegistrarU", "Se rechazado la solicitud");
             }  else {
-                request.getSession().setAttribute("msNORegistrarU", "No se ha podido modificar inscripción");
+                request.getSession().setAttribute("msNORegistrarU", "No se ha rechazado la solicitud");
             }
         } catch (Exception e) {
             //Error
@@ -170,10 +170,10 @@ public class ControladorEquipo extends HttpServlet {
             //Buscamos por ID y eliminamos
             if (equipoFacade.eliminar(equipoFacade.buscar(equipoID))) {
                 //Mensaje SUCCESS
-                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+                request.getSession().setAttribute("msjErrorEliminar", "Se ha eliminado el equipo");
             } else {
                 //Mensaje de error
-                request.getSession().setAttribute("msjErrorEliminar", "Errorsito");
+                request.getSession().setAttribute("msjErrorEliminar", "No se ha podido eliminado el equipo");
             }
         } catch (Exception e) {
             //Error

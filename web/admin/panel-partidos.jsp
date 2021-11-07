@@ -42,7 +42,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Equipos</title>
+        <title>Admin Partidos</title>
         <link rel="stylesheet" href="../theme/css/equipo/panel-equipos-admin.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- Iconos de Material Desing Google-->
@@ -88,16 +88,16 @@
                             <td>${x.liga }</td>
                             <td>
                                 <span class="action_btn ">
-                                    <a href="../ControladorPartido?id=${x.id}"  class="btn btn-primary material-icons ">edit</a>
-                                    <a onclick="eliminarPartido('${x.id}')" class="btn btn-danger material-icons ">delete</a>
+                                    <a href="../ControladorPartido?id=${x.id}"  data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary material-icons ">edit</a>
+                                    <a onclick="eliminarPartido('${x.id}')" data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger material-icons ">delete</a>
                                     <c:forEach var="y" items="${listaDetalle.rows}">
                                         <c:if test="${x.id == y.id_partido}">
                                             <c:choose>
                                                 <c:when test="${y.id_detalle == 0}"> <!-- Si no tiene detalle que permita agregarle uno -->
-                                                    <a href="../ControladorPartido?partidoID=${x.id}" class="btn btn-warning material-icons ">groups</a>
+                                                    <a href="../ControladorPartido?partidoID=${x.id}" data-toggle="tooltip" data-placement="top" title="Grupos" class="btn btn-warning material-icons ">groups</a>
                                                 </c:when>    
                                                 <c:otherwise> <!-- Si tiene un detalle, que se pueda elegir un ganador del encuentro -->
-                                                    <a href="../ControladorPartido?id_partido=${x.id}" class="btn btn-warning material-icons ">gamepad</a>
+                                                    <a href="../ControladorPartido?id_partido=${x.id}" data-toggle="tooltip" data-placement="top" title="Ganador" class="btn btn-warning material-icons ">gamepad</a>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
