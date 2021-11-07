@@ -26,7 +26,7 @@
             <div class="inner">
                 <h3 class="subtitle">MOBA BATTLE ARENA</h3>
                 <h2 class="title">League of Legends</h2>
-                <a href="equipo/panel-equipos.jsp" class="btn">Ver Más</a>
+                <a href="liga/panel-ligas.jsp" class="btn">Ver Más</a>
             </div>
         </div>
 
@@ -35,7 +35,7 @@
             <div class="inner">
                 <h3 class="subtitle">SHOOTER</h3>
                 <h2 class="title">Counter Strike Global Offensive</h2>
-                <a href="equipo/panel-equipos.jsp" class="btn">Ver Más</a>
+                <a href="liga/panel-ligas.jsp" class="btn">Ver Más</a>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
             <div class="inner">
                 <h3 class="subtitle">EA SPORTS</h3>
                 <h2 class="title">FIFA 22</h2>
-                <a href="equipo/panel-equipos.jsp" class="btn">Ver Más</a>
+                <a href="liga/panel-ligas.jsp" class="btn">Ver Más</a>
             </div>
         </div>
     </div>

@@ -3,17 +3,11 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- Establecemos la conexión a la BD -->
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/liga_videojuegos?zeroDateTimeBehavior=convertToNull" user="muca" password="admin"></sql:setDataSource>
-<sql:query dataSource="${dataSource}" var="dataLiga">
-    SELECT DISTINCT  p.id, p.fecha, p.hora_inicio, p.hora_termino, l.descripcion
-    FROM partido p join liga l on l.id=p.id_liga
-    WHERE id_fase = 2 and id_liga = 1
-    group by l.descripcion;
-</sql:query>
     <!-- 4tos de Final  DATA -->
 <sql:query dataSource="${dataSource}" var="listaPartidos4toFinal">
     SELECT id, fecha, hora_inicio, hora_termino
     FROM partido
-    WHERE id_fase = 2 and id_liga = 1;
+    WHERE id_fase = 1 and id_liga = '${clasificatoria.id}';
 </sql:query>
 <sql:query dataSource="${dataSource}" var="listaEquipos4toFinal">
     SELECT id_partido, dp.id_equipo, 
@@ -28,14 +22,14 @@
     ON dp.id_equipo = e.id
     INNER JOIN resultado r
     ON r.id = dp.id_resultado
-    where p.id_fase = 2 and p.id_liga = 1;
+    where p.id_fase = 1 and p.id_liga = '${clasificatoria.id}';
 </sql:query>
 
 <!-- Semi Final DATA -->
 <sql:query dataSource="${dataSource}" var="listaPartidosSemifinal">
     SELECT id, fecha, hora_inicio, hora_termino
     FROM partido
-    WHERE id_fase = 3 and id_liga = 1;
+    WHERE id_fase = 2 and id_liga = '${clasificatoria.id}';
 </sql:query>
 <sql:query dataSource="${dataSource}" var="listaEquiposSemifinal">
     SELECT id_partido, dp.id_equipo, 
@@ -50,14 +44,14 @@
     ON dp.id_equipo = e.id
     INNER JOIN resultado r
     ON r.id = dp.id_resultado
-    where p.id_fase = 3 and p.id_liga = 1;
+    where p.id_fase = 2 and p.id_liga = '${clasificatoria.id}';
 </sql:query>
 
 <!-- 3er y Cuarto Lugar DATA -->
 <sql:query dataSource="${dataSource}" var="listaPartidosTercerCuarto">
     SELECT id, fecha, hora_inicio, hora_termino
     FROM partido
-    WHERE id_fase = 4 and id_liga = 1;
+    WHERE id_fase = 3 and id_liga = '${clasificatoria.id}';
 </sql:query>
 <sql:query dataSource="${dataSource}" var="listaEquiposTercerCuarto">
     SELECT id_partido, dp.id_equipo, 
@@ -72,14 +66,14 @@
     ON dp.id_equipo = e.id
     INNER JOIN resultado r
     ON r.id = dp.id_resultado
-    where p.id_fase = 4 and p.id_liga = 1;
+    where p.id_fase = 3 and p.id_liga = '${clasificatoria.id}';
 </sql:query>
 
 <!-- Final DATA -->
 <sql:query dataSource="${dataSource}" var="listaPartidosFinal">
     SELECT id, fecha, hora_inicio, hora_termino
     FROM partido
-    WHERE id_fase = 5 and id_liga = 1;
+    WHERE id_fase = 4 and id_liga = '${clasificatoria.id}';
 </sql:query>
 <sql:query dataSource="${dataSource}" var="listaEquiposFinal">
     SELECT id_partido, dp.id_equipo, 
@@ -94,12 +88,11 @@
     ON dp.id_equipo = e.id
     INNER JOIN resultado r
     ON r.id = dp.id_resultado
-    where p.id_fase = 5 and p.id_liga = 1;
+    where p.id_fase = 4 and p.id_liga = '${clasificatoria.id}';
 </sql:query>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>Clasificatoria</title>
         <link rel="stylesheet" type="text/css" href="../theme/css/partido/clasificatoria.css">
@@ -113,10 +106,8 @@
     <%@include file="../template/navbar2.jsp" %>
     <body style="overflow: scroll">
         <div class="container">
-            <h1>Video Juego</h1>
-            <c:forEach var="x" items="${dataLiga.rows}">
-                <h2>${x.descripcion}</h2>
-            </c:forEach>
+            <h1>${clasificatoria.idJuego.nombre}</h1>
+            <h2>${clasificatoria.descripcion}</h2>
             <div class="tournament-bracket tournament-bracket--rounded">                                                     
                 <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title mt-5">Cuartos de Final</h3>

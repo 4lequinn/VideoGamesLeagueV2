@@ -37,7 +37,7 @@
     ON e.id = dp.id_equipo
     left JOIN partido p
     on dp.id_partido = p.id
-    where id_fase = 2 and dp.id_resultado = 2 and p.id_liga = '${partido.idLiga.id}';
+    where id_fase = 2 and dp.id_resultado = 3 and p.id_liga = '${partido.idLiga.id}';
 </sql:query>
 <sql:query dataSource="${dataSource}" var="listaEquipoFinal">
     SELECT e.id, e.nombre FROM EQUIPO e

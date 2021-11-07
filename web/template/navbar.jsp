@@ -38,7 +38,7 @@
                             <span class="tooltip">Inicio</span>
                         </li>
                         <li>
-                            <a href="partido/clasificatoria.jsp">
+                            <a href="partido/seleccionar-liga.jsp">
                                 <i class='bx bx-layer'></i>
                                 <span class="links_name">Clasificatoria</span>
                             </a>
@@ -110,7 +110,7 @@
                             <span class="tooltip">Inicio</span>
                         </li>
                         <li>
-                            <a href="partido/clasificatoria.jsp">
+                            <a href="partido/seleccionar-liga.jsp">
                                 <i class='bx bx-layer'></i>
                                 <span class="links_name">Clasificatoria</span>
                             </a>
@@ -190,7 +190,7 @@
                             <span class="tooltip">Liga</span>
                         </li>
                         <li>
-                            <a href="partido/clasificatoria.jsp">
+                            <a href="partido/seleccionar-liga.jsp">
                                 <i class='bx bx-layer'></i>
                                 <span class="links_name">Clasificatoria</span>
                             </a>

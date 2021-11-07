@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2021 a las 07:34:09
+-- Tiempo de generación: 07-11-2021 a las 21:09:09
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -277,6 +277,64 @@ CREATE TABLE `partido` (
   `id_fase` int(11) NOT NULL,
   `id_liga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `partido`
+--
+
+INSERT INTO `partido` (`id`, `fecha`, `hora_inicio`, `hora_termino`, `id_fase`, `id_liga`) VALUES
+(24, '2021-11-07', '17:34', '18:34', 1, 1),
+(25, '2021-11-06', '16:51', '19:49', 1, 1),
+(26, '2021-11-20', '18:49', '16:52', 1, 1),
+(27, '2021-11-17', '17:49', '19:50', 1, 1),
+(28, '2021-11-12', '17:08', '19:06', 2, 1),
+(29, '2021-11-12', '20:06', '20:06', 2, 1),
+(30, '2021-11-16', '19:07', '19:07', 3, 1),
+(31, '2021-11-05', '17:10', '20:08', 4, 1);
+
+--
+-- Disparadores `partido`
+--
+DELIMITER $$
+CREATE TRIGGER `TRG_VALIDAR_PARTIDOS_CUARTOS` BEFORE INSERT ON `partido` FOR EACH ROW BEGIN
+    declare v_cantidad int;
+	SELECT count(id_fase) into v_cantidad from partido where id_fase = 1 and id_liga = new.id_liga;
+    IF v_cantidad = 4 AND new.id_fase = 1 THEN
+		SIGNAL SQLSTATE '45200' SET MESSAGE_TEXT = 'ERROR no se pueden crear mas de 4 partidos de 4tos de final en una liga';
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `TRG_VALIDAR_PARTIDOS_FINAL` BEFORE INSERT ON `partido` FOR EACH ROW BEGIN
+    declare v_cantidad int;
+	SELECT count(id_fase) into v_cantidad from partido where id_fase = 4 and id_liga = new.id_liga;
+    IF v_cantidad = 1 AND new.id_fase = 4 THEN
+		SIGNAL SQLSTATE '45203' SET MESSAGE_TEXT = 'ERROR no se pueden crear mas de 1 partido de final en una liga';
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `TRG_VALIDAR_PARTIDOS_SEMIS` BEFORE INSERT ON `partido` FOR EACH ROW BEGIN
+    declare v_cantidad int;
+	SELECT count(id_fase) into v_cantidad from partido where id_fase = 2 and id_liga = new.id_liga;
+    IF v_cantidad = 2 AND new.id_fase = 2 THEN
+		SIGNAL SQLSTATE '45201' SET MESSAGE_TEXT = 'ERROR no se pueden crear mas de 2 partidos de Semifinal en una liga';
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `TRG_VALIDAR_PARTIDOS_TERCERCUARTO` BEFORE INSERT ON `partido` FOR EACH ROW BEGIN
+    declare v_cantidad int;
+	SELECT count(id_fase) into v_cantidad from partido where id_fase = 3 and id_liga = new.id_liga;
+    IF v_cantidad = 1 AND new.id_fase = 3 THEN
+		SIGNAL SQLSTATE '45202' SET MESSAGE_TEXT = 'ERROR no se pueden crear mas de 1 partido de tercer y cuarto lugar en una liga';
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -584,7 +642,7 @@ ALTER TABLE `localidad`
 -- AUTO_INCREMENT de la tabla `partido`
 --
 ALTER TABLE `partido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil_jugador`

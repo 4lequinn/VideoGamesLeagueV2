@@ -23,7 +23,7 @@ public class ControladorLiga extends HttpServlet {
 
     @EJB
     private LigaFacade ligaFacade;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
@@ -115,16 +115,31 @@ public class ControladorLiga extends HttpServlet {
         }
     }
 
+    protected void clasificatoria(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+           int ligaID = Integer.parseInt(request.getParameter("clasificatoria"));
+           Liga liga =  ligaFacade.buscar(ligaID);
+           request.getSession().setAttribute("clasificatoria", liga);
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }finally{
+            response.sendRedirect("partido/clasificatoria.jsp");
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String ligaID = request.getParameter("eliminarLiga");
         String id = request.getParameter("id"); // Modificar
+        String clasificatoria = request.getParameter("clasificatoria");
         if (ligaID != null) {
             eliminarLiga(request, response);
         } else if (id != null) {
             cargarDatosModificar(request, response);
+        } else if (clasificatoria != null) {
+            clasificatoria(request, response);
         }
     }
 
